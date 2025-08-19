@@ -15,6 +15,9 @@ targets:
     payvra:
         target: typescript
         source: Payvra API
+        publish:
+            npm:
+                token: $npm_token
         codeSamples:
             registry:
                 location: registry.speakeasyapi.dev/payvra/api/payvra-api-typescript-code-samples
