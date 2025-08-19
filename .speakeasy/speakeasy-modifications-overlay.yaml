@@ -1,0 +1,219 @@
+overlay: 1.0.0
+x-speakeasy-jsonpath: rfc9535
+info:
+  title: Speakeasy Modifications
+  version: 0.0.2
+  x-speakeasy-metadata:
+    after: ""
+    before: ""
+    type: speakeasy-modifications
+actions:
+  - target: $["paths"]["/v1/wallets/list"]["post"]
+    update:
+      x-speakeasy-group: wallets
+      x-speakeasy-name-override: list
+    x-speakeasy-metadata:
+      after: sdk.wallets.list()
+      before: sdk.wallet.wallets-listOwned()
+      created_at: 1755602698945
+      reviewed_at: 1755602706886
+      type: method-name
+  - target: $["paths"]["/v1/wallets"]["get"]
+    update:
+      x-speakeasy-group: wallets
+      x-speakeasy-name-override: listOwned
+    x-speakeasy-metadata:
+      after: sdk.wallets.listOwned()
+      before: sdk.wallet.wallets-getAllOwned()
+      created_at: 1755602698948
+      reviewed_at: 1755602706887
+      type: method-name
+  - target: $["paths"]["/v1/conversions/stats"]["get"]
+    update:
+      x-speakeasy-group: conversions
+      x-speakeasy-name-override: stats
+    x-speakeasy-metadata:
+      after: sdk.conversions.stats()
+      before: sdk.conversion.conversions-getStats()
+      created_at: 1755602698948
+      reviewed_at: 1755602706887
+      type: method-name
+  - target: $["paths"]["/v1/payment-invoices/stats"]["get"]
+    update:
+      x-speakeasy-group: paymentInvoices
+      x-speakeasy-name-override: stats
+    x-speakeasy-metadata:
+      after: sdk.paymentInvoices.stats()
+      before: sdk.payment-invoice.paymentInvoices-getStats()
+      created_at: 1755602698948
+      reviewed_at: 1755602706887
+      type: method-name
+  - target: $["paths"]["/v1/payouts/stats"]["get"]
+    update:
+      x-speakeasy-group: payouts
+      x-speakeasy-name-override: stats
+    x-speakeasy-metadata:
+      after: sdk.payouts.stats()
+      before: sdk.payout.payouts-getStats()
+      created_at: 1755602698948
+      reviewed_at: 1755602706887
+      type: method-name
+  - target: $["paths"]["/v1/currencies"]["get"]
+    update:
+      x-speakeasy-name-override: all
+    x-speakeasy-metadata:
+      after: sdk.currencies.all()
+      before: sdk.currencies.currencies-getAll()
+      created_at: 1755602698948
+      reviewed_at: 1755602706887
+      type: method-name
+  - target: $["paths"]["/v1/conversions/{id}"]["get"]
+    update:
+      x-speakeasy-group: conversions
+      x-speakeasy-name-override: get
+    x-speakeasy-metadata:
+      after: sdk.conversions.get()
+      before: sdk.conversion.conversions-getById()
+      created_at: 1755602698948
+      reviewed_at: 1755602706887
+      type: method-name
+  - target: $["paths"]["/v1/payouts/list"]["post"]
+    update:
+      x-speakeasy-group: payouts
+      x-speakeasy-name-override: list
+    x-speakeasy-metadata:
+      after: sdk.payouts.list()
+      before: sdk.payout.payouts-listOwned()
+      created_at: 1755602698948
+      reviewed_at: 1755602706887
+      type: method-name
+  - target: $["paths"]["/v1/wallets/{id}"]["get"]
+    update:
+      x-speakeasy-group: wallets
+      x-speakeasy-name-override: get
+    x-speakeasy-metadata:
+      after: sdk.wallets.get()
+      before: sdk.wallet.wallets-getById()
+      created_at: 1755602698948
+      reviewed_at: 1755602706887
+      type: method-name
+  - target: $["paths"]["/v1/conversions/estimate/{currencyFrom}/{currencyTo}/{amountFrom}"]["get"]
+    update:
+      x-speakeasy-group: conversions
+      x-speakeasy-name-override: estimate
+    x-speakeasy-metadata:
+      after: sdk.conversions.estimate()
+      before: sdk.conversion.conversions-getEstimate()
+      created_at: 1755602698951
+      reviewed_at: 1755602706887
+      type: method-name
+  - target: $["paths"]["/v1/conversions/list"]["post"]
+    update:
+      x-speakeasy-group: conversions
+      x-speakeasy-name-override: list
+    x-speakeasy-metadata:
+      after: sdk.conversions.list()
+      before: sdk.conversion.conversions-listOwned()
+      created_at: 1755602698951
+      reviewed_at: 1755602706887
+      type: method-name
+  - target: $["paths"]["/v1/payouts/min-amount/{currency}"]["get"]
+    update:
+      x-speakeasy-group: payouts
+      x-speakeasy-name-override: minAmount
+    x-speakeasy-metadata:
+      after: sdk.payouts.minAmount()
+      before: sdk.payout.payouts-getMinAmount()
+      created_at: 1755602698951
+      reviewed_at: 1755602706887
+      type: method-name
+  - target: $["paths"]["/v1/payment-invoices"]["post"]
+    update:
+      x-speakeasy-group: paymentInvoices
+      x-speakeasy-name-override: create
+    x-speakeasy-metadata:
+      after: sdk.paymentInvoices.create()
+      before: sdk.payment-invoice.paymentInvoices-create()
+      created_at: 1755602698951
+      reviewed_at: 1755602706887
+      type: method-name
+  - target: $["paths"]["/v1/conversions"]["post"]
+    update:
+      x-speakeasy-group: conversions
+      x-speakeasy-name-override: create
+    x-speakeasy-metadata:
+      after: sdk.conversions.create()
+      before: sdk.conversion.conversions-create()
+      created_at: 1755602698951
+      reviewed_at: 1755602706887
+      type: method-name
+  - target: $["paths"]["/v1/payouts"]["post"]
+    update:
+      x-speakeasy-group: payouts
+      x-speakeasy-name-override: create
+    x-speakeasy-metadata:
+      after: sdk.payouts.create()
+      before: sdk.payout.payouts-create()
+      created_at: 1755602698951
+      reviewed_at: 1755602706887
+      type: method-name
+  - target: $["paths"]["/v1/wallets/stats"]["get"]
+    update:
+      x-speakeasy-group: wallets
+      x-speakeasy-name-override: stats
+    x-speakeasy-metadata:
+      after: sdk.wallets.stats()
+      before: sdk.wallet.wallets-getStats()
+      created_at: 1755602698953
+      reviewed_at: 1755602706887
+      type: method-name
+  - target: $["paths"]["/v1/payment-invoices/list"]["post"]
+    update:
+      x-speakeasy-group: paymentInvoices
+      x-speakeasy-name-override: list
+    x-speakeasy-metadata:
+      after: sdk.paymentInvoices.list()
+      before: sdk.payment-invoice.paymentInvoices-listOwned()
+      created_at: 1755602698953
+      reviewed_at: 1755602706887
+      type: method-name
+  - target: $["paths"]["/v1/payment-invoices/{id}"]["get"]
+    update:
+      x-speakeasy-group: paymentInvoices
+      x-speakeasy-name-override: get
+    x-speakeasy-metadata:
+      after: sdk.paymentInvoices.get()
+      before: sdk.payment-invoice.paymentInvoices-getById()
+      created_at: 1755602698953
+      reviewed_at: 1755602706887
+      type: method-name
+  - target: $["paths"]["/v1/payouts/{id}"]["get"]
+    update:
+      x-speakeasy-group: payouts
+      x-speakeasy-name-override: get
+    x-speakeasy-metadata:
+      after: sdk.payouts.get()
+      before: sdk.payout.payouts-getById()
+      created_at: 1755602698953
+      reviewed_at: 1755602706887
+      type: method-name
+  - target: $["paths"]["/v1/payouts/fee-estimate/{currency}/{amount}"]["get"]
+    update:
+      x-speakeasy-group: payouts
+      x-speakeasy-name-override: feeEstimate
+    x-speakeasy-metadata:
+      after: sdk.payouts.feeEstimate()
+      before: sdk.payout.payouts-getFeeEstimate()
+      created_at: 1755602698953
+      reviewed_at: 1755602706887
+      type: method-name
+  - target: $["paths"]["/v1/payment-invoices/white-label"]["post"]
+    update:
+      x-speakeasy-group: paymentInvoices
+      x-speakeasy-name-override: createWhiteLabel
+    x-speakeasy-metadata:
+      after: sdk.paymentInvoices.createWhiteLabel()
+      before: sdk.payment-invoice.paymentInvoices-createWhiteLabel()
+      created_at: 1755602698953
+      reviewed_at: 1755602706887
+      type: method-name

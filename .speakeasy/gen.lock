@@ -1,0 +1,559 @@
+lockVersion: 2.0.0
+id: e7949987-c2c4-43df-b3b1-9106df0d3421
+management:
+  docChecksum: 2fbb0d3987f36b3dc3ccad2b6cd4218f
+  docVersion: 1.0.0
+  speakeasyVersion: 1.605.0
+  generationVersion: 2.684.0
+  releaseVersion: 0.1.1
+  configChecksum: 743e51737cfbbb00960c13f938de1228
+features:
+  typescript:
+    additionalDependencies: 0.1.0
+    constsAndDefaults: 0.1.12
+    core: 3.21.20
+    defaultEnabledRetries: 0.1.0
+    devContainers: 2.90.0
+    enumUnions: 0.1.0
+    envVarSecurityUsage: 0.1.2
+    globalSecurity: 2.82.13
+    globalSecurityCallbacks: 0.1.0
+    globalSecurityFlattening: 0.1.0
+    globalServerURLs: 2.82.5
+    groups: 2.81.2
+    methodArguments: 0.1.2
+    nameOverrides: 2.81.2
+    nullables: 0.1.1
+    responseFormat: 0.2.3
+    retries: 2.83.0
+    sdkHooks: 0.3.0
+    unions: 2.85.11
+generatedFiles:
+  - .devcontainer/README.md
+  - .devcontainer/devcontainer.json
+  - .devcontainer/setup.sh
+  - .gitattributes
+  - .npmignore
+  - FUNCTIONS.md
+  - RUNTIMES.md
+  - USAGE.md
+  - docs/lib/utils/retryconfig.md
+  - docs/models/errorbadrequestissue.md
+  - docs/models/errorforbiddenissue.md
+  - docs/models/errorinternalservererrorissue.md
+  - docs/models/errornotfoundissue.md
+  - docs/models/errors/errorbadrequest.md
+  - docs/models/errors/errorforbidden.md
+  - docs/models/errors/errorinternalservererror.md
+  - docs/models/errors/errornotfound.md
+  - docs/models/errors/errorunauthorized.md
+  - docs/models/errorunauthorizedissue.md
+  - docs/models/operations/conversionscreatecurrencyfrom.md
+  - docs/models/operations/conversionscreatecurrencyto.md
+  - docs/models/operations/conversionscreaterequest.md
+  - docs/models/operations/conversionscreateresponse.md
+  - docs/models/operations/conversionscreatestatus.md
+  - docs/models/operations/conversionsgetbyidcurrencyfrom.md
+  - docs/models/operations/conversionsgetbyidcurrencyto.md
+  - docs/models/operations/conversionsgetbyidrequest.md
+  - docs/models/operations/conversionsgetbyidresponse.md
+  - docs/models/operations/conversionsgetbyidstatus.md
+  - docs/models/operations/conversionsgetestimaterequest.md
+  - docs/models/operations/conversionsgetestimateresponse.md
+  - docs/models/operations/conversionsgetstatsresponse.md
+  - docs/models/operations/conversionslistownedcurrencyfrom.md
+  - docs/models/operations/conversionslistownedcurrencyto.md
+  - docs/models/operations/conversionslistownedcursor.md
+  - docs/models/operations/conversionslistowneddata.md
+  - docs/models/operations/conversionslistownedfilter.md
+  - docs/models/operations/conversionslistownedmeta.md
+  - docs/models/operations/conversionslistownedrequest.md
+  - docs/models/operations/conversionslistownedresponse.md
+  - docs/models/operations/conversionslistownedstatus.md
+  - docs/models/operations/currenciesgetallresponse.md
+  - docs/models/operations/paymentinvoicescreateacceptedcoin.md
+  - docs/models/operations/paymentinvoicescreatepaycurrency.md
+  - docs/models/operations/paymentinvoicescreaterequest.md
+  - docs/models/operations/paymentinvoicescreateresponse.md
+  - docs/models/operations/paymentinvoicescreatestatus.md
+  - docs/models/operations/paymentinvoicescreatewhitelabelacceptedcoin.md
+  - docs/models/operations/paymentinvoicescreatewhitelabelpaycurrency.md
+  - docs/models/operations/paymentinvoicescreatewhitelabelrequest.md
+  - docs/models/operations/paymentinvoicescreatewhitelabelresponse.md
+  - docs/models/operations/paymentinvoicescreatewhitelabelstatus.md
+  - docs/models/operations/paymentinvoicesgetbyidacceptedcoin.md
+  - docs/models/operations/paymentinvoicesgetbyidpaycurrency.md
+  - docs/models/operations/paymentinvoicesgetbyidrequest.md
+  - docs/models/operations/paymentinvoicesgetbyidresponse.md
+  - docs/models/operations/paymentinvoicesgetbyidstatus.md
+  - docs/models/operations/paymentinvoicesgetstatsresponse.md
+  - docs/models/operations/paymentinvoiceslistownedacceptedcoin.md
+  - docs/models/operations/paymentinvoiceslistownedcursor.md
+  - docs/models/operations/paymentinvoiceslistowneddata.md
+  - docs/models/operations/paymentinvoiceslistownedfilter.md
+  - docs/models/operations/paymentinvoiceslistownedmeta.md
+  - docs/models/operations/paymentinvoiceslistownedpaycurrency.md
+  - docs/models/operations/paymentinvoiceslistownedrequest.md
+  - docs/models/operations/paymentinvoiceslistownedresponse.md
+  - docs/models/operations/paymentinvoiceslistownedstatus.md
+  - docs/models/operations/payoutscreatecurrency.md
+  - docs/models/operations/payoutscreaterequest.md
+  - docs/models/operations/payoutscreateresponse.md
+  - docs/models/operations/payoutscreatestatus.md
+  - docs/models/operations/payoutsgetbyidacceptedcoin.md
+  - docs/models/operations/payoutsgetbyidpaycurrency.md
+  - docs/models/operations/payoutsgetbyidrequest.md
+  - docs/models/operations/payoutsgetbyidresponse.md
+  - docs/models/operations/payoutsgetbyidstatus.md
+  - docs/models/operations/payoutsgetfeeestimaterequest.md
+  - docs/models/operations/payoutsgetfeeestimateresponse.md
+  - docs/models/operations/payoutsgetminamountrequest.md
+  - docs/models/operations/payoutsgetminamountresponse.md
+  - docs/models/operations/payoutsgetstatsresponse.md
+  - docs/models/operations/payoutslistownedcurrency.md
+  - docs/models/operations/payoutslistownedcursor.md
+  - docs/models/operations/payoutslistowneddata.md
+  - docs/models/operations/payoutslistownedfilter.md
+  - docs/models/operations/payoutslistownedmeta.md
+  - docs/models/operations/payoutslistownedrequest.md
+  - docs/models/operations/payoutslistownedresponse.md
+  - docs/models/operations/payoutslistownedstatus.md
+  - docs/models/operations/walletsgetallownedcurrency.md
+  - docs/models/operations/walletsgetallownedresponse.md
+  - docs/models/operations/walletsgetbyidcurrency.md
+  - docs/models/operations/walletsgetbyidrequest.md
+  - docs/models/operations/walletsgetbyidresponse.md
+  - docs/models/operations/walletsgetstatsresponse.md
+  - docs/models/operations/walletslistownedcurrency.md
+  - docs/models/operations/walletslistownedcursor.md
+  - docs/models/operations/walletslistowneddata.md
+  - docs/models/operations/walletslistownedfilter.md
+  - docs/models/operations/walletslistownedmeta.md
+  - docs/models/operations/walletslistownedrequest.md
+  - docs/models/operations/walletslistownedresponse.md
+  - docs/models/security.md
+  - docs/sdks/conversions/README.md
+  - docs/sdks/currencies/README.md
+  - docs/sdks/paymentinvoices/README.md
+  - docs/sdks/payouts/README.md
+  - docs/sdks/payvra/README.md
+  - docs/sdks/wallets/README.md
+  - eslint.config.mjs
+  - examples/.env.template
+  - examples/README.md
+  - examples/currenciesAll.example.ts
+  - examples/package.json
+  - jsr.json
+  - package.json
+  - src/core.ts
+  - src/funcs/conversionsCreate.ts
+  - src/funcs/conversionsEstimate.ts
+  - src/funcs/conversionsGet.ts
+  - src/funcs/conversionsList.ts
+  - src/funcs/conversionsStats.ts
+  - src/funcs/currenciesAll.ts
+  - src/funcs/paymentInvoicesCreate.ts
+  - src/funcs/paymentInvoicesCreateWhiteLabel.ts
+  - src/funcs/paymentInvoicesGet.ts
+  - src/funcs/paymentInvoicesList.ts
+  - src/funcs/paymentInvoicesStats.ts
+  - src/funcs/payoutsCreate.ts
+  - src/funcs/payoutsFeeEstimate.ts
+  - src/funcs/payoutsGet.ts
+  - src/funcs/payoutsList.ts
+  - src/funcs/payoutsMinAmount.ts
+  - src/funcs/payoutsStats.ts
+  - src/funcs/walletsGet.ts
+  - src/funcs/walletsList.ts
+  - src/funcs/walletsListOwned.ts
+  - src/funcs/walletsStats.ts
+  - src/hooks/hooks.ts
+  - src/hooks/index.ts
+  - src/hooks/types.ts
+  - src/index.ts
+  - src/lib/base64.ts
+  - src/lib/config.ts
+  - src/lib/dlv.ts
+  - src/lib/encodings.ts
+  - src/lib/env.ts
+  - src/lib/files.ts
+  - src/lib/http.ts
+  - src/lib/is-plain-object.ts
+  - src/lib/logger.ts
+  - src/lib/matchers.ts
+  - src/lib/primitives.ts
+  - src/lib/retries.ts
+  - src/lib/schemas.ts
+  - src/lib/sdks.ts
+  - src/lib/security.ts
+  - src/lib/url.ts
+  - src/models/errorbadrequest.ts
+  - src/models/errorforbidden.ts
+  - src/models/errorinternalservererror.ts
+  - src/models/errornotfound.ts
+  - src/models/errors/errorbadrequest.ts
+  - src/models/errors/errorforbidden.ts
+  - src/models/errors/errorinternalservererror.ts
+  - src/models/errors/errornotfound.ts
+  - src/models/errors/errorunauthorized.ts
+  - src/models/errors/httpclienterrors.ts
+  - src/models/errors/index.ts
+  - src/models/errors/payvradefaulterror.ts
+  - src/models/errors/payvraerror.ts
+  - src/models/errors/responsevalidationerror.ts
+  - src/models/errors/sdkvalidationerror.ts
+  - src/models/errorunauthorized.ts
+  - src/models/index.ts
+  - src/models/operations/conversionscreate.ts
+  - src/models/operations/conversionsgetbyid.ts
+  - src/models/operations/conversionsgetestimate.ts
+  - src/models/operations/conversionsgetstats.ts
+  - src/models/operations/conversionslistowned.ts
+  - src/models/operations/currenciesgetall.ts
+  - src/models/operations/index.ts
+  - src/models/operations/paymentinvoicescreate.ts
+  - src/models/operations/paymentinvoicescreatewhitelabel.ts
+  - src/models/operations/paymentinvoicesgetbyid.ts
+  - src/models/operations/paymentinvoicesgetstats.ts
+  - src/models/operations/paymentinvoiceslistowned.ts
+  - src/models/operations/payoutscreate.ts
+  - src/models/operations/payoutsgetbyid.ts
+  - src/models/operations/payoutsgetfeeestimate.ts
+  - src/models/operations/payoutsgetminamount.ts
+  - src/models/operations/payoutsgetstats.ts
+  - src/models/operations/payoutslistowned.ts
+  - src/models/operations/walletsgetallowned.ts
+  - src/models/operations/walletsgetbyid.ts
+  - src/models/operations/walletsgetstats.ts
+  - src/models/operations/walletslistowned.ts
+  - src/models/security.ts
+  - src/sdk/conversions.ts
+  - src/sdk/currencies.ts
+  - src/sdk/index.ts
+  - src/sdk/paymentinvoices.ts
+  - src/sdk/payouts.ts
+  - src/sdk/sdk.ts
+  - src/sdk/wallets.ts
+  - src/types/async.ts
+  - src/types/blobs.ts
+  - src/types/constdatetime.ts
+  - src/types/enums.ts
+  - src/types/fp.ts
+  - src/types/index.ts
+  - src/types/operations.ts
+  - src/types/rfcdate.ts
+  - src/types/streams.ts
+  - tsconfig.json
+examples:
+  currencies-getAll:
+    speakeasy-default-currencies-get-all:
+      responses:
+        "200":
+          application/json: [{"id": "<id>", "code": "<value>", "name": "<value>", "enabled": false, "walletRegex": "<value>", "priority": 192842, "extraIdExists": false, "extraIdRegex": "<value>", "usdPrice": "<value>", "minPaymentAmount": "<value>", "minPayoutAmount": "<value>", "minWithdrawalFeeEstimate": "<value>", "logoUrl": "https://sudden-step-mother.com", "track": false, "cgId": "<id>", "isMaxlimit": true, "network": "<value>", "smartContract": "<value>", "networkPrecision": "<value>", "explorerLinkHash": "<value>", "precision": 191153, "ticker": "<value>", "isDefi": true, "isPopular": true, "isStable": false, "availableForToConversion": false, "createdAt": "1724551960654", "updatedAt": "1735608102976"}]
+        "400":
+          application/json: {"message": "Invalid input data", "code": "BAD_REQUEST", "issues": []}
+        "404":
+          application/json: {"message": "Not found", "code": "NOT_FOUND", "issues": []}
+        "500":
+          application/json: {"message": "Internal server error", "code": "INTERNAL_SERVER_ERROR", "issues": []}
+  wallets-listOwned:
+    speakeasy-default-wallets-list-owned:
+      responses:
+        "200":
+          application/json: {"meta": {"hasPreviousPage": true, "hasNextPage": false}, "data": []}
+        "400":
+          application/json: {"message": "Invalid input data", "code": "BAD_REQUEST", "issues": []}
+        "401":
+          application/json: {"message": "Authorization not provided", "code": "UNAUTHORIZED", "issues": []}
+        "403":
+          application/json: {"message": "Insufficient access", "code": "FORBIDDEN", "issues": []}
+        "500":
+          application/json: {"message": "Internal server error", "code": "INTERNAL_SERVER_ERROR", "issues": []}
+  wallets-getById:
+    speakeasy-default-wallets-get-by-id:
+      parameters:
+        path:
+          id: "<id>"
+      responses:
+        "200":
+          application/json: {"id": "<id>", "merchantId": "<id>", "currencyId": "<id>", "balance": "<value>", "pendingBalance": "<value>", "createdAt": "1711399038028", "updatedAt": "1735625154262", "currency": {"id": "<id>", "code": "<value>", "name": "<value>", "enabled": false, "walletRegex": "<value>", "priority": 747729, "extraIdExists": false, "extraIdRegex": "<value>", "usdPrice": "<value>", "minPaymentAmount": "<value>", "minPayoutAmount": "<value>", "minWithdrawalFeeEstimate": "<value>", "logoUrl": null, "track": false, "cgId": "<id>", "isMaxlimit": true, "network": "<value>", "smartContract": "<value>", "networkPrecision": "<value>", "explorerLinkHash": "<value>", "precision": 432283, "ticker": "<value>", "isDefi": false, "isPopular": false, "isStable": true, "availableForToConversion": false, "createdAt": "1714943448076", "updatedAt": "1735660396278"}}
+        "400":
+          application/json: {"message": "Invalid input data", "code": "BAD_REQUEST", "issues": []}
+        "401":
+          application/json: {"message": "Authorization not provided", "code": "UNAUTHORIZED", "issues": []}
+        "403":
+          application/json: {"message": "Insufficient access", "code": "FORBIDDEN", "issues": []}
+        "404":
+          application/json: {"message": "Not found", "code": "NOT_FOUND", "issues": []}
+        "500":
+          application/json: {"message": "Internal server error", "code": "INTERNAL_SERVER_ERROR", "issues": []}
+  wallets-getAllOwned:
+    speakeasy-default-wallets-get-all-owned:
+      responses:
+        "200":
+          application/json: [{"id": "<id>", "merchantId": "<id>", "currencyId": "<id>", "balance": "<value>", "pendingBalance": "<value>", "createdAt": "1714939545764", "updatedAt": "1735665393141", "currency": {"id": "<id>", "code": "<value>", "name": "<value>", "enabled": false, "walletRegex": "<value>", "priority": 413914, "extraIdExists": true, "extraIdRegex": "<value>", "usdPrice": "<value>", "minPaymentAmount": "<value>", "minPayoutAmount": "<value>", "minWithdrawalFeeEstimate": "<value>", "logoUrl": "https://exhausted-guacamole.info", "track": true, "cgId": "<id>", "isMaxlimit": true, "network": "<value>", "smartContract": "<value>", "networkPrecision": "<value>", "explorerLinkHash": "<value>", "precision": 405274, "ticker": null, "isDefi": true, "isPopular": true, "isStable": true, "availableForToConversion": true, "createdAt": "1726501371288", "updatedAt": "1735686314582"}}]
+        "400":
+          application/json: {"message": "Invalid input data", "code": "BAD_REQUEST", "issues": []}
+        "401":
+          application/json: {"message": "Authorization not provided", "code": "UNAUTHORIZED", "issues": []}
+        "403":
+          application/json: {"message": "Insufficient access", "code": "FORBIDDEN", "issues": []}
+        "404":
+          application/json: {"message": "Not found", "code": "NOT_FOUND", "issues": []}
+        "500":
+          application/json: {"message": "Internal server error", "code": "INTERNAL_SERVER_ERROR", "issues": []}
+  wallets-getStats:
+    speakeasy-default-wallets-get-stats:
+      responses:
+        "200":
+          application/json: {"total": 2110.94, "totalUSDValue": 5340.33, "totalAvailableUSDValue": 9040.32, "totalPendingUSDValue": 1715.81}
+        "401":
+          application/json: {"message": "Authorization not provided", "code": "UNAUTHORIZED", "issues": []}
+        "403":
+          application/json: {"message": "Insufficient access", "code": "FORBIDDEN", "issues": []}
+        "500":
+          application/json: {"message": "Internal server error", "code": "INTERNAL_SERVER_ERROR", "issues": []}
+  paymentInvoices-listOwned:
+    speakeasy-default-payment-invoices-list-owned:
+      responses:
+        "200":
+          application/json: {"meta": {"hasPreviousPage": false, "hasNextPage": true}, "data": []}
+        "400":
+          application/json: {"message": "Invalid input data", "code": "BAD_REQUEST", "issues": []}
+        "401":
+          application/json: {"message": "Authorization not provided", "code": "UNAUTHORIZED", "issues": []}
+        "403":
+          application/json: {"message": "Insufficient access", "code": "FORBIDDEN", "issues": []}
+        "500":
+          application/json: {"message": "Internal server error", "code": "INTERNAL_SERVER_ERROR", "issues": []}
+  paymentInvoices-getById:
+    speakeasy-default-payment-invoices-get-by-id:
+      parameters:
+        path:
+          id: "<id>"
+      responses:
+        "200":
+          application/json: {"id": "<id>", "walletId": null, "merchantId": "<id>", "status": "confirming", "underPaidCover": "<value>", "feePaidByPayer": true, "isWhiteLabel": true, "priceAmount": "<value>", "priceCurrency": "<value>", "payAmount": "<value>", "paidAmount": "<value>", "receivedAmount": "<value>", "payAddress": "<value>", "payinExtraId": "<id>", "payinHash": "<value>", "orderId": "<id>", "orderDescription": "<value>", "callbackUrl": "https://comfortable-nun.org", "returnUrl": "https://feline-remark.org/", "finishedAt": "<value>", "expiredAt": "1705337715366", "createdAt": "1730774137757", "updatedAt": "1735651303232", "payCurrency": {"id": "<id>", "code": "<value>", "name": "<value>", "enabled": true, "walletRegex": "<value>", "priority": 900763, "extraIdExists": true, "extraIdRegex": "<value>", "usdPrice": "<value>", "minPaymentAmount": "<value>", "minPayoutAmount": "<value>", "minWithdrawalFeeEstimate": "<value>", "logoUrl": "https://bossy-developmental.net/", "track": false, "cgId": "<id>", "isMaxlimit": false, "network": "<value>", "smartContract": "<value>", "networkPrecision": "<value>", "explorerLinkHash": "<value>", "precision": 879647, "ticker": "<value>", "isDefi": false, "isPopular": false, "isStable": true, "availableForToConversion": true, "createdAt": "1734522796841", "updatedAt": "1735685494925"}, "acceptedCoins": [{"id": "<id>", "code": "<value>", "name": "<value>", "enabled": false, "walletRegex": "<value>", "priority": 51656, "extraIdExists": true, "extraIdRegex": "<value>", "usdPrice": "<value>", "minPaymentAmount": "<value>", "minPayoutAmount": "<value>", "minWithdrawalFeeEstimate": "<value>", "logoUrl": "https://good-natured-wedding.net", "track": false, "cgId": "<id>", "isMaxlimit": false, "network": "<value>", "smartContract": "<value>", "networkPrecision": "<value>", "explorerLinkHash": "<value>", "precision": 120357, "ticker": "<value>", "isDefi": true, "isPopular": true, "isStable": true, "availableForToConversion": true, "createdAt": "1717266694562", "updatedAt": "1735613716598"}]}
+        "400":
+          application/json: {"message": "Invalid input data", "code": "BAD_REQUEST", "issues": []}
+        "401":
+          application/json: {"message": "Authorization not provided", "code": "UNAUTHORIZED", "issues": []}
+        "403":
+          application/json: {"message": "Insufficient access", "code": "FORBIDDEN", "issues": []}
+        "404":
+          application/json: {"message": "Not found", "code": "NOT_FOUND", "issues": []}
+        "500":
+          application/json: {"message": "Internal server error", "code": "INTERNAL_SERVER_ERROR", "issues": []}
+  paymentInvoices-getStats:
+    speakeasy-default-payment-invoices-get-stats:
+      responses:
+        "200":
+          application/json: {"total": 5906.49, "totalUSDVolume": 4448.43, "totalFinished": 5752.99}
+        "401":
+          application/json: {"message": "Authorization not provided", "code": "UNAUTHORIZED", "issues": []}
+        "403":
+          application/json: {"message": "Insufficient access", "code": "FORBIDDEN", "issues": []}
+        "500":
+          application/json: {"message": "Internal server error", "code": "INTERNAL_SERVER_ERROR", "issues": []}
+  paymentInvoices-create:
+    speakeasy-default-payment-invoices-create:
+      requestBody:
+        application/json: {"amount": 1787.33, "amountCurrency": "USD", "lifeTime": 10080}
+      responses:
+        "200":
+          application/json: {"id": "<id>", "walletId": "<id>", "merchantId": "<id>", "status": "partially_paid", "underPaidCover": "<value>", "feePaidByPayer": true, "isWhiteLabel": true, "priceAmount": "<value>", "priceCurrency": "<value>", "payAmount": "<value>", "paidAmount": "<value>", "receivedAmount": "<value>", "payAddress": null, "payinExtraId": "<id>", "payinHash": "<value>", "orderId": "<id>", "orderDescription": "<value>", "callbackUrl": "https://palatable-solvency.biz/", "returnUrl": "https://awesome-plumber.com", "finishedAt": "<value>", "expiredAt": "1712838728693", "createdAt": "1724192076229", "updatedAt": "1735675003887", "payCurrency": {"id": "<id>", "code": "<value>", "name": "<value>", "enabled": true, "walletRegex": "<value>", "priority": 436387, "extraIdExists": false, "extraIdRegex": "<value>", "usdPrice": "<value>", "minPaymentAmount": "<value>", "minPayoutAmount": "<value>", "minWithdrawalFeeEstimate": "<value>", "logoUrl": "https://lucky-lay.com", "track": true, "cgId": "<id>", "isMaxlimit": false, "network": "<value>", "smartContract": "<value>", "networkPrecision": "<value>", "explorerLinkHash": "<value>", "precision": 271962, "ticker": "<value>", "isDefi": false, "isPopular": true, "isStable": false, "availableForToConversion": true, "createdAt": "1727129744553", "updatedAt": "1735666142440"}, "acceptedCoins": []}
+        "400":
+          application/json: {"message": "Invalid input data", "code": "BAD_REQUEST", "issues": []}
+        "401":
+          application/json: {"message": "Authorization not provided", "code": "UNAUTHORIZED", "issues": []}
+        "403":
+          application/json: {"message": "Insufficient access", "code": "FORBIDDEN", "issues": []}
+        "500":
+          application/json: {"message": "Internal server error", "code": "INTERNAL_SERVER_ERROR", "issues": []}
+  paymentInvoices-createWhiteLabel:
+    speakeasy-default-payment-invoices-create-white-label:
+      requestBody:
+        application/json: {"amount": 7262.88, "amountCurrency": "USD", "lifeTime": 10080, "payAddress": "<value>", "payinExtraId": "<id>", "payCurrency": "<value>"}
+      responses:
+        "200":
+          application/json: {"id": "<id>", "walletId": "<id>", "merchantId": "<id>", "status": "confirmed", "underPaidCover": "<value>", "feePaidByPayer": true, "isWhiteLabel": false, "priceAmount": "<value>", "priceCurrency": "<value>", "payAmount": "<value>", "paidAmount": "<value>", "receivedAmount": "<value>", "payAddress": "<value>", "payinExtraId": "<id>", "payinHash": "<value>", "orderId": "<id>", "orderDescription": "<value>", "callbackUrl": "https://amused-footrest.net", "finishedAt": "<value>", "expiredAt": "1733136542848", "createdAt": "1722195384703", "updatedAt": "1735674790031", "payCurrency": {"id": "<id>", "code": "<value>", "name": "<value>", "enabled": false, "walletRegex": "<value>", "priority": 732082, "extraIdExists": true, "extraIdRegex": "<value>", "usdPrice": "<value>", "minPaymentAmount": "<value>", "minPayoutAmount": "<value>", "minWithdrawalFeeEstimate": "<value>", "logoUrl": "https://rectangular-address.name/", "track": false, "cgId": "<id>", "isMaxlimit": true, "network": "<value>", "smartContract": null, "networkPrecision": "<value>", "explorerLinkHash": null, "precision": 382441, "ticker": "<value>", "isDefi": true, "isPopular": false, "isStable": true, "availableForToConversion": false, "createdAt": "1716080467535", "updatedAt": "1735663746949"}, "acceptedCoins": []}
+        "400":
+          application/json: {"message": "Invalid input data", "code": "BAD_REQUEST", "issues": []}
+        "401":
+          application/json: {"message": "Authorization not provided", "code": "UNAUTHORIZED", "issues": []}
+        "403":
+          application/json: {"message": "Insufficient access", "code": "FORBIDDEN", "issues": []}
+        "500":
+          application/json: {"message": "Internal server error", "code": "INTERNAL_SERVER_ERROR", "issues": []}
+  payouts-listOwned:
+    speakeasy-default-payouts-list-owned:
+      responses:
+        "200":
+          application/json: {"meta": {"hasPreviousPage": false, "hasNextPage": false}, "data": [{"id": "<id>", "walletId": "<id>", "merchantId": "<id>", "currencyId": "<id>", "status": "rejected", "amount": "699.31", "address": "400 Cross Street", "extraId": "<id>", "txHash": "<value>", "fee": "<value>", "callbackUrl": "https://sticky-supplier.net", "createdAt": "1720843733826", "updatedAt": "1735646660315", "currency": {"id": "<id>", "code": "<value>", "name": "<value>", "enabled": false, "walletRegex": "<value>", "priority": 790856, "extraIdExists": true, "extraIdRegex": "<value>", "usdPrice": "<value>", "minPaymentAmount": "<value>", "minPayoutAmount": "<value>", "minWithdrawalFeeEstimate": "<value>", "logoUrl": "https://royal-flu.com/", "track": true, "cgId": "<id>", "isMaxlimit": false, "network": null, "smartContract": "<value>", "networkPrecision": "<value>", "explorerLinkHash": "<value>", "precision": 776467, "ticker": "<value>", "isDefi": false, "isPopular": true, "isStable": true, "availableForToConversion": false, "createdAt": "1711944915144", "updatedAt": "1735656433122"}}]}
+        "400":
+          application/json: {"message": "Invalid input data", "code": "BAD_REQUEST", "issues": []}
+        "401":
+          application/json: {"message": "Authorization not provided", "code": "UNAUTHORIZED", "issues": []}
+        "403":
+          application/json: {"message": "Insufficient access", "code": "FORBIDDEN", "issues": []}
+        "500":
+          application/json: {"message": "Internal server error", "code": "INTERNAL_SERVER_ERROR", "issues": []}
+  payouts-getById:
+    speakeasy-default-payouts-get-by-id:
+      parameters:
+        path:
+          id: "<id>"
+      responses:
+        "200":
+          application/json: {"id": "<id>", "walletId": "<id>", "merchantId": "<id>", "status": "confirmed", "underPaidCover": "<value>", "feePaidByPayer": true, "isWhiteLabel": true, "priceAmount": "<value>", "priceCurrency": "<value>", "payAmount": "<value>", "paidAmount": "<value>", "receivedAmount": "<value>", "payAddress": "<value>", "payinExtraId": "<id>", "payinHash": "<value>", "orderId": "<id>", "orderDescription": null, "callbackUrl": null, "returnUrl": "https://free-bid.biz", "finishedAt": "<value>", "expiredAt": "1718478027931", "createdAt": "1711786736825", "updatedAt": "1735672754539", "payCurrency": {"id": "<id>", "code": "<value>", "name": "<value>", "enabled": true, "walletRegex": "<value>", "priority": 340425, "extraIdExists": false, "extraIdRegex": "<value>", "usdPrice": "<value>", "minPaymentAmount": "<value>", "minPayoutAmount": "<value>", "minWithdrawalFeeEstimate": "<value>", "logoUrl": "https://unlucky-marathon.biz", "track": false, "cgId": "<id>", "isMaxlimit": true, "network": "<value>", "smartContract": "<value>", "networkPrecision": "<value>", "explorerLinkHash": "<value>", "precision": 520745, "ticker": "<value>", "isDefi": false, "isPopular": true, "isStable": false, "availableForToConversion": true, "createdAt": "1710807153538", "updatedAt": "1735627983225"}, "acceptedCoins": [{"id": "<id>", "code": "<value>", "name": "<value>", "enabled": true, "walletRegex": "<value>", "priority": 655535, "extraIdExists": false, "extraIdRegex": "<value>", "usdPrice": "<value>", "minPaymentAmount": "<value>", "minPayoutAmount": "<value>", "minWithdrawalFeeEstimate": "<value>", "logoUrl": "https://rowdy-plumber.info/", "track": true, "cgId": "<id>", "isMaxlimit": false, "network": "<value>", "smartContract": "<value>", "networkPrecision": "<value>", "explorerLinkHash": "<value>", "precision": 439354, "ticker": "<value>", "isDefi": true, "isPopular": true, "isStable": true, "availableForToConversion": true, "createdAt": "1709534888671", "updatedAt": "1735675928380"}]}
+        "400":
+          application/json: {"message": "Invalid input data", "code": "BAD_REQUEST", "issues": []}
+        "401":
+          application/json: {"message": "Authorization not provided", "code": "UNAUTHORIZED", "issues": []}
+        "403":
+          application/json: {"message": "Insufficient access", "code": "FORBIDDEN", "issues": []}
+        "404":
+          application/json: {"message": "Not found", "code": "NOT_FOUND", "issues": []}
+        "500":
+          application/json: {"message": "Internal server error", "code": "INTERNAL_SERVER_ERROR", "issues": []}
+  payouts-getMinAmount:
+    speakeasy-default-payouts-get-min-amount:
+      parameters:
+        path:
+          currency: "Manat"
+      responses:
+        "200":
+          application/json: {"minAmount": 7867.22}
+        "400":
+          application/json: {"message": "Invalid input data", "code": "BAD_REQUEST", "issues": []}
+        "401":
+          application/json: {"message": "Authorization not provided", "code": "UNAUTHORIZED", "issues": []}
+        "403":
+          application/json: {"message": "Insufficient access", "code": "FORBIDDEN", "issues": []}
+        "404":
+          application/json: {"message": "Not found", "code": "NOT_FOUND", "issues": []}
+        "500":
+          application/json: {"message": "Internal server error", "code": "INTERNAL_SERVER_ERROR", "issues": []}
+  payouts-getFeeEstimate:
+    speakeasy-default-payouts-get-fee-estimate:
+      parameters:
+        path:
+          currency: "Lek"
+          amount: "680.46"
+      responses:
+        "200":
+          application/json: {"fee": 8735.78}
+        "400":
+          application/json: {"message": "Invalid input data", "code": "BAD_REQUEST", "issues": []}
+        "401":
+          application/json: {"message": "Authorization not provided", "code": "UNAUTHORIZED", "issues": []}
+        "403":
+          application/json: {"message": "Insufficient access", "code": "FORBIDDEN", "issues": []}
+        "404":
+          application/json: {"message": "Not found", "code": "NOT_FOUND", "issues": []}
+        "500":
+          application/json: {"message": "Internal server error", "code": "INTERNAL_SERVER_ERROR", "issues": []}
+  payouts-getStats:
+    speakeasy-default-payouts-get-stats:
+      responses:
+        "200":
+          application/json: {"total": 1760.46, "totalUSDAmount": 4967.46, "totalReceipients": 7476.42, "totalProcessing": 896.68, "totalFinished": 9319.09}
+        "401":
+          application/json: {"message": "Authorization not provided", "code": "UNAUTHORIZED", "issues": []}
+        "403":
+          application/json: {"message": "Insufficient access", "code": "FORBIDDEN", "issues": []}
+        "500":
+          application/json: {"message": "Internal server error", "code": "INTERNAL_SERVER_ERROR", "issues": []}
+  payouts-create:
+    speakeasy-default-payouts-create:
+      requestBody:
+        application/json: {"amount": "312.46", "address": "691 S Walnut Street", "currency": "Rial Omani"}
+      responses:
+        "200":
+          application/json: {"id": "<id>", "walletId": "<id>", "merchantId": "<id>", "currencyId": "<id>", "status": "waiting", "amount": "809.25", "address": "48541 Carroll Forks", "extraId": "<id>", "txHash": "<value>", "fee": "<value>", "callbackUrl": "https://slow-pantyhose.net", "createdAt": "1723157200563", "updatedAt": "1735661094881", "currency": {"id": "<id>", "code": "<value>", "name": "<value>", "enabled": true, "walletRegex": "<value>", "priority": 100315, "extraIdExists": true, "extraIdRegex": "<value>", "usdPrice": "<value>", "minPaymentAmount": "<value>", "minPayoutAmount": "<value>", "minWithdrawalFeeEstimate": "<value>", "logoUrl": "https://mysterious-flight.biz", "track": false, "cgId": "<id>", "isMaxlimit": true, "network": "<value>", "smartContract": null, "networkPrecision": "<value>", "explorerLinkHash": "<value>", "precision": 493765, "ticker": "<value>", "isDefi": true, "isPopular": true, "isStable": true, "availableForToConversion": false, "createdAt": "1707777135881", "updatedAt": "1735657294580"}}
+        "400":
+          application/json: {"message": "Invalid input data", "code": "BAD_REQUEST", "issues": []}
+        "401":
+          application/json: {"message": "Authorization not provided", "code": "UNAUTHORIZED", "issues": []}
+        "403":
+          application/json: {"message": "Insufficient access", "code": "FORBIDDEN", "issues": []}
+        "500":
+          application/json: {"message": "Internal server error", "code": "INTERNAL_SERVER_ERROR", "issues": []}
+  conversions-listOwned:
+    speakeasy-default-conversions-list-owned:
+      responses:
+        "200":
+          application/json: {"meta": {"hasPreviousPage": true, "hasNextPage": false}, "data": [{"id": "<id>", "merchantId": "<id>", "walletFromId": "<id>", "walletToId": "<id>", "status": "processing", "amountFrom": "<value>", "amountTo": "<value>", "callbackUrl": "https://poor-follower.org", "createdAt": "1707880801372", "updatedAt": "1735688397849", "currencyFrom": {"id": "<id>", "code": "<value>", "name": "<value>", "enabled": false, "walletRegex": "<value>", "priority": 558104, "extraIdExists": true, "extraIdRegex": "<value>", "usdPrice": "<value>", "minPaymentAmount": "<value>", "minPayoutAmount": "<value>", "minWithdrawalFeeEstimate": "<value>", "logoUrl": "https://live-alligator.com/", "track": true, "cgId": "<id>", "isMaxlimit": true, "network": "<value>", "smartContract": "<value>", "networkPrecision": "<value>", "explorerLinkHash": "<value>", "precision": 70555, "ticker": "<value>", "isDefi": true, "isPopular": false, "isStable": false, "availableForToConversion": true, "createdAt": "1729213429585", "updatedAt": "1735679891435"}, "currencyTo": {"id": "<id>", "code": "<value>", "name": "<value>", "enabled": true, "walletRegex": "<value>", "priority": 17091, "extraIdExists": true, "extraIdRegex": "<value>", "usdPrice": "<value>", "minPaymentAmount": "<value>", "minPayoutAmount": "<value>", "minWithdrawalFeeEstimate": "<value>", "logoUrl": "https://usable-hawk.name/", "track": false, "cgId": "<id>", "isMaxlimit": true, "network": null, "smartContract": "<value>", "networkPrecision": "<value>", "explorerLinkHash": "<value>", "precision": 335328, "ticker": "<value>", "isDefi": true, "isPopular": false, "isStable": false, "availableForToConversion": true, "createdAt": "1729790694985", "updatedAt": "1735632555710"}}]}
+        "400":
+          application/json: {"message": "Invalid input data", "code": "BAD_REQUEST", "issues": []}
+        "401":
+          application/json: {"message": "Authorization not provided", "code": "UNAUTHORIZED", "issues": []}
+        "403":
+          application/json: {"message": "Insufficient access", "code": "FORBIDDEN", "issues": []}
+        "500":
+          application/json: {"message": "Internal server error", "code": "INTERNAL_SERVER_ERROR", "issues": []}
+  conversions-getById:
+    speakeasy-default-conversions-get-by-id:
+      parameters:
+        path:
+          id: "<id>"
+      responses:
+        "200":
+          application/json: {"id": "<id>", "merchantId": "<id>", "walletFromId": "<id>", "walletToId": "<id>", "status": "processing", "amountFrom": "<value>", "amountTo": "<value>", "callbackUrl": "https://buzzing-guide.biz/", "createdAt": "1725728196764", "updatedAt": "1735688274243", "currencyFrom": {"id": "<id>", "code": "<value>", "name": "<value>", "enabled": false, "walletRegex": "<value>", "priority": 34021, "extraIdExists": false, "extraIdRegex": "<value>", "usdPrice": "<value>", "minPaymentAmount": "<value>", "minPayoutAmount": "<value>", "minWithdrawalFeeEstimate": "<value>", "logoUrl": "https://well-groomed-understanding.info", "track": false, "cgId": "<id>", "isMaxlimit": true, "network": "<value>", "smartContract": "<value>", "networkPrecision": "<value>", "explorerLinkHash": "<value>", "precision": 979911, "ticker": null, "isDefi": true, "isPopular": false, "isStable": true, "availableForToConversion": true, "createdAt": "1725734047168", "updatedAt": "1735680704330"}, "currencyTo": {"id": "<id>", "code": "<value>", "name": "<value>", "enabled": false, "walletRegex": "<value>", "priority": 953079, "extraIdExists": false, "extraIdRegex": "<value>", "usdPrice": "<value>", "minPaymentAmount": "<value>", "minPayoutAmount": "<value>", "minWithdrawalFeeEstimate": "<value>", "logoUrl": "https://equatorial-guacamole.org/", "track": false, "cgId": "<id>", "isMaxlimit": false, "network": "<value>", "smartContract": "<value>", "networkPrecision": "<value>", "explorerLinkHash": "<value>", "precision": 300137, "ticker": "<value>", "isDefi": true, "isPopular": true, "isStable": true, "availableForToConversion": true, "createdAt": "1719608954081", "updatedAt": "1735659120578"}}
+        "400":
+          application/json: {"message": "Invalid input data", "code": "BAD_REQUEST", "issues": []}
+        "401":
+          application/json: {"message": "Authorization not provided", "code": "UNAUTHORIZED", "issues": []}
+        "403":
+          application/json: {"message": "Insufficient access", "code": "FORBIDDEN", "issues": []}
+        "404":
+          application/json: {"message": "Not found", "code": "NOT_FOUND", "issues": []}
+        "500":
+          application/json: {"message": "Internal server error", "code": "INTERNAL_SERVER_ERROR", "issues": []}
+  conversions-getEstimate:
+    speakeasy-default-conversions-get-estimate:
+      parameters:
+        path:
+          amountFrom: "<value>"
+          currencyFrom: "<value>"
+          currencyTo: "<value>"
+      responses:
+        "200":
+          application/json: {"amountTo": "<value>"}
+        "400":
+          application/json: {"message": "Invalid input data", "code": "BAD_REQUEST", "issues": []}
+        "401":
+          application/json: {"message": "Authorization not provided", "code": "UNAUTHORIZED", "issues": []}
+        "403":
+          application/json: {"message": "Insufficient access", "code": "FORBIDDEN", "issues": []}
+        "404":
+          application/json: {"message": "Not found", "code": "NOT_FOUND", "issues": []}
+        "500":
+          application/json: {"message": "Internal server error", "code": "INTERNAL_SERVER_ERROR", "issues": []}
+  conversions-create:
+    speakeasy-default-conversions-create:
+      requestBody:
+        application/json: {"amountFrom": "<value>", "currencyFrom": "<value>", "currencyTo": "<value>"}
+      responses:
+        "200":
+          application/json: {"id": "<id>", "merchantId": "<id>", "walletFromId": "<id>", "walletToId": "<id>", "status": "waiting", "amountFrom": "<value>", "amountTo": null, "callbackUrl": "https://insecure-plain.info/", "createdAt": "1713226491079", "updatedAt": "1735682977145", "currencyFrom": {"id": "<id>", "code": "<value>", "name": "<value>", "enabled": true, "walletRegex": "<value>", "priority": 374069, "extraIdExists": true, "extraIdRegex": "<value>", "usdPrice": "<value>", "minPaymentAmount": "<value>", "minPayoutAmount": "<value>", "minWithdrawalFeeEstimate": "<value>", "logoUrl": "https://worldly-issue.org/", "track": true, "cgId": "<id>", "isMaxlimit": false, "network": "<value>", "smartContract": "<value>", "networkPrecision": "<value>", "explorerLinkHash": "<value>", "precision": 709261, "ticker": "<value>", "isDefi": false, "isPopular": false, "isStable": true, "availableForToConversion": true, "createdAt": "1708539086061", "updatedAt": "1735620088949"}, "currencyTo": {"id": "<id>", "code": "<value>", "name": "<value>", "enabled": false, "walletRegex": "<value>", "priority": 417287, "extraIdExists": true, "extraIdRegex": "<value>", "usdPrice": "<value>", "minPaymentAmount": "<value>", "minPayoutAmount": "<value>", "minWithdrawalFeeEstimate": "<value>", "logoUrl": "https://near-exploration.org/", "track": false, "cgId": "<id>", "isMaxlimit": false, "network": "<value>", "smartContract": "<value>", "networkPrecision": "<value>", "explorerLinkHash": "<value>", "precision": 32592, "ticker": "<value>", "isDefi": true, "isPopular": true, "isStable": true, "availableForToConversion": false, "createdAt": "1714888912975", "updatedAt": "1735675737948"}}
+        "400":
+          application/json: {"message": "Invalid input data", "code": "BAD_REQUEST", "issues": []}
+        "401":
+          application/json: {"message": "Authorization not provided", "code": "UNAUTHORIZED", "issues": []}
+        "403":
+          application/json: {"message": "Insufficient access", "code": "FORBIDDEN", "issues": []}
+        "500":
+          application/json: {"message": "Internal server error", "code": "INTERNAL_SERVER_ERROR", "issues": []}
+  conversions-getStats:
+    speakeasy-default-conversions-get-stats:
+      responses:
+        "200":
+          application/json: {"total": 7078.61, "totalFromUSDAmount": 7339.2, "totalToUSDAmount": 9077.29, "totalWaiting": 6543.91, "totalProcessing": 650.18, "totalFinished": 2051.95, "totalRejected": 4099.41}
+        "401":
+          application/json: {"message": "Authorization not provided", "code": "UNAUTHORIZED", "issues": []}
+        "403":
+          application/json: {"message": "Insufficient access", "code": "FORBIDDEN", "issues": []}
+        "500":
+          application/json: {"message": "Internal server error", "code": "INTERNAL_SERVER_ERROR", "issues": []}
+examplesVersion: 1.0.2

@@ -1,0 +1,4865 @@
+openapi: "3.0.3"
+info:
+  title: "Payvra API"
+  version: "1.0.0"
+servers:
+  - url: "https://v2.payvra.com/api"
+externalDocs:
+  url: "/api/openapi"
+paths:
+  "/v1/currencies":
+    get:
+      operationId: "currencies-getAll"
+      summary: "Read all currencies"
+      tags:
+        - "currencies"
+      responses:
+        "200":
+          description: "Successful response"
+          content:
+            "application/json":
+              schema:
+                type: "array"
+                items:
+                  type: "object"
+                  properties:
+                    "id":
+                      type: "string"
+                      maxLength: 255
+                    "code":
+                      type: "string"
+                      maxLength: 255
+                    "name":
+                      type: "string"
+                      maxLength: 255
+                    "enabled":
+                      type: "boolean"
+                    "walletRegex":
+                      type: "string"
+                      maxLength: 255
+                    "priority":
+                      type: "integer"
+                      minimum: -2147483648
+                      maximum: 2147483647
+                    "extraIdExists":
+                      type: "boolean"
+                    "extraIdRegex":
+                      type: "string"
+                      maxLength: 255
+                      nullable: true
+                    "usdPrice":
+                      type: "string"
+                    "minPaymentAmount":
+                      type: "string"
+                    "minPayoutAmount":
+                      type: "string"
+                    "minWithdrawalFeeEstimate":
+                      type: "string"
+                    "logoUrl":
+                      type: "string"
+                      maxLength: 255
+                      nullable: true
+                    "track":
+                      type: "boolean"
+                    "cgId":
+                      type: "string"
+                      maxLength: 255
+                      nullable: true
+                    "isMaxlimit":
+                      type: "boolean"
+                    "network":
+                      type: "string"
+                      maxLength: 255
+                      nullable: true
+                    "smartContract":
+                      type: "string"
+                      maxLength: 255
+                      nullable: true
+                    "networkPrecision":
+                      type: "string"
+                      maxLength: 255
+                      nullable: true
+                    "explorerLinkHash":
+                      type: "string"
+                      maxLength: 255
+                      nullable: true
+                    "precision":
+                      type: "integer"
+                      minimum: -2147483648
+                      maximum: 2147483647
+                    "ticker":
+                      type: "string"
+                      maxLength: 255
+                      nullable: true
+                    "isDefi":
+                      type: "boolean"
+                    "isPopular":
+                      type: "boolean"
+                    "isStable":
+                      type: "boolean"
+                    "availableForToConversion":
+                      type: "boolean"
+                    "createdAt":
+                      type: "string"
+                    "updatedAt":
+                      type: "string"
+                  required:
+                    - "id"
+                    - "code"
+                    - "name"
+                    - "enabled"
+                    - "walletRegex"
+                    - "priority"
+                    - "extraIdExists"
+                    - "extraIdRegex"
+                    - "usdPrice"
+                    - "minPaymentAmount"
+                    - "minPayoutAmount"
+                    - "minWithdrawalFeeEstimate"
+                    - "logoUrl"
+                    - "track"
+                    - "cgId"
+                    - "isMaxlimit"
+                    - "network"
+                    - "smartContract"
+                    - "networkPrecision"
+                    - "explorerLinkHash"
+                    - "precision"
+                    - "ticker"
+                    - "isDefi"
+                    - "isPopular"
+                    - "isStable"
+                    - "availableForToConversion"
+                    - "createdAt"
+                    - "updatedAt"
+                  additionalProperties: false
+        "400":
+          description: "Invalid input data"
+          content:
+            "application/json":
+              schema: {"$ref": "#/components/schemas/error.BAD_REQUEST"}
+        "404":
+          description: "Not found"
+          content:
+            "application/json":
+              schema: {"$ref": "#/components/schemas/error.NOT_FOUND"}
+        "500":
+          description: "Internal server error"
+          content:
+            "application/json":
+              schema: {"$ref": "#/components/schemas/error.INTERNAL_SERVER_ERROR"}
+      x-speakeasy-name-override: "all"
+  "/v1/wallets/list":
+    post:
+      operationId: "wallets-listOwned"
+      summary: "Query wallets"
+      tags:
+        - "wallet"
+      security:
+        - API Key: []
+      requestBody:
+        required: false
+        content:
+          "application/json":
+            schema:
+              type: "object"
+              properties:
+                "filter":
+                  type: "object"
+                  properties:
+                    "created_start":
+                      anyOf:
+                        - type: "string"
+                        - type: "string"
+                      nullable: true
+                    "created_end":
+                      anyOf:
+                        - type: "string"
+                        - type: "string"
+                      nullable: true
+                    "merchants":
+                      type: "array"
+                      items:
+                        type: "string"
+                      nullable: true
+                    "q":
+                      type: "string"
+                      nullable: true
+                "sort":
+                  type: "array"
+                  items:
+                    type: "string"
+                  nullable: true
+                "cursor":
+                  type: "string"
+                "pageSize":
+                  type: "number"
+      responses:
+        "200":
+          description: "Successful response"
+          content:
+            "application/json":
+              schema:
+                type: "object"
+                properties:
+                  "meta":
+                    type: "object"
+                    properties:
+                      "cursor":
+                        anyOf:
+                          - type: "string"
+                          - {}
+                      "hasPreviousPage":
+                        type: "boolean"
+                      "hasNextPage":
+                        type: "boolean"
+                    required:
+                      - "hasPreviousPage"
+                      - "hasNextPage"
+                    additionalProperties: false
+                  "data":
+                    type: "array"
+                    items:
+                      type: "object"
+                      properties:
+                        "id":
+                          type: "string"
+                          maxLength: 255
+                        "merchantId":
+                          type: "string"
+                          maxLength: 255
+                        "currencyId":
+                          type: "string"
+                          maxLength: 255
+                        "balance":
+                          type: "string"
+                        "pendingBalance":
+                          type: "string"
+                        "createdAt":
+                          type: "string"
+                        "updatedAt":
+                          type: "string"
+                        "currency":
+                          type: "object"
+                          properties:
+                            "id":
+                              type: "string"
+                              maxLength: 255
+                            "code":
+                              type: "string"
+                              maxLength: 255
+                            "name":
+                              type: "string"
+                              maxLength: 255
+                            "enabled":
+                              type: "boolean"
+                            "walletRegex":
+                              type: "string"
+                              maxLength: 255
+                            "priority":
+                              type: "integer"
+                              minimum: -2147483648
+                              maximum: 2147483647
+                            "extraIdExists":
+                              type: "boolean"
+                            "extraIdRegex":
+                              type: "string"
+                              maxLength: 255
+                              nullable: true
+                            "usdPrice":
+                              type: "string"
+                            "minPaymentAmount":
+                              type: "string"
+                            "minPayoutAmount":
+                              type: "string"
+                            "minWithdrawalFeeEstimate":
+                              type: "string"
+                            "logoUrl":
+                              type: "string"
+                              maxLength: 255
+                              nullable: true
+                            "track":
+                              type: "boolean"
+                            "cgId":
+                              type: "string"
+                              maxLength: 255
+                              nullable: true
+                            "isMaxlimit":
+                              type: "boolean"
+                            "network":
+                              type: "string"
+                              maxLength: 255
+                              nullable: true
+                            "smartContract":
+                              type: "string"
+                              maxLength: 255
+                              nullable: true
+                            "networkPrecision":
+                              type: "string"
+                              maxLength: 255
+                              nullable: true
+                            "explorerLinkHash":
+                              type: "string"
+                              maxLength: 255
+                              nullable: true
+                            "precision":
+                              type: "integer"
+                              minimum: -2147483648
+                              maximum: 2147483647
+                            "ticker":
+                              type: "string"
+                              maxLength: 255
+                              nullable: true
+                            "isDefi":
+                              type: "boolean"
+                            "isPopular":
+                              type: "boolean"
+                            "isStable":
+                              type: "boolean"
+                            "availableForToConversion":
+                              type: "boolean"
+                            "createdAt":
+                              type: "string"
+                            "updatedAt":
+                              type: "string"
+                          required:
+                            - "id"
+                            - "code"
+                            - "name"
+                            - "enabled"
+                            - "walletRegex"
+                            - "priority"
+                            - "extraIdExists"
+                            - "extraIdRegex"
+                            - "usdPrice"
+                            - "minPaymentAmount"
+                            - "minPayoutAmount"
+                            - "minWithdrawalFeeEstimate"
+                            - "logoUrl"
+                            - "track"
+                            - "cgId"
+                            - "isMaxlimit"
+                            - "network"
+                            - "smartContract"
+                            - "networkPrecision"
+                            - "explorerLinkHash"
+                            - "precision"
+                            - "ticker"
+                            - "isDefi"
+                            - "isPopular"
+                            - "isStable"
+                            - "availableForToConversion"
+                            - "createdAt"
+                            - "updatedAt"
+                          additionalProperties: false
+                      required:
+                        - "id"
+                        - "merchantId"
+                        - "currencyId"
+                        - "balance"
+                        - "pendingBalance"
+                        - "createdAt"
+                        - "updatedAt"
+                        - "currency"
+                      additionalProperties: false
+                required:
+                  - "meta"
+                  - "data"
+                additionalProperties: false
+        "400":
+          description: "Invalid input data"
+          content:
+            "application/json":
+              schema: {"$ref": "#/components/schemas/error.BAD_REQUEST"}
+        "401":
+          description: "Authorization not provided"
+          content:
+            "application/json":
+              schema: {"$ref": "#/components/schemas/error.UNAUTHORIZED"}
+        "403":
+          description: "Insufficient access"
+          content:
+            "application/json":
+              schema: {"$ref": "#/components/schemas/error.FORBIDDEN"}
+        "500":
+          description: "Internal server error"
+          content:
+            "application/json":
+              schema: {"$ref": "#/components/schemas/error.INTERNAL_SERVER_ERROR"}
+      x-speakeasy-group: "wallets"
+      x-speakeasy-name-override: "list"
+  "/v1/wallets/{id}":
+    get:
+      operationId: "wallets-getById"
+      summary: "Retrieve a wallet"
+      description: "Retrieve a wallet by its ID for the authenticated merchant"
+      tags:
+        - "wallet"
+      security:
+        - API Key: []
+      parameters:
+        - in: "path"
+          name: "id"
+          schema:
+            type: "string"
+          required: true
+      responses:
+        "200":
+          description: "Successful response"
+          content:
+            "application/json":
+              schema:
+                type: "object"
+                properties:
+                  "id":
+                    type: "string"
+                    maxLength: 255
+                  "merchantId":
+                    type: "string"
+                    maxLength: 255
+                  "currencyId":
+                    type: "string"
+                    maxLength: 255
+                  "balance":
+                    type: "string"
+                  "pendingBalance":
+                    type: "string"
+                  "createdAt":
+                    type: "string"
+                  "updatedAt":
+                    type: "string"
+                  "currency":
+                    type: "object"
+                    properties:
+                      "id":
+                        type: "string"
+                        maxLength: 255
+                      "code":
+                        type: "string"
+                        maxLength: 255
+                      "name":
+                        type: "string"
+                        maxLength: 255
+                      "enabled":
+                        type: "boolean"
+                      "walletRegex":
+                        type: "string"
+                        maxLength: 255
+                      "priority":
+                        type: "integer"
+                        minimum: -2147483648
+                        maximum: 2147483647
+                      "extraIdExists":
+                        type: "boolean"
+                      "extraIdRegex":
+                        type: "string"
+                        maxLength: 255
+                        nullable: true
+                      "usdPrice":
+                        type: "string"
+                      "minPaymentAmount":
+                        type: "string"
+                      "minPayoutAmount":
+                        type: "string"
+                      "minWithdrawalFeeEstimate":
+                        type: "string"
+                      "logoUrl":
+                        type: "string"
+                        maxLength: 255
+                        nullable: true
+                      "track":
+                        type: "boolean"
+                      "cgId":
+                        type: "string"
+                        maxLength: 255
+                        nullable: true
+                      "isMaxlimit":
+                        type: "boolean"
+                      "network":
+                        type: "string"
+                        maxLength: 255
+                        nullable: true
+                      "smartContract":
+                        type: "string"
+                        maxLength: 255
+                        nullable: true
+                      "networkPrecision":
+                        type: "string"
+                        maxLength: 255
+                        nullable: true
+                      "explorerLinkHash":
+                        type: "string"
+                        maxLength: 255
+                        nullable: true
+                      "precision":
+                        type: "integer"
+                        minimum: -2147483648
+                        maximum: 2147483647
+                      "ticker":
+                        type: "string"
+                        maxLength: 255
+                        nullable: true
+                      "isDefi":
+                        type: "boolean"
+                      "isPopular":
+                        type: "boolean"
+                      "isStable":
+                        type: "boolean"
+                      "availableForToConversion":
+                        type: "boolean"
+                      "createdAt":
+                        type: "string"
+                      "updatedAt":
+                        type: "string"
+                    required:
+                      - "id"
+                      - "code"
+                      - "name"
+                      - "enabled"
+                      - "walletRegex"
+                      - "priority"
+                      - "extraIdExists"
+                      - "extraIdRegex"
+                      - "usdPrice"
+                      - "minPaymentAmount"
+                      - "minPayoutAmount"
+                      - "minWithdrawalFeeEstimate"
+                      - "logoUrl"
+                      - "track"
+                      - "cgId"
+                      - "isMaxlimit"
+                      - "network"
+                      - "smartContract"
+                      - "networkPrecision"
+                      - "explorerLinkHash"
+                      - "precision"
+                      - "ticker"
+                      - "isDefi"
+                      - "isPopular"
+                      - "isStable"
+                      - "availableForToConversion"
+                      - "createdAt"
+                      - "updatedAt"
+                    additionalProperties: false
+                required:
+                  - "id"
+                  - "merchantId"
+                  - "currencyId"
+                  - "balance"
+                  - "pendingBalance"
+                  - "createdAt"
+                  - "updatedAt"
+                  - "currency"
+                additionalProperties: false
+        "400":
+          description: "Invalid input data"
+          content:
+            "application/json":
+              schema: {"$ref": "#/components/schemas/error.BAD_REQUEST"}
+        "401":
+          description: "Authorization not provided"
+          content:
+            "application/json":
+              schema: {"$ref": "#/components/schemas/error.UNAUTHORIZED"}
+        "403":
+          description: "Insufficient access"
+          content:
+            "application/json":
+              schema: {"$ref": "#/components/schemas/error.FORBIDDEN"}
+        "404":
+          description: "Not found"
+          content:
+            "application/json":
+              schema: {"$ref": "#/components/schemas/error.NOT_FOUND"}
+        "500":
+          description: "Internal server error"
+          content:
+            "application/json":
+              schema: {"$ref": "#/components/schemas/error.INTERNAL_SERVER_ERROR"}
+      x-speakeasy-group: "wallets"
+      x-speakeasy-name-override: "get"
+  "/v1/wallets":
+    get:
+      operationId: "wallets-getAllOwned"
+      summary: "Get all wallets"
+      description: "Get all wallets for the authenticated merchant."
+      tags:
+        - "wallet"
+      security:
+        - API Key: []
+      responses:
+        "200":
+          description: "Successful response"
+          content:
+            "application/json":
+              schema:
+                type: "array"
+                items:
+                  type: "object"
+                  properties:
+                    "id":
+                      type: "string"
+                      maxLength: 255
+                    "merchantId":
+                      type: "string"
+                      maxLength: 255
+                    "currencyId":
+                      type: "string"
+                      maxLength: 255
+                    "balance":
+                      type: "string"
+                    "pendingBalance":
+                      type: "string"
+                    "createdAt":
+                      type: "string"
+                    "updatedAt":
+                      type: "string"
+                    "currency":
+                      type: "object"
+                      properties:
+                        "id":
+                          type: "string"
+                          maxLength: 255
+                        "code":
+                          type: "string"
+                          maxLength: 255
+                        "name":
+                          type: "string"
+                          maxLength: 255
+                        "enabled":
+                          type: "boolean"
+                        "walletRegex":
+                          type: "string"
+                          maxLength: 255
+                        "priority":
+                          type: "integer"
+                          minimum: -2147483648
+                          maximum: 2147483647
+                        "extraIdExists":
+                          type: "boolean"
+                        "extraIdRegex":
+                          type: "string"
+                          maxLength: 255
+                          nullable: true
+                        "usdPrice":
+                          type: "string"
+                        "minPaymentAmount":
+                          type: "string"
+                        "minPayoutAmount":
+                          type: "string"
+                        "minWithdrawalFeeEstimate":
+                          type: "string"
+                        "logoUrl":
+                          type: "string"
+                          maxLength: 255
+                          nullable: true
+                        "track":
+                          type: "boolean"
+                        "cgId":
+                          type: "string"
+                          maxLength: 255
+                          nullable: true
+                        "isMaxlimit":
+                          type: "boolean"
+                        "network":
+                          type: "string"
+                          maxLength: 255
+                          nullable: true
+                        "smartContract":
+                          type: "string"
+                          maxLength: 255
+                          nullable: true
+                        "networkPrecision":
+                          type: "string"
+                          maxLength: 255
+                          nullable: true
+                        "explorerLinkHash":
+                          type: "string"
+                          maxLength: 255
+                          nullable: true
+                        "precision":
+                          type: "integer"
+                          minimum: -2147483648
+                          maximum: 2147483647
+                        "ticker":
+                          type: "string"
+                          maxLength: 255
+                          nullable: true
+                        "isDefi":
+                          type: "boolean"
+                        "isPopular":
+                          type: "boolean"
+                        "isStable":
+                          type: "boolean"
+                        "availableForToConversion":
+                          type: "boolean"
+                        "createdAt":
+                          type: "string"
+                        "updatedAt":
+                          type: "string"
+                      required:
+                        - "id"
+                        - "code"
+                        - "name"
+                        - "enabled"
+                        - "walletRegex"
+                        - "priority"
+                        - "extraIdExists"
+                        - "extraIdRegex"
+                        - "usdPrice"
+                        - "minPaymentAmount"
+                        - "minPayoutAmount"
+                        - "minWithdrawalFeeEstimate"
+                        - "logoUrl"
+                        - "track"
+                        - "cgId"
+                        - "isMaxlimit"
+                        - "network"
+                        - "smartContract"
+                        - "networkPrecision"
+                        - "explorerLinkHash"
+                        - "precision"
+                        - "ticker"
+                        - "isDefi"
+                        - "isPopular"
+                        - "isStable"
+                        - "availableForToConversion"
+                        - "createdAt"
+                        - "updatedAt"
+                      additionalProperties: false
+                  required:
+                    - "id"
+                    - "merchantId"
+                    - "currencyId"
+                    - "balance"
+                    - "pendingBalance"
+                    - "createdAt"
+                    - "updatedAt"
+                    - "currency"
+                  additionalProperties: false
+        "400":
+          description: "Invalid input data"
+          content:
+            "application/json":
+              schema: {"$ref": "#/components/schemas/error.BAD_REQUEST"}
+        "401":
+          description: "Authorization not provided"
+          content:
+            "application/json":
+              schema: {"$ref": "#/components/schemas/error.UNAUTHORIZED"}
+        "403":
+          description: "Insufficient access"
+          content:
+            "application/json":
+              schema: {"$ref": "#/components/schemas/error.FORBIDDEN"}
+        "404":
+          description: "Not found"
+          content:
+            "application/json":
+              schema: {"$ref": "#/components/schemas/error.NOT_FOUND"}
+        "500":
+          description: "Internal server error"
+          content:
+            "application/json":
+              schema: {"$ref": "#/components/schemas/error.INTERNAL_SERVER_ERROR"}
+      x-speakeasy-group: "wallets"
+      x-speakeasy-name-override: "listOwned"
+  "/v1/wallets/stats":
+    get:
+      operationId: "wallets-getStats"
+      summary: "Get wallet stats"
+      description: "Get wallet stats for the authenticated merchant."
+      tags:
+        - "wallet"
+      security:
+        - API Key: []
+      responses:
+        "200":
+          description: "Successful response"
+          content:
+            "application/json":
+              schema:
+                type: "object"
+                properties:
+                  "total":
+                    type: "number"
+                  "totalUSDValue":
+                    type: "number"
+                  "totalAvailableUSDValue":
+                    type: "number"
+                  "totalPendingUSDValue":
+                    type: "number"
+                required:
+                  - "total"
+                  - "totalUSDValue"
+                  - "totalAvailableUSDValue"
+                  - "totalPendingUSDValue"
+                additionalProperties: false
+        "401":
+          description: "Authorization not provided"
+          content:
+            "application/json":
+              schema: {"$ref": "#/components/schemas/error.UNAUTHORIZED"}
+        "403":
+          description: "Insufficient access"
+          content:
+            "application/json":
+              schema: {"$ref": "#/components/schemas/error.FORBIDDEN"}
+        "500":
+          description: "Internal server error"
+          content:
+            "application/json":
+              schema: {"$ref": "#/components/schemas/error.INTERNAL_SERVER_ERROR"}
+      x-speakeasy-group: "wallets"
+      x-speakeasy-name-override: "stats"
+  "/v1/payment-invoices/list":
+    post:
+      operationId: "paymentInvoices-listOwned"
+      summary: "Query payment invoices"
+      tags:
+        - "payment-invoice"
+      security:
+        - API Key: []
+      requestBody:
+        required: false
+        content:
+          "application/json":
+            schema:
+              type: "object"
+              properties:
+                "filter":
+                  type: "object"
+                  properties:
+                    "created_start":
+                      anyOf:
+                        - type: "string"
+                        - type: "string"
+                      nullable: true
+                    "created_end":
+                      anyOf:
+                        - type: "string"
+                        - type: "string"
+                      nullable: true
+                    "merchants":
+                      type: "array"
+                      items:
+                        type: "string"
+                      nullable: true
+                    "q":
+                      type: "string"
+                      nullable: true
+                "sort":
+                  type: "array"
+                  items:
+                    type: "string"
+                  nullable: true
+                "cursor":
+                  type: "string"
+                "pageSize":
+                  type: "number"
+      responses:
+        "200":
+          description: "Successful response"
+          content:
+            "application/json":
+              schema:
+                type: "object"
+                properties:
+                  "meta":
+                    type: "object"
+                    properties:
+                      "cursor":
+                        anyOf:
+                          - type: "string"
+                          - {}
+                      "hasPreviousPage":
+                        type: "boolean"
+                      "hasNextPage":
+                        type: "boolean"
+                    required:
+                      - "hasPreviousPage"
+                      - "hasNextPage"
+                    additionalProperties: false
+                  "data":
+                    type: "array"
+                    items:
+                      type: "object"
+                      properties:
+                        "id":
+                          type: "string"
+                          maxLength: 255
+                        "walletId":
+                          type: "string"
+                          maxLength: 255
+                          nullable: true
+                        "merchantId":
+                          type: "string"
+                          maxLength: 255
+                        "status":
+                          type: "string"
+                          enum:
+                            - "waiting"
+                            - "confirming"
+                            - "confirmed"
+                            - "sending"
+                            - "partially_paid"
+                            - "finished"
+                            - "failed"
+                            - "expired"
+                        "underPaidCover":
+                          type: "string"
+                        "feePaidByPayer":
+                          type: "boolean"
+                        "isWhiteLabel":
+                          type: "boolean"
+                        "priceAmount":
+                          type: "string"
+                        "priceCurrency":
+                          type: "string"
+                          maxLength: 255
+                        "payAmount":
+                          type: "string"
+                          nullable: true
+                        "paidAmount":
+                          type: "string"
+                        "receivedAmount":
+                          type: "string"
+                        "payAddress":
+                          type: "string"
+                          maxLength: 255
+                          nullable: true
+                        "payinExtraId":
+                          type: "string"
+                          maxLength: 255
+                          nullable: true
+                        "payinHash":
+                          type: "string"
+                          maxLength: 255
+                          nullable: true
+                        "orderId":
+                          type: "string"
+                          maxLength: 255
+                          nullable: true
+                        "orderDescription":
+                          type: "string"
+                          maxLength: 255
+                          nullable: true
+                        "callbackUrl":
+                          type: "string"
+                          maxLength: 255
+                          nullable: true
+                        "returnUrl":
+                          type: "string"
+                          maxLength: 255
+                          nullable: true
+                        "finishedAt":
+                          type: "string"
+                          nullable: true
+                        "expiredAt":
+                          type: "string"
+                        "createdAt":
+                          type: "string"
+                        "updatedAt":
+                          type: "string"
+                        "payCurrency":
+                          type: "object"
+                          properties:
+                            "id":
+                              type: "string"
+                              maxLength: 255
+                            "code":
+                              type: "string"
+                              maxLength: 255
+                            "name":
+                              type: "string"
+                              maxLength: 255
+                            "enabled":
+                              type: "boolean"
+                            "walletRegex":
+                              type: "string"
+                              maxLength: 255
+                            "priority":
+                              type: "integer"
+                              minimum: -2147483648
+                              maximum: 2147483647
+                            "extraIdExists":
+                              type: "boolean"
+                            "extraIdRegex":
+                              type: "string"
+                              maxLength: 255
+                              nullable: true
+                            "usdPrice":
+                              type: "string"
+                            "minPaymentAmount":
+                              type: "string"
+                            "minPayoutAmount":
+                              type: "string"
+                            "minWithdrawalFeeEstimate":
+                              type: "string"
+                            "logoUrl":
+                              type: "string"
+                              maxLength: 255
+                              nullable: true
+                            "track":
+                              type: "boolean"
+                            "cgId":
+                              type: "string"
+                              maxLength: 255
+                              nullable: true
+                            "isMaxlimit":
+                              type: "boolean"
+                            "network":
+                              type: "string"
+                              maxLength: 255
+                              nullable: true
+                            "smartContract":
+                              type: "string"
+                              maxLength: 255
+                              nullable: true
+                            "networkPrecision":
+                              type: "string"
+                              maxLength: 255
+                              nullable: true
+                            "explorerLinkHash":
+                              type: "string"
+                              maxLength: 255
+                              nullable: true
+                            "precision":
+                              type: "integer"
+                              minimum: -2147483648
+                              maximum: 2147483647
+                            "ticker":
+                              type: "string"
+                              maxLength: 255
+                              nullable: true
+                            "isDefi":
+                              type: "boolean"
+                            "isPopular":
+                              type: "boolean"
+                            "isStable":
+                              type: "boolean"
+                            "availableForToConversion":
+                              type: "boolean"
+                            "createdAt":
+                              type: "string"
+                            "updatedAt":
+                              type: "string"
+                          required:
+                            - "id"
+                            - "code"
+                            - "name"
+                            - "enabled"
+                            - "walletRegex"
+                            - "priority"
+                            - "extraIdExists"
+                            - "extraIdRegex"
+                            - "usdPrice"
+                            - "minPaymentAmount"
+                            - "minPayoutAmount"
+                            - "minWithdrawalFeeEstimate"
+                            - "logoUrl"
+                            - "track"
+                            - "cgId"
+                            - "isMaxlimit"
+                            - "network"
+                            - "smartContract"
+                            - "networkPrecision"
+                            - "explorerLinkHash"
+                            - "precision"
+                            - "ticker"
+                            - "isDefi"
+                            - "isPopular"
+                            - "isStable"
+                            - "availableForToConversion"
+                            - "createdAt"
+                            - "updatedAt"
+                          additionalProperties: false
+                          nullable: true
+                        "acceptedCoins":
+                          type: "array"
+                          items:
+                            type: "object"
+                            properties:
+                              "id":
+                                type: "string"
+                                maxLength: 255
+                              "code":
+                                type: "string"
+                                maxLength: 255
+                              "name":
+                                type: "string"
+                                maxLength: 255
+                              "enabled":
+                                type: "boolean"
+                              "walletRegex":
+                                type: "string"
+                                maxLength: 255
+                              "priority":
+                                type: "integer"
+                                minimum: -2147483648
+                                maximum: 2147483647
+                              "extraIdExists":
+                                type: "boolean"
+                              "extraIdRegex":
+                                type: "string"
+                                maxLength: 255
+                                nullable: true
+                              "usdPrice":
+                                type: "string"
+                              "minPaymentAmount":
+                                type: "string"
+                              "minPayoutAmount":
+                                type: "string"
+                              "minWithdrawalFeeEstimate":
+                                type: "string"
+                              "logoUrl":
+                                type: "string"
+                                maxLength: 255
+                                nullable: true
+                              "track":
+                                type: "boolean"
+                              "cgId":
+                                type: "string"
+                                maxLength: 255
+                                nullable: true
+                              "isMaxlimit":
+                                type: "boolean"
+                              "network":
+                                type: "string"
+                                maxLength: 255
+                                nullable: true
+                              "smartContract":
+                                type: "string"
+                                maxLength: 255
+                                nullable: true
+                              "networkPrecision":
+                                type: "string"
+                                maxLength: 255
+                                nullable: true
+                              "explorerLinkHash":
+                                type: "string"
+                                maxLength: 255
+                                nullable: true
+                              "precision":
+                                type: "integer"
+                                minimum: -2147483648
+                                maximum: 2147483647
+                              "ticker":
+                                type: "string"
+                                maxLength: 255
+                                nullable: true
+                              "isDefi":
+                                type: "boolean"
+                              "isPopular":
+                                type: "boolean"
+                              "isStable":
+                                type: "boolean"
+                              "availableForToConversion":
+                                type: "boolean"
+                              "createdAt":
+                                type: "string"
+                              "updatedAt":
+                                type: "string"
+                            required:
+                              - "id"
+                              - "code"
+                              - "name"
+                              - "enabled"
+                              - "walletRegex"
+                              - "priority"
+                              - "extraIdExists"
+                              - "extraIdRegex"
+                              - "usdPrice"
+                              - "minPaymentAmount"
+                              - "minPayoutAmount"
+                              - "minWithdrawalFeeEstimate"
+                              - "logoUrl"
+                              - "track"
+                              - "cgId"
+                              - "isMaxlimit"
+                              - "network"
+                              - "smartContract"
+                              - "networkPrecision"
+                              - "explorerLinkHash"
+                              - "precision"
+                              - "ticker"
+                              - "isDefi"
+                              - "isPopular"
+                              - "isStable"
+                              - "availableForToConversion"
+                              - "createdAt"
+                              - "updatedAt"
+                            additionalProperties: false
+                      required:
+                        - "id"
+                        - "walletId"
+                        - "merchantId"
+                        - "status"
+                        - "underPaidCover"
+                        - "feePaidByPayer"
+                        - "isWhiteLabel"
+                        - "priceAmount"
+                        - "priceCurrency"
+                        - "payAmount"
+                        - "paidAmount"
+                        - "receivedAmount"
+                        - "payAddress"
+                        - "payinExtraId"
+                        - "payinHash"
+                        - "orderId"
+                        - "orderDescription"
+                        - "callbackUrl"
+                        - "returnUrl"
+                        - "finishedAt"
+                        - "expiredAt"
+                        - "createdAt"
+                        - "updatedAt"
+                        - "payCurrency"
+                        - "acceptedCoins"
+                      additionalProperties: false
+                required:
+                  - "meta"
+                  - "data"
+                additionalProperties: false
+        "400":
+          description: "Invalid input data"
+          content:
+            "application/json":
+              schema: {"$ref": "#/components/schemas/error.BAD_REQUEST"}
+        "401":
+          description: "Authorization not provided"
+          content:
+            "application/json":
+              schema: {"$ref": "#/components/schemas/error.UNAUTHORIZED"}
+        "403":
+          description: "Insufficient access"
+          content:
+            "application/json":
+              schema: {"$ref": "#/components/schemas/error.FORBIDDEN"}
+        "500":
+          description: "Internal server error"
+          content:
+            "application/json":
+              schema: {"$ref": "#/components/schemas/error.INTERNAL_SERVER_ERROR"}
+      x-speakeasy-group: "paymentInvoices"
+      x-speakeasy-name-override: "list"
+  "/v1/payment-invoices/{id}":
+    get:
+      operationId: "paymentInvoices-getById"
+      summary: "Retrieve a payment invoice"
+      description: "Retrieve a payment invoice by its ID for the authenticated merchant."
+      tags:
+        - "payment-invoice"
+      security:
+        - API Key: []
+      parameters:
+        - in: "path"
+          name: "id"
+          schema:
+            type: "string"
+          required: true
+      responses:
+        "200":
+          description: "Successful response"
+          content:
+            "application/json":
+              schema:
+                type: "object"
+                properties:
+                  "id":
+                    type: "string"
+                    maxLength: 255
+                  "walletId":
+                    type: "string"
+                    maxLength: 255
+                    nullable: true
+                  "merchantId":
+                    type: "string"
+                    maxLength: 255
+                  "status":
+                    type: "string"
+                    enum:
+                      - "waiting"
+                      - "confirming"
+                      - "confirmed"
+                      - "sending"
+                      - "partially_paid"
+                      - "finished"
+                      - "failed"
+                      - "expired"
+                  "underPaidCover":
+                    type: "string"
+                  "feePaidByPayer":
+                    type: "boolean"
+                  "isWhiteLabel":
+                    type: "boolean"
+                  "priceAmount":
+                    type: "string"
+                  "priceCurrency":
+                    type: "string"
+                    maxLength: 255
+                  "payAmount":
+                    type: "string"
+                    nullable: true
+                  "paidAmount":
+                    type: "string"
+                  "receivedAmount":
+                    type: "string"
+                  "payAddress":
+                    type: "string"
+                    maxLength: 255
+                    nullable: true
+                  "payinExtraId":
+                    type: "string"
+                    maxLength: 255
+                    nullable: true
+                  "payinHash":
+                    type: "string"
+                    maxLength: 255
+                    nullable: true
+                  "orderId":
+                    type: "string"
+                    maxLength: 255
+                    nullable: true
+                  "orderDescription":
+                    type: "string"
+                    maxLength: 255
+                    nullable: true
+                  "callbackUrl":
+                    type: "string"
+                    maxLength: 255
+                    nullable: true
+                  "returnUrl":
+                    type: "string"
+                    maxLength: 255
+                    nullable: true
+                  "finishedAt":
+                    type: "string"
+                    nullable: true
+                  "expiredAt":
+                    type: "string"
+                  "createdAt":
+                    type: "string"
+                  "updatedAt":
+                    type: "string"
+                  "payCurrency":
+                    type: "object"
+                    properties:
+                      "id":
+                        type: "string"
+                        maxLength: 255
+                      "code":
+                        type: "string"
+                        maxLength: 255
+                      "name":
+                        type: "string"
+                        maxLength: 255
+                      "enabled":
+                        type: "boolean"
+                      "walletRegex":
+                        type: "string"
+                        maxLength: 255
+                      "priority":
+                        type: "integer"
+                        minimum: -2147483648
+                        maximum: 2147483647
+                      "extraIdExists":
+                        type: "boolean"
+                      "extraIdRegex":
+                        type: "string"
+                        maxLength: 255
+                        nullable: true
+                      "usdPrice":
+                        type: "string"
+                      "minPaymentAmount":
+                        type: "string"
+                      "minPayoutAmount":
+                        type: "string"
+                      "minWithdrawalFeeEstimate":
+                        type: "string"
+                      "logoUrl":
+                        type: "string"
+                        maxLength: 255
+                        nullable: true
+                      "track":
+                        type: "boolean"
+                      "cgId":
+                        type: "string"
+                        maxLength: 255
+                        nullable: true
+                      "isMaxlimit":
+                        type: "boolean"
+                      "network":
+                        type: "string"
+                        maxLength: 255
+                        nullable: true
+                      "smartContract":
+                        type: "string"
+                        maxLength: 255
+                        nullable: true
+                      "networkPrecision":
+                        type: "string"
+                        maxLength: 255
+                        nullable: true
+                      "explorerLinkHash":
+                        type: "string"
+                        maxLength: 255
+                        nullable: true
+                      "precision":
+                        type: "integer"
+                        minimum: -2147483648
+                        maximum: 2147483647
+                      "ticker":
+                        type: "string"
+                        maxLength: 255
+                        nullable: true
+                      "isDefi":
+                        type: "boolean"
+                      "isPopular":
+                        type: "boolean"
+                      "isStable":
+                        type: "boolean"
+                      "availableForToConversion":
+                        type: "boolean"
+                      "createdAt":
+                        type: "string"
+                      "updatedAt":
+                        type: "string"
+                    required:
+                      - "id"
+                      - "code"
+                      - "name"
+                      - "enabled"
+                      - "walletRegex"
+                      - "priority"
+                      - "extraIdExists"
+                      - "extraIdRegex"
+                      - "usdPrice"
+                      - "minPaymentAmount"
+                      - "minPayoutAmount"
+                      - "minWithdrawalFeeEstimate"
+                      - "logoUrl"
+                      - "track"
+                      - "cgId"
+                      - "isMaxlimit"
+                      - "network"
+                      - "smartContract"
+                      - "networkPrecision"
+                      - "explorerLinkHash"
+                      - "precision"
+                      - "ticker"
+                      - "isDefi"
+                      - "isPopular"
+                      - "isStable"
+                      - "availableForToConversion"
+                      - "createdAt"
+                      - "updatedAt"
+                    additionalProperties: false
+                    nullable: true
+                  "acceptedCoins":
+                    type: "array"
+                    items:
+                      type: "object"
+                      properties:
+                        "id":
+                          type: "string"
+                          maxLength: 255
+                        "code":
+                          type: "string"
+                          maxLength: 255
+                        "name":
+                          type: "string"
+                          maxLength: 255
+                        "enabled":
+                          type: "boolean"
+                        "walletRegex":
+                          type: "string"
+                          maxLength: 255
+                        "priority":
+                          type: "integer"
+                          minimum: -2147483648
+                          maximum: 2147483647
+                        "extraIdExists":
+                          type: "boolean"
+                        "extraIdRegex":
+                          type: "string"
+                          maxLength: 255
+                          nullable: true
+                        "usdPrice":
+                          type: "string"
+                        "minPaymentAmount":
+                          type: "string"
+                        "minPayoutAmount":
+                          type: "string"
+                        "minWithdrawalFeeEstimate":
+                          type: "string"
+                        "logoUrl":
+                          type: "string"
+                          maxLength: 255
+                          nullable: true
+                        "track":
+                          type: "boolean"
+                        "cgId":
+                          type: "string"
+                          maxLength: 255
+                          nullable: true
+                        "isMaxlimit":
+                          type: "boolean"
+                        "network":
+                          type: "string"
+                          maxLength: 255
+                          nullable: true
+                        "smartContract":
+                          type: "string"
+                          maxLength: 255
+                          nullable: true
+                        "networkPrecision":
+                          type: "string"
+                          maxLength: 255
+                          nullable: true
+                        "explorerLinkHash":
+                          type: "string"
+                          maxLength: 255
+                          nullable: true
+                        "precision":
+                          type: "integer"
+                          minimum: -2147483648
+                          maximum: 2147483647
+                        "ticker":
+                          type: "string"
+                          maxLength: 255
+                          nullable: true
+                        "isDefi":
+                          type: "boolean"
+                        "isPopular":
+                          type: "boolean"
+                        "isStable":
+                          type: "boolean"
+                        "availableForToConversion":
+                          type: "boolean"
+                        "createdAt":
+                          type: "string"
+                        "updatedAt":
+                          type: "string"
+                      required:
+                        - "id"
+                        - "code"
+                        - "name"
+                        - "enabled"
+                        - "walletRegex"
+                        - "priority"
+                        - "extraIdExists"
+                        - "extraIdRegex"
+                        - "usdPrice"
+                        - "minPaymentAmount"
+                        - "minPayoutAmount"
+                        - "minWithdrawalFeeEstimate"
+                        - "logoUrl"
+                        - "track"
+                        - "cgId"
+                        - "isMaxlimit"
+                        - "network"
+                        - "smartContract"
+                        - "networkPrecision"
+                        - "explorerLinkHash"
+                        - "precision"
+                        - "ticker"
+                        - "isDefi"
+                        - "isPopular"
+                        - "isStable"
+                        - "availableForToConversion"
+                        - "createdAt"
+                        - "updatedAt"
+                      additionalProperties: false
+                required:
+                  - "id"
+                  - "walletId"
+                  - "merchantId"
+                  - "status"
+                  - "underPaidCover"
+                  - "feePaidByPayer"
+                  - "isWhiteLabel"
+                  - "priceAmount"
+                  - "priceCurrency"
+                  - "payAmount"
+                  - "paidAmount"
+                  - "receivedAmount"
+                  - "payAddress"
+                  - "payinExtraId"
+                  - "payinHash"
+                  - "orderId"
+                  - "orderDescription"
+                  - "callbackUrl"
+                  - "returnUrl"
+                  - "finishedAt"
+                  - "expiredAt"
+                  - "createdAt"
+                  - "updatedAt"
+                  - "payCurrency"
+                  - "acceptedCoins"
+                additionalProperties: false
+        "400":
+          description: "Invalid input data"
+          content:
+            "application/json":
+              schema: {"$ref": "#/components/schemas/error.BAD_REQUEST"}
+        "401":
+          description: "Authorization not provided"
+          content:
+            "application/json":
+              schema: {"$ref": "#/components/schemas/error.UNAUTHORIZED"}
+        "403":
+          description: "Insufficient access"
+          content:
+            "application/json":
+              schema: {"$ref": "#/components/schemas/error.FORBIDDEN"}
+        "404":
+          description: "Not found"
+          content:
+            "application/json":
+              schema: {"$ref": "#/components/schemas/error.NOT_FOUND"}
+        "500":
+          description: "Internal server error"
+          content:
+            "application/json":
+              schema: {"$ref": "#/components/schemas/error.INTERNAL_SERVER_ERROR"}
+      x-speakeasy-group: "paymentInvoices"
+      x-speakeasy-name-override: "get"
+  "/v1/payment-invoices/stats":
+    get:
+      operationId: "paymentInvoices-getStats"
+      summary: "Get payment invoice stats"
+      description: "Get payment invoice stats for the authenticated merchant."
+      tags:
+        - "payment-invoice"
+      security:
+        - API Key: []
+      responses:
+        "200":
+          description: "Successful response"
+          content:
+            "application/json":
+              schema:
+                type: "object"
+                properties:
+                  "total":
+                    type: "number"
+                  "totalUSDVolume":
+                    type: "number"
+                  "totalFinished":
+                    type: "number"
+                required:
+                  - "total"
+                  - "totalUSDVolume"
+                  - "totalFinished"
+                additionalProperties: false
+        "401":
+          description: "Authorization not provided"
+          content:
+            "application/json":
+              schema: {"$ref": "#/components/schemas/error.UNAUTHORIZED"}
+        "403":
+          description: "Insufficient access"
+          content:
+            "application/json":
+              schema: {"$ref": "#/components/schemas/error.FORBIDDEN"}
+        "500":
+          description: "Internal server error"
+          content:
+            "application/json":
+              schema: {"$ref": "#/components/schemas/error.INTERNAL_SERVER_ERROR"}
+      x-speakeasy-group: "paymentInvoices"
+      x-speakeasy-name-override: "stats"
+  "/v1/payment-invoices":
+    post:
+      operationId: "paymentInvoices-create"
+      summary: "Create a payment invoice"
+      tags:
+        - "payment-invoice"
+      security:
+        - API Key: []
+      requestBody:
+        required: true
+        content:
+          "application/json":
+            schema:
+              type: "object"
+              properties:
+                "feePaidByPayer":
+                  type: "boolean"
+                "callbackUrl":
+                  type: "string"
+                  maxLength: 255
+                  format: "uri"
+                  nullable: true
+                "amount":
+                  type: "number"
+                  exclusiveMinimum: false
+                "amountCurrency":
+                  default: "USD"
+                  type: "string"
+                "underPaidCover":
+                  type: "number"
+                  minimum: 0
+                  maximum: 50
+                  multipleOf: 0.1
+                "lifeTime":
+                  default: 10080
+                  type: "number"
+                  minimum: 15
+                  maximum: 10080
+                "acceptedCoins":
+                  type: "array"
+                  items:
+                    type: "string"
+                "returnUrl":
+                  type: "string"
+                  format: "uri"
+                  nullable: true
+              required:
+                - "amount"
+      responses:
+        "200":
+          description: "Successful response"
+          content:
+            "application/json":
+              schema:
+                type: "object"
+                properties:
+                  "id":
+                    type: "string"
+                    maxLength: 255
+                  "walletId":
+                    type: "string"
+                    maxLength: 255
+                    nullable: true
+                  "merchantId":
+                    type: "string"
+                    maxLength: 255
+                  "status":
+                    type: "string"
+                    enum:
+                      - "waiting"
+                      - "confirming"
+                      - "confirmed"
+                      - "sending"
+                      - "partially_paid"
+                      - "finished"
+                      - "failed"
+                      - "expired"
+                  "underPaidCover":
+                    type: "string"
+                  "feePaidByPayer":
+                    type: "boolean"
+                  "isWhiteLabel":
+                    type: "boolean"
+                  "priceAmount":
+                    type: "string"
+                  "priceCurrency":
+                    type: "string"
+                    maxLength: 255
+                  "payAmount":
+                    type: "string"
+                    nullable: true
+                  "paidAmount":
+                    type: "string"
+                  "receivedAmount":
+                    type: "string"
+                  "payAddress":
+                    type: "string"
+                    maxLength: 255
+                    nullable: true
+                  "payinExtraId":
+                    type: "string"
+                    maxLength: 255
+                    nullable: true
+                  "payinHash":
+                    type: "string"
+                    maxLength: 255
+                    nullable: true
+                  "orderId":
+                    type: "string"
+                    maxLength: 255
+                    nullable: true
+                  "orderDescription":
+                    type: "string"
+                    maxLength: 255
+                    nullable: true
+                  "callbackUrl":
+                    type: "string"
+                    maxLength: 255
+                    nullable: true
+                  "returnUrl":
+                    type: "string"
+                    maxLength: 255
+                    nullable: true
+                  "finishedAt":
+                    type: "string"
+                    nullable: true
+                  "expiredAt":
+                    type: "string"
+                  "createdAt":
+                    type: "string"
+                  "updatedAt":
+                    type: "string"
+                  "payCurrency":
+                    type: "object"
+                    properties:
+                      "id":
+                        type: "string"
+                        maxLength: 255
+                      "code":
+                        type: "string"
+                        maxLength: 255
+                      "name":
+                        type: "string"
+                        maxLength: 255
+                      "enabled":
+                        type: "boolean"
+                      "walletRegex":
+                        type: "string"
+                        maxLength: 255
+                      "priority":
+                        type: "integer"
+                        minimum: -2147483648
+                        maximum: 2147483647
+                      "extraIdExists":
+                        type: "boolean"
+                      "extraIdRegex":
+                        type: "string"
+                        maxLength: 255
+                        nullable: true
+                      "usdPrice":
+                        type: "string"
+                      "minPaymentAmount":
+                        type: "string"
+                      "minPayoutAmount":
+                        type: "string"
+                      "minWithdrawalFeeEstimate":
+                        type: "string"
+                      "logoUrl":
+                        type: "string"
+                        maxLength: 255
+                        nullable: true
+                      "track":
+                        type: "boolean"
+                      "cgId":
+                        type: "string"
+                        maxLength: 255
+                        nullable: true
+                      "isMaxlimit":
+                        type: "boolean"
+                      "network":
+                        type: "string"
+                        maxLength: 255
+                        nullable: true
+                      "smartContract":
+                        type: "string"
+                        maxLength: 255
+                        nullable: true
+                      "networkPrecision":
+                        type: "string"
+                        maxLength: 255
+                        nullable: true
+                      "explorerLinkHash":
+                        type: "string"
+                        maxLength: 255
+                        nullable: true
+                      "precision":
+                        type: "integer"
+                        minimum: -2147483648
+                        maximum: 2147483647
+                      "ticker":
+                        type: "string"
+                        maxLength: 255
+                        nullable: true
+                      "isDefi":
+                        type: "boolean"
+                      "isPopular":
+                        type: "boolean"
+                      "isStable":
+                        type: "boolean"
+                      "availableForToConversion":
+                        type: "boolean"
+                      "createdAt":
+                        type: "string"
+                      "updatedAt":
+                        type: "string"
+                    required:
+                      - "id"
+                      - "code"
+                      - "name"
+                      - "enabled"
+                      - "walletRegex"
+                      - "priority"
+                      - "extraIdExists"
+                      - "extraIdRegex"
+                      - "usdPrice"
+                      - "minPaymentAmount"
+                      - "minPayoutAmount"
+                      - "minWithdrawalFeeEstimate"
+                      - "logoUrl"
+                      - "track"
+                      - "cgId"
+                      - "isMaxlimit"
+                      - "network"
+                      - "smartContract"
+                      - "networkPrecision"
+                      - "explorerLinkHash"
+                      - "precision"
+                      - "ticker"
+                      - "isDefi"
+                      - "isPopular"
+                      - "isStable"
+                      - "availableForToConversion"
+                      - "createdAt"
+                      - "updatedAt"
+                    additionalProperties: false
+                    nullable: true
+                  "acceptedCoins":
+                    type: "array"
+                    items:
+                      type: "object"
+                      properties:
+                        "id":
+                          type: "string"
+                          maxLength: 255
+                        "code":
+                          type: "string"
+                          maxLength: 255
+                        "name":
+                          type: "string"
+                          maxLength: 255
+                        "enabled":
+                          type: "boolean"
+                        "walletRegex":
+                          type: "string"
+                          maxLength: 255
+                        "priority":
+                          type: "integer"
+                          minimum: -2147483648
+                          maximum: 2147483647
+                        "extraIdExists":
+                          type: "boolean"
+                        "extraIdRegex":
+                          type: "string"
+                          maxLength: 255
+                          nullable: true
+                        "usdPrice":
+                          type: "string"
+                        "minPaymentAmount":
+                          type: "string"
+                        "minPayoutAmount":
+                          type: "string"
+                        "minWithdrawalFeeEstimate":
+                          type: "string"
+                        "logoUrl":
+                          type: "string"
+                          maxLength: 255
+                          nullable: true
+                        "track":
+                          type: "boolean"
+                        "cgId":
+                          type: "string"
+                          maxLength: 255
+                          nullable: true
+                        "isMaxlimit":
+                          type: "boolean"
+                        "network":
+                          type: "string"
+                          maxLength: 255
+                          nullable: true
+                        "smartContract":
+                          type: "string"
+                          maxLength: 255
+                          nullable: true
+                        "networkPrecision":
+                          type: "string"
+                          maxLength: 255
+                          nullable: true
+                        "explorerLinkHash":
+                          type: "string"
+                          maxLength: 255
+                          nullable: true
+                        "precision":
+                          type: "integer"
+                          minimum: -2147483648
+                          maximum: 2147483647
+                        "ticker":
+                          type: "string"
+                          maxLength: 255
+                          nullable: true
+                        "isDefi":
+                          type: "boolean"
+                        "isPopular":
+                          type: "boolean"
+                        "isStable":
+                          type: "boolean"
+                        "availableForToConversion":
+                          type: "boolean"
+                        "createdAt":
+                          type: "string"
+                        "updatedAt":
+                          type: "string"
+                      required:
+                        - "id"
+                        - "code"
+                        - "name"
+                        - "enabled"
+                        - "walletRegex"
+                        - "priority"
+                        - "extraIdExists"
+                        - "extraIdRegex"
+                        - "usdPrice"
+                        - "minPaymentAmount"
+                        - "minPayoutAmount"
+                        - "minWithdrawalFeeEstimate"
+                        - "logoUrl"
+                        - "track"
+                        - "cgId"
+                        - "isMaxlimit"
+                        - "network"
+                        - "smartContract"
+                        - "networkPrecision"
+                        - "explorerLinkHash"
+                        - "precision"
+                        - "ticker"
+                        - "isDefi"
+                        - "isPopular"
+                        - "isStable"
+                        - "availableForToConversion"
+                        - "createdAt"
+                        - "updatedAt"
+                      additionalProperties: false
+                required:
+                  - "id"
+                  - "walletId"
+                  - "merchantId"
+                  - "status"
+                  - "underPaidCover"
+                  - "feePaidByPayer"
+                  - "isWhiteLabel"
+                  - "priceAmount"
+                  - "priceCurrency"
+                  - "payAmount"
+                  - "paidAmount"
+                  - "receivedAmount"
+                  - "payAddress"
+                  - "payinExtraId"
+                  - "payinHash"
+                  - "orderId"
+                  - "orderDescription"
+                  - "callbackUrl"
+                  - "returnUrl"
+                  - "finishedAt"
+                  - "expiredAt"
+                  - "createdAt"
+                  - "updatedAt"
+                  - "payCurrency"
+                  - "acceptedCoins"
+                additionalProperties: false
+        "400":
+          description: "Invalid input data"
+          content:
+            "application/json":
+              schema: {"$ref": "#/components/schemas/error.BAD_REQUEST"}
+        "401":
+          description: "Authorization not provided"
+          content:
+            "application/json":
+              schema: {"$ref": "#/components/schemas/error.UNAUTHORIZED"}
+        "403":
+          description: "Insufficient access"
+          content:
+            "application/json":
+              schema: {"$ref": "#/components/schemas/error.FORBIDDEN"}
+        "500":
+          description: "Internal server error"
+          content:
+            "application/json":
+              schema: {"$ref": "#/components/schemas/error.INTERNAL_SERVER_ERROR"}
+      x-speakeasy-group: "paymentInvoices"
+      x-speakeasy-name-override: "create"
+  "/v1/payment-invoices/white-label":
+    post:
+      operationId: "paymentInvoices-createWhiteLabel"
+      summary: "Create a white label payment invoice"
+      tags:
+        - "payment-invoice"
+      security:
+        - API Key: []
+      requestBody:
+        required: true
+        content:
+          "application/json":
+            schema:
+              type: "object"
+              properties:
+                "feePaidByPayer":
+                  type: "boolean"
+                "callbackUrl":
+                  type: "string"
+                  maxLength: 255
+                  format: "uri"
+                  nullable: true
+                "amount":
+                  type: "number"
+                  exclusiveMinimum: false
+                "amountCurrency":
+                  default: "USD"
+                  type: "string"
+                "underPaidCover":
+                  type: "number"
+                  minimum: 0
+                  maximum: 50
+                  multipleOf: 0.1
+                "lifeTime":
+                  default: 10080
+                  type: "number"
+                  minimum: 15
+                  maximum: 10080
+                "payAddress":
+                  type: "string"
+                  nullable: true
+                "payinExtraId":
+                  type: "string"
+                  nullable: true
+                "payCurrency":
+                  type: "string"
+              required:
+                - "amount"
+                - "payAddress"
+                - "payinExtraId"
+                - "payCurrency"
+      responses:
+        "200":
+          description: "Successful response"
+          content:
+            "application/json":
+              schema:
+                type: "object"
+                properties:
+                  "id":
+                    type: "string"
+                    maxLength: 255
+                  "walletId":
+                    type: "string"
+                    maxLength: 255
+                    nullable: true
+                  "merchantId":
+                    type: "string"
+                    maxLength: 255
+                  "status":
+                    type: "string"
+                    enum:
+                      - "waiting"
+                      - "confirming"
+                      - "confirmed"
+                      - "sending"
+                      - "partially_paid"
+                      - "finished"
+                      - "failed"
+                      - "expired"
+                  "underPaidCover":
+                    type: "string"
+                  "feePaidByPayer":
+                    type: "boolean"
+                  "isWhiteLabel":
+                    type: "boolean"
+                  "priceAmount":
+                    type: "string"
+                  "priceCurrency":
+                    type: "string"
+                    maxLength: 255
+                  "payAmount":
+                    type: "string"
+                    nullable: true
+                  "paidAmount":
+                    type: "string"
+                  "receivedAmount":
+                    type: "string"
+                  "payAddress":
+                    type: "string"
+                    maxLength: 255
+                    nullable: true
+                  "payinExtraId":
+                    type: "string"
+                    maxLength: 255
+                    nullable: true
+                  "payinHash":
+                    type: "string"
+                    maxLength: 255
+                    nullable: true
+                  "orderId":
+                    type: "string"
+                    maxLength: 255
+                    nullable: true
+                  "orderDescription":
+                    type: "string"
+                    maxLength: 255
+                    nullable: true
+                  "callbackUrl":
+                    type: "string"
+                    maxLength: 255
+                    nullable: true
+                  "finishedAt":
+                    type: "string"
+                    nullable: true
+                  "expiredAt":
+                    type: "string"
+                  "createdAt":
+                    type: "string"
+                  "updatedAt":
+                    type: "string"
+                  "payCurrency":
+                    type: "object"
+                    properties:
+                      "id":
+                        type: "string"
+                        maxLength: 255
+                      "code":
+                        type: "string"
+                        maxLength: 255
+                      "name":
+                        type: "string"
+                        maxLength: 255
+                      "enabled":
+                        type: "boolean"
+                      "walletRegex":
+                        type: "string"
+                        maxLength: 255
+                      "priority":
+                        type: "integer"
+                        minimum: -2147483648
+                        maximum: 2147483647
+                      "extraIdExists":
+                        type: "boolean"
+                      "extraIdRegex":
+                        type: "string"
+                        maxLength: 255
+                        nullable: true
+                      "usdPrice":
+                        type: "string"
+                      "minPaymentAmount":
+                        type: "string"
+                      "minPayoutAmount":
+                        type: "string"
+                      "minWithdrawalFeeEstimate":
+                        type: "string"
+                      "logoUrl":
+                        type: "string"
+                        maxLength: 255
+                        nullable: true
+                      "track":
+                        type: "boolean"
+                      "cgId":
+                        type: "string"
+                        maxLength: 255
+                        nullable: true
+                      "isMaxlimit":
+                        type: "boolean"
+                      "network":
+                        type: "string"
+                        maxLength: 255
+                        nullable: true
+                      "smartContract":
+                        type: "string"
+                        maxLength: 255
+                        nullable: true
+                      "networkPrecision":
+                        type: "string"
+                        maxLength: 255
+                        nullable: true
+                      "explorerLinkHash":
+                        type: "string"
+                        maxLength: 255
+                        nullable: true
+                      "precision":
+                        type: "integer"
+                        minimum: -2147483648
+                        maximum: 2147483647
+                      "ticker":
+                        type: "string"
+                        maxLength: 255
+                        nullable: true
+                      "isDefi":
+                        type: "boolean"
+                      "isPopular":
+                        type: "boolean"
+                      "isStable":
+                        type: "boolean"
+                      "availableForToConversion":
+                        type: "boolean"
+                      "createdAt":
+                        type: "string"
+                      "updatedAt":
+                        type: "string"
+                    required:
+                      - "id"
+                      - "code"
+                      - "name"
+                      - "enabled"
+                      - "walletRegex"
+                      - "priority"
+                      - "extraIdExists"
+                      - "extraIdRegex"
+                      - "usdPrice"
+                      - "minPaymentAmount"
+                      - "minPayoutAmount"
+                      - "minWithdrawalFeeEstimate"
+                      - "logoUrl"
+                      - "track"
+                      - "cgId"
+                      - "isMaxlimit"
+                      - "network"
+                      - "smartContract"
+                      - "networkPrecision"
+                      - "explorerLinkHash"
+                      - "precision"
+                      - "ticker"
+                      - "isDefi"
+                      - "isPopular"
+                      - "isStable"
+                      - "availableForToConversion"
+                      - "createdAt"
+                      - "updatedAt"
+                    additionalProperties: false
+                    nullable: true
+                  "acceptedCoins":
+                    type: "array"
+                    items:
+                      type: "object"
+                      properties:
+                        "id":
+                          type: "string"
+                          maxLength: 255
+                        "code":
+                          type: "string"
+                          maxLength: 255
+                        "name":
+                          type: "string"
+                          maxLength: 255
+                        "enabled":
+                          type: "boolean"
+                        "walletRegex":
+                          type: "string"
+                          maxLength: 255
+                        "priority":
+                          type: "integer"
+                          minimum: -2147483648
+                          maximum: 2147483647
+                        "extraIdExists":
+                          type: "boolean"
+                        "extraIdRegex":
+                          type: "string"
+                          maxLength: 255
+                          nullable: true
+                        "usdPrice":
+                          type: "string"
+                        "minPaymentAmount":
+                          type: "string"
+                        "minPayoutAmount":
+                          type: "string"
+                        "minWithdrawalFeeEstimate":
+                          type: "string"
+                        "logoUrl":
+                          type: "string"
+                          maxLength: 255
+                          nullable: true
+                        "track":
+                          type: "boolean"
+                        "cgId":
+                          type: "string"
+                          maxLength: 255
+                          nullable: true
+                        "isMaxlimit":
+                          type: "boolean"
+                        "network":
+                          type: "string"
+                          maxLength: 255
+                          nullable: true
+                        "smartContract":
+                          type: "string"
+                          maxLength: 255
+                          nullable: true
+                        "networkPrecision":
+                          type: "string"
+                          maxLength: 255
+                          nullable: true
+                        "explorerLinkHash":
+                          type: "string"
+                          maxLength: 255
+                          nullable: true
+                        "precision":
+                          type: "integer"
+                          minimum: -2147483648
+                          maximum: 2147483647
+                        "ticker":
+                          type: "string"
+                          maxLength: 255
+                          nullable: true
+                        "isDefi":
+                          type: "boolean"
+                        "isPopular":
+                          type: "boolean"
+                        "isStable":
+                          type: "boolean"
+                        "availableForToConversion":
+                          type: "boolean"
+                        "createdAt":
+                          type: "string"
+                        "updatedAt":
+                          type: "string"
+                      required:
+                        - "id"
+                        - "code"
+                        - "name"
+                        - "enabled"
+                        - "walletRegex"
+                        - "priority"
+                        - "extraIdExists"
+                        - "extraIdRegex"
+                        - "usdPrice"
+                        - "minPaymentAmount"
+                        - "minPayoutAmount"
+                        - "minWithdrawalFeeEstimate"
+                        - "logoUrl"
+                        - "track"
+                        - "cgId"
+                        - "isMaxlimit"
+                        - "network"
+                        - "smartContract"
+                        - "networkPrecision"
+                        - "explorerLinkHash"
+                        - "precision"
+                        - "ticker"
+                        - "isDefi"
+                        - "isPopular"
+                        - "isStable"
+                        - "availableForToConversion"
+                        - "createdAt"
+                        - "updatedAt"
+                      additionalProperties: false
+                required:
+                  - "id"
+                  - "walletId"
+                  - "merchantId"
+                  - "status"
+                  - "underPaidCover"
+                  - "feePaidByPayer"
+                  - "isWhiteLabel"
+                  - "priceAmount"
+                  - "priceCurrency"
+                  - "payAmount"
+                  - "paidAmount"
+                  - "receivedAmount"
+                  - "payAddress"
+                  - "payinExtraId"
+                  - "payinHash"
+                  - "orderId"
+                  - "orderDescription"
+                  - "callbackUrl"
+                  - "finishedAt"
+                  - "expiredAt"
+                  - "createdAt"
+                  - "updatedAt"
+                  - "payCurrency"
+                  - "acceptedCoins"
+                additionalProperties: false
+        "400":
+          description: "Invalid input data"
+          content:
+            "application/json":
+              schema: {"$ref": "#/components/schemas/error.BAD_REQUEST"}
+        "401":
+          description: "Authorization not provided"
+          content:
+            "application/json":
+              schema: {"$ref": "#/components/schemas/error.UNAUTHORIZED"}
+        "403":
+          description: "Insufficient access"
+          content:
+            "application/json":
+              schema: {"$ref": "#/components/schemas/error.FORBIDDEN"}
+        "500":
+          description: "Internal server error"
+          content:
+            "application/json":
+              schema: {"$ref": "#/components/schemas/error.INTERNAL_SERVER_ERROR"}
+      x-speakeasy-group: "paymentInvoices"
+      x-speakeasy-name-override: "createWhiteLabel"
+  "/v1/payouts/list":
+    post:
+      operationId: "payouts-listOwned"
+      summary: "Query payouts"
+      description: "Query payouts for the authenticated merchant."
+      tags:
+        - "payout"
+      security:
+        - API Key: []
+      requestBody:
+        required: false
+        content:
+          "application/json":
+            schema:
+              type: "object"
+              properties:
+                "filter":
+                  type: "object"
+                  properties:
+                    "created_start":
+                      anyOf:
+                        - type: "string"
+                        - type: "string"
+                      nullable: true
+                    "created_end":
+                      anyOf:
+                        - type: "string"
+                        - type: "string"
+                      nullable: true
+                    "merchants":
+                      type: "array"
+                      items:
+                        type: "string"
+                      nullable: true
+                    "q":
+                      type: "string"
+                      nullable: true
+                "sort":
+                  type: "array"
+                  items:
+                    type: "string"
+                  nullable: true
+                "cursor":
+                  type: "string"
+                "pageSize":
+                  type: "number"
+      responses:
+        "200":
+          description: "Successful response"
+          content:
+            "application/json":
+              schema:
+                type: "object"
+                properties:
+                  "meta":
+                    type: "object"
+                    properties:
+                      "cursor":
+                        anyOf:
+                          - type: "string"
+                          - {}
+                      "hasPreviousPage":
+                        type: "boolean"
+                      "hasNextPage":
+                        type: "boolean"
+                    required:
+                      - "hasPreviousPage"
+                      - "hasNextPage"
+                    additionalProperties: false
+                  "data":
+                    type: "array"
+                    items:
+                      type: "object"
+                      properties:
+                        "id":
+                          type: "string"
+                          maxLength: 255
+                        "walletId":
+                          type: "string"
+                          maxLength: 255
+                        "merchantId":
+                          type: "string"
+                          maxLength: 255
+                        "currencyId":
+                          type: "string"
+                          maxLength: 255
+                        "status":
+                          type: "string"
+                          enum:
+                            - "creating"
+                            - "waiting"
+                            - "processing"
+                            - "sending"
+                            - "finished"
+                            - "failed"
+                            - "rejected"
+                        "amount":
+                          type: "string"
+                        "address":
+                          type: "string"
+                          maxLength: 255
+                        "extraId":
+                          type: "string"
+                          maxLength: 255
+                          nullable: true
+                        "txHash":
+                          type: "string"
+                          maxLength: 255
+                          nullable: true
+                        "fee":
+                          type: "string"
+                          nullable: true
+                        "callbackUrl":
+                          type: "string"
+                          maxLength: 255
+                          nullable: true
+                        "createdAt":
+                          type: "string"
+                        "updatedAt":
+                          type: "string"
+                        "currency":
+                          type: "object"
+                          properties:
+                            "id":
+                              type: "string"
+                              maxLength: 255
+                            "code":
+                              type: "string"
+                              maxLength: 255
+                            "name":
+                              type: "string"
+                              maxLength: 255
+                            "enabled":
+                              type: "boolean"
+                            "walletRegex":
+                              type: "string"
+                              maxLength: 255
+                            "priority":
+                              type: "integer"
+                              minimum: -2147483648
+                              maximum: 2147483647
+                            "extraIdExists":
+                              type: "boolean"
+                            "extraIdRegex":
+                              type: "string"
+                              maxLength: 255
+                              nullable: true
+                            "usdPrice":
+                              type: "string"
+                            "minPaymentAmount":
+                              type: "string"
+                            "minPayoutAmount":
+                              type: "string"
+                            "minWithdrawalFeeEstimate":
+                              type: "string"
+                            "logoUrl":
+                              type: "string"
+                              maxLength: 255
+                              nullable: true
+                            "track":
+                              type: "boolean"
+                            "cgId":
+                              type: "string"
+                              maxLength: 255
+                              nullable: true
+                            "isMaxlimit":
+                              type: "boolean"
+                            "network":
+                              type: "string"
+                              maxLength: 255
+                              nullable: true
+                            "smartContract":
+                              type: "string"
+                              maxLength: 255
+                              nullable: true
+                            "networkPrecision":
+                              type: "string"
+                              maxLength: 255
+                              nullable: true
+                            "explorerLinkHash":
+                              type: "string"
+                              maxLength: 255
+                              nullable: true
+                            "precision":
+                              type: "integer"
+                              minimum: -2147483648
+                              maximum: 2147483647
+                            "ticker":
+                              type: "string"
+                              maxLength: 255
+                              nullable: true
+                            "isDefi":
+                              type: "boolean"
+                            "isPopular":
+                              type: "boolean"
+                            "isStable":
+                              type: "boolean"
+                            "availableForToConversion":
+                              type: "boolean"
+                            "createdAt":
+                              type: "string"
+                            "updatedAt":
+                              type: "string"
+                          required:
+                            - "id"
+                            - "code"
+                            - "name"
+                            - "enabled"
+                            - "walletRegex"
+                            - "priority"
+                            - "extraIdExists"
+                            - "extraIdRegex"
+                            - "usdPrice"
+                            - "minPaymentAmount"
+                            - "minPayoutAmount"
+                            - "minWithdrawalFeeEstimate"
+                            - "logoUrl"
+                            - "track"
+                            - "cgId"
+                            - "isMaxlimit"
+                            - "network"
+                            - "smartContract"
+                            - "networkPrecision"
+                            - "explorerLinkHash"
+                            - "precision"
+                            - "ticker"
+                            - "isDefi"
+                            - "isPopular"
+                            - "isStable"
+                            - "availableForToConversion"
+                            - "createdAt"
+                            - "updatedAt"
+                          additionalProperties: false
+                          nullable: true
+                      required:
+                        - "id"
+                        - "walletId"
+                        - "merchantId"
+                        - "currencyId"
+                        - "status"
+                        - "amount"
+                        - "address"
+                        - "extraId"
+                        - "txHash"
+                        - "fee"
+                        - "callbackUrl"
+                        - "createdAt"
+                        - "updatedAt"
+                        - "currency"
+                      additionalProperties: false
+                required:
+                  - "meta"
+                  - "data"
+                additionalProperties: false
+        "400":
+          description: "Invalid input data"
+          content:
+            "application/json":
+              schema: {"$ref": "#/components/schemas/error.BAD_REQUEST"}
+        "401":
+          description: "Authorization not provided"
+          content:
+            "application/json":
+              schema: {"$ref": "#/components/schemas/error.UNAUTHORIZED"}
+        "403":
+          description: "Insufficient access"
+          content:
+            "application/json":
+              schema: {"$ref": "#/components/schemas/error.FORBIDDEN"}
+        "500":
+          description: "Internal server error"
+          content:
+            "application/json":
+              schema: {"$ref": "#/components/schemas/error.INTERNAL_SERVER_ERROR"}
+      x-speakeasy-group: "payouts"
+      x-speakeasy-name-override: "list"
+  "/v1/payouts/{id}":
+    get:
+      operationId: "payouts-getById"
+      summary: "Retrieve a payout"
+      description: "Retrieve a payout by its ID for the authenticated merchant."
+      tags:
+        - "payout"
+      security:
+        - API Key: []
+      parameters:
+        - in: "path"
+          name: "id"
+          schema:
+            type: "string"
+          required: true
+      responses:
+        "200":
+          description: "Successful response"
+          content:
+            "application/json":
+              schema:
+                type: "object"
+                properties:
+                  "id":
+                    type: "string"
+                    maxLength: 255
+                  "walletId":
+                    type: "string"
+                    maxLength: 255
+                    nullable: true
+                  "merchantId":
+                    type: "string"
+                    maxLength: 255
+                  "status":
+                    type: "string"
+                    enum:
+                      - "waiting"
+                      - "confirming"
+                      - "confirmed"
+                      - "sending"
+                      - "partially_paid"
+                      - "finished"
+                      - "failed"
+                      - "expired"
+                  "underPaidCover":
+                    type: "string"
+                  "feePaidByPayer":
+                    type: "boolean"
+                  "isWhiteLabel":
+                    type: "boolean"
+                  "priceAmount":
+                    type: "string"
+                  "priceCurrency":
+                    type: "string"
+                    maxLength: 255
+                  "payAmount":
+                    type: "string"
+                    nullable: true
+                  "paidAmount":
+                    type: "string"
+                  "receivedAmount":
+                    type: "string"
+                  "payAddress":
+                    type: "string"
+                    maxLength: 255
+                    nullable: true
+                  "payinExtraId":
+                    type: "string"
+                    maxLength: 255
+                    nullable: true
+                  "payinHash":
+                    type: "string"
+                    maxLength: 255
+                    nullable: true
+                  "orderId":
+                    type: "string"
+                    maxLength: 255
+                    nullable: true
+                  "orderDescription":
+                    type: "string"
+                    maxLength: 255
+                    nullable: true
+                  "callbackUrl":
+                    type: "string"
+                    maxLength: 255
+                    nullable: true
+                  "returnUrl":
+                    type: "string"
+                    maxLength: 255
+                    nullable: true
+                  "finishedAt":
+                    type: "string"
+                    nullable: true
+                  "expiredAt":
+                    type: "string"
+                  "createdAt":
+                    type: "string"
+                  "updatedAt":
+                    type: "string"
+                  "payCurrency":
+                    type: "object"
+                    properties:
+                      "id":
+                        type: "string"
+                        maxLength: 255
+                      "code":
+                        type: "string"
+                        maxLength: 255
+                      "name":
+                        type: "string"
+                        maxLength: 255
+                      "enabled":
+                        type: "boolean"
+                      "walletRegex":
+                        type: "string"
+                        maxLength: 255
+                      "priority":
+                        type: "integer"
+                        minimum: -2147483648
+                        maximum: 2147483647
+                      "extraIdExists":
+                        type: "boolean"
+                      "extraIdRegex":
+                        type: "string"
+                        maxLength: 255
+                        nullable: true
+                      "usdPrice":
+                        type: "string"
+                      "minPaymentAmount":
+                        type: "string"
+                      "minPayoutAmount":
+                        type: "string"
+                      "minWithdrawalFeeEstimate":
+                        type: "string"
+                      "logoUrl":
+                        type: "string"
+                        maxLength: 255
+                        nullable: true
+                      "track":
+                        type: "boolean"
+                      "cgId":
+                        type: "string"
+                        maxLength: 255
+                        nullable: true
+                      "isMaxlimit":
+                        type: "boolean"
+                      "network":
+                        type: "string"
+                        maxLength: 255
+                        nullable: true
+                      "smartContract":
+                        type: "string"
+                        maxLength: 255
+                        nullable: true
+                      "networkPrecision":
+                        type: "string"
+                        maxLength: 255
+                        nullable: true
+                      "explorerLinkHash":
+                        type: "string"
+                        maxLength: 255
+                        nullable: true
+                      "precision":
+                        type: "integer"
+                        minimum: -2147483648
+                        maximum: 2147483647
+                      "ticker":
+                        type: "string"
+                        maxLength: 255
+                        nullable: true
+                      "isDefi":
+                        type: "boolean"
+                      "isPopular":
+                        type: "boolean"
+                      "isStable":
+                        type: "boolean"
+                      "availableForToConversion":
+                        type: "boolean"
+                      "createdAt":
+                        type: "string"
+                      "updatedAt":
+                        type: "string"
+                    required:
+                      - "id"
+                      - "code"
+                      - "name"
+                      - "enabled"
+                      - "walletRegex"
+                      - "priority"
+                      - "extraIdExists"
+                      - "extraIdRegex"
+                      - "usdPrice"
+                      - "minPaymentAmount"
+                      - "minPayoutAmount"
+                      - "minWithdrawalFeeEstimate"
+                      - "logoUrl"
+                      - "track"
+                      - "cgId"
+                      - "isMaxlimit"
+                      - "network"
+                      - "smartContract"
+                      - "networkPrecision"
+                      - "explorerLinkHash"
+                      - "precision"
+                      - "ticker"
+                      - "isDefi"
+                      - "isPopular"
+                      - "isStable"
+                      - "availableForToConversion"
+                      - "createdAt"
+                      - "updatedAt"
+                    additionalProperties: false
+                    nullable: true
+                  "acceptedCoins":
+                    type: "array"
+                    items:
+                      type: "object"
+                      properties:
+                        "id":
+                          type: "string"
+                          maxLength: 255
+                        "code":
+                          type: "string"
+                          maxLength: 255
+                        "name":
+                          type: "string"
+                          maxLength: 255
+                        "enabled":
+                          type: "boolean"
+                        "walletRegex":
+                          type: "string"
+                          maxLength: 255
+                        "priority":
+                          type: "integer"
+                          minimum: -2147483648
+                          maximum: 2147483647
+                        "extraIdExists":
+                          type: "boolean"
+                        "extraIdRegex":
+                          type: "string"
+                          maxLength: 255
+                          nullable: true
+                        "usdPrice":
+                          type: "string"
+                        "minPaymentAmount":
+                          type: "string"
+                        "minPayoutAmount":
+                          type: "string"
+                        "minWithdrawalFeeEstimate":
+                          type: "string"
+                        "logoUrl":
+                          type: "string"
+                          maxLength: 255
+                          nullable: true
+                        "track":
+                          type: "boolean"
+                        "cgId":
+                          type: "string"
+                          maxLength: 255
+                          nullable: true
+                        "isMaxlimit":
+                          type: "boolean"
+                        "network":
+                          type: "string"
+                          maxLength: 255
+                          nullable: true
+                        "smartContract":
+                          type: "string"
+                          maxLength: 255
+                          nullable: true
+                        "networkPrecision":
+                          type: "string"
+                          maxLength: 255
+                          nullable: true
+                        "explorerLinkHash":
+                          type: "string"
+                          maxLength: 255
+                          nullable: true
+                        "precision":
+                          type: "integer"
+                          minimum: -2147483648
+                          maximum: 2147483647
+                        "ticker":
+                          type: "string"
+                          maxLength: 255
+                          nullable: true
+                        "isDefi":
+                          type: "boolean"
+                        "isPopular":
+                          type: "boolean"
+                        "isStable":
+                          type: "boolean"
+                        "availableForToConversion":
+                          type: "boolean"
+                        "createdAt":
+                          type: "string"
+                        "updatedAt":
+                          type: "string"
+                      required:
+                        - "id"
+                        - "code"
+                        - "name"
+                        - "enabled"
+                        - "walletRegex"
+                        - "priority"
+                        - "extraIdExists"
+                        - "extraIdRegex"
+                        - "usdPrice"
+                        - "minPaymentAmount"
+                        - "minPayoutAmount"
+                        - "minWithdrawalFeeEstimate"
+                        - "logoUrl"
+                        - "track"
+                        - "cgId"
+                        - "isMaxlimit"
+                        - "network"
+                        - "smartContract"
+                        - "networkPrecision"
+                        - "explorerLinkHash"
+                        - "precision"
+                        - "ticker"
+                        - "isDefi"
+                        - "isPopular"
+                        - "isStable"
+                        - "availableForToConversion"
+                        - "createdAt"
+                        - "updatedAt"
+                      additionalProperties: false
+                required:
+                  - "id"
+                  - "walletId"
+                  - "merchantId"
+                  - "status"
+                  - "underPaidCover"
+                  - "feePaidByPayer"
+                  - "isWhiteLabel"
+                  - "priceAmount"
+                  - "priceCurrency"
+                  - "payAmount"
+                  - "paidAmount"
+                  - "receivedAmount"
+                  - "payAddress"
+                  - "payinExtraId"
+                  - "payinHash"
+                  - "orderId"
+                  - "orderDescription"
+                  - "callbackUrl"
+                  - "returnUrl"
+                  - "finishedAt"
+                  - "expiredAt"
+                  - "createdAt"
+                  - "updatedAt"
+                  - "payCurrency"
+                  - "acceptedCoins"
+                additionalProperties: false
+        "400":
+          description: "Invalid input data"
+          content:
+            "application/json":
+              schema: {"$ref": "#/components/schemas/error.BAD_REQUEST"}
+        "401":
+          description: "Authorization not provided"
+          content:
+            "application/json":
+              schema: {"$ref": "#/components/schemas/error.UNAUTHORIZED"}
+        "403":
+          description: "Insufficient access"
+          content:
+            "application/json":
+              schema: {"$ref": "#/components/schemas/error.FORBIDDEN"}
+        "404":
+          description: "Not found"
+          content:
+            "application/json":
+              schema: {"$ref": "#/components/schemas/error.NOT_FOUND"}
+        "500":
+          description: "Internal server error"
+          content:
+            "application/json":
+              schema: {"$ref": "#/components/schemas/error.INTERNAL_SERVER_ERROR"}
+      x-speakeasy-group: "payouts"
+      x-speakeasy-name-override: "get"
+  "/v1/payouts/min-amount/{currency}":
+    get:
+      operationId: "payouts-getMinAmount"
+      summary: "Get minimum payout amount"
+      description: "Get the minimum amount for a currency."
+      tags:
+        - "payout"
+      security:
+        - API Key: []
+      parameters:
+        - in: "path"
+          name: "currency"
+          schema:
+            type: "string"
+          required: true
+      responses:
+        "200":
+          description: "Successful response"
+          content:
+            "application/json":
+              schema:
+                type: "object"
+                properties:
+                  "minAmount":
+                    type: "number"
+                required:
+                  - "minAmount"
+                additionalProperties: false
+        "400":
+          description: "Invalid input data"
+          content:
+            "application/json":
+              schema: {"$ref": "#/components/schemas/error.BAD_REQUEST"}
+        "401":
+          description: "Authorization not provided"
+          content:
+            "application/json":
+              schema: {"$ref": "#/components/schemas/error.UNAUTHORIZED"}
+        "403":
+          description: "Insufficient access"
+          content:
+            "application/json":
+              schema: {"$ref": "#/components/schemas/error.FORBIDDEN"}
+        "404":
+          description: "Not found"
+          content:
+            "application/json":
+              schema: {"$ref": "#/components/schemas/error.NOT_FOUND"}
+        "500":
+          description: "Internal server error"
+          content:
+            "application/json":
+              schema: {"$ref": "#/components/schemas/error.INTERNAL_SERVER_ERROR"}
+      x-speakeasy-group: "payouts"
+      x-speakeasy-name-override: "minAmount"
+  "/v1/payouts/fee-estimate/{currency}/{amount}":
+    get:
+      operationId: "payouts-getFeeEstimate"
+      summary: "Get payout fee estimate"
+      description: "Get the fee estimate for a currency."
+      tags:
+        - "payout"
+      security:
+        - API Key: []
+      parameters:
+        - in: "path"
+          name: "currency"
+          schema:
+            type: "string"
+          required: true
+        - in: "path"
+          name: "amount"
+          schema:
+            type: "string"
+          required: true
+      responses:
+        "200":
+          description: "Successful response"
+          content:
+            "application/json":
+              schema:
+                type: "object"
+                properties:
+                  "fee":
+                    type: "number"
+                required:
+                  - "fee"
+                additionalProperties: false
+        "400":
+          description: "Invalid input data"
+          content:
+            "application/json":
+              schema: {"$ref": "#/components/schemas/error.BAD_REQUEST"}
+        "401":
+          description: "Authorization not provided"
+          content:
+            "application/json":
+              schema: {"$ref": "#/components/schemas/error.UNAUTHORIZED"}
+        "403":
+          description: "Insufficient access"
+          content:
+            "application/json":
+              schema: {"$ref": "#/components/schemas/error.FORBIDDEN"}
+        "404":
+          description: "Not found"
+          content:
+            "application/json":
+              schema: {"$ref": "#/components/schemas/error.NOT_FOUND"}
+        "500":
+          description: "Internal server error"
+          content:
+            "application/json":
+              schema: {"$ref": "#/components/schemas/error.INTERNAL_SERVER_ERROR"}
+      x-speakeasy-group: "payouts"
+      x-speakeasy-name-override: "feeEstimate"
+  "/v1/payouts/stats":
+    get:
+      operationId: "payouts-getStats"
+      summary: "Get payout stats"
+      description: "Get payout stats the authenticated merchant."
+      tags:
+        - "payout"
+      security:
+        - API Key: []
+      responses:
+        "200":
+          description: "Successful response"
+          content:
+            "application/json":
+              schema:
+                type: "object"
+                properties:
+                  "total":
+                    type: "number"
+                  "totalUSDAmount":
+                    type: "number"
+                  "totalReceipients":
+                    type: "number"
+                  "totalProcessing":
+                    type: "number"
+                  "totalFinished":
+                    type: "number"
+                required:
+                  - "total"
+                  - "totalUSDAmount"
+                  - "totalReceipients"
+                  - "totalProcessing"
+                  - "totalFinished"
+                additionalProperties: false
+        "401":
+          description: "Authorization not provided"
+          content:
+            "application/json":
+              schema: {"$ref": "#/components/schemas/error.UNAUTHORIZED"}
+        "403":
+          description: "Insufficient access"
+          content:
+            "application/json":
+              schema: {"$ref": "#/components/schemas/error.FORBIDDEN"}
+        "500":
+          description: "Internal server error"
+          content:
+            "application/json":
+              schema: {"$ref": "#/components/schemas/error.INTERNAL_SERVER_ERROR"}
+      x-speakeasy-group: "payouts"
+      x-speakeasy-name-override: "stats"
+  "/v1/payouts":
+    post:
+      operationId: "payouts-create"
+      summary: "Create a payout"
+      description: "Create a payout for the authenticated merchant."
+      tags:
+        - "payout"
+      security:
+        - API Key: []
+      requestBody:
+        required: true
+        content:
+          "application/json":
+            schema:
+              type: "object"
+              properties:
+                "amount":
+                  type: "string"
+                "address":
+                  type: "string"
+                  maxLength: 255
+                "extraId":
+                  type: "string"
+                  maxLength: 255
+                  nullable: true
+                "callbackUrl":
+                  type: "string"
+                  maxLength: 255
+                  format: "uri"
+                  nullable: true
+                "currency":
+                  type: "string"
+              required:
+                - "amount"
+                - "address"
+                - "currency"
+      responses:
+        "200":
+          description: "Successful response"
+          content:
+            "application/json":
+              schema:
+                type: "object"
+                properties:
+                  "id":
+                    type: "string"
+                    maxLength: 255
+                  "walletId":
+                    type: "string"
+                    maxLength: 255
+                  "merchantId":
+                    type: "string"
+                    maxLength: 255
+                  "currencyId":
+                    type: "string"
+                    maxLength: 255
+                  "status":
+                    type: "string"
+                    enum:
+                      - "creating"
+                      - "waiting"
+                      - "processing"
+                      - "sending"
+                      - "finished"
+                      - "failed"
+                      - "rejected"
+                  "amount":
+                    type: "string"
+                  "address":
+                    type: "string"
+                    maxLength: 255
+                  "extraId":
+                    type: "string"
+                    maxLength: 255
+                    nullable: true
+                  "txHash":
+                    type: "string"
+                    maxLength: 255
+                    nullable: true
+                  "fee":
+                    type: "string"
+                    nullable: true
+                  "callbackUrl":
+                    type: "string"
+                    maxLength: 255
+                    nullable: true
+                  "createdAt":
+                    type: "string"
+                  "updatedAt":
+                    type: "string"
+                  "currency":
+                    type: "object"
+                    properties:
+                      "id":
+                        type: "string"
+                        maxLength: 255
+                      "code":
+                        type: "string"
+                        maxLength: 255
+                      "name":
+                        type: "string"
+                        maxLength: 255
+                      "enabled":
+                        type: "boolean"
+                      "walletRegex":
+                        type: "string"
+                        maxLength: 255
+                      "priority":
+                        type: "integer"
+                        minimum: -2147483648
+                        maximum: 2147483647
+                      "extraIdExists":
+                        type: "boolean"
+                      "extraIdRegex":
+                        type: "string"
+                        maxLength: 255
+                        nullable: true
+                      "usdPrice":
+                        type: "string"
+                      "minPaymentAmount":
+                        type: "string"
+                      "minPayoutAmount":
+                        type: "string"
+                      "minWithdrawalFeeEstimate":
+                        type: "string"
+                      "logoUrl":
+                        type: "string"
+                        maxLength: 255
+                        nullable: true
+                      "track":
+                        type: "boolean"
+                      "cgId":
+                        type: "string"
+                        maxLength: 255
+                        nullable: true
+                      "isMaxlimit":
+                        type: "boolean"
+                      "network":
+                        type: "string"
+                        maxLength: 255
+                        nullable: true
+                      "smartContract":
+                        type: "string"
+                        maxLength: 255
+                        nullable: true
+                      "networkPrecision":
+                        type: "string"
+                        maxLength: 255
+                        nullable: true
+                      "explorerLinkHash":
+                        type: "string"
+                        maxLength: 255
+                        nullable: true
+                      "precision":
+                        type: "integer"
+                        minimum: -2147483648
+                        maximum: 2147483647
+                      "ticker":
+                        type: "string"
+                        maxLength: 255
+                        nullable: true
+                      "isDefi":
+                        type: "boolean"
+                      "isPopular":
+                        type: "boolean"
+                      "isStable":
+                        type: "boolean"
+                      "availableForToConversion":
+                        type: "boolean"
+                      "createdAt":
+                        type: "string"
+                      "updatedAt":
+                        type: "string"
+                    required:
+                      - "id"
+                      - "code"
+                      - "name"
+                      - "enabled"
+                      - "walletRegex"
+                      - "priority"
+                      - "extraIdExists"
+                      - "extraIdRegex"
+                      - "usdPrice"
+                      - "minPaymentAmount"
+                      - "minPayoutAmount"
+                      - "minWithdrawalFeeEstimate"
+                      - "logoUrl"
+                      - "track"
+                      - "cgId"
+                      - "isMaxlimit"
+                      - "network"
+                      - "smartContract"
+                      - "networkPrecision"
+                      - "explorerLinkHash"
+                      - "precision"
+                      - "ticker"
+                      - "isDefi"
+                      - "isPopular"
+                      - "isStable"
+                      - "availableForToConversion"
+                      - "createdAt"
+                      - "updatedAt"
+                    additionalProperties: false
+                    nullable: true
+                required:
+                  - "id"
+                  - "walletId"
+                  - "merchantId"
+                  - "currencyId"
+                  - "status"
+                  - "amount"
+                  - "address"
+                  - "extraId"
+                  - "txHash"
+                  - "fee"
+                  - "callbackUrl"
+                  - "createdAt"
+                  - "updatedAt"
+                  - "currency"
+                additionalProperties: false
+        "400":
+          description: "Invalid input data"
+          content:
+            "application/json":
+              schema: {"$ref": "#/components/schemas/error.BAD_REQUEST"}
+        "401":
+          description: "Authorization not provided"
+          content:
+            "application/json":
+              schema: {"$ref": "#/components/schemas/error.UNAUTHORIZED"}
+        "403":
+          description: "Insufficient access"
+          content:
+            "application/json":
+              schema: {"$ref": "#/components/schemas/error.FORBIDDEN"}
+        "500":
+          description: "Internal server error"
+          content:
+            "application/json":
+              schema: {"$ref": "#/components/schemas/error.INTERNAL_SERVER_ERROR"}
+      x-speakeasy-group: "payouts"
+      x-speakeasy-name-override: "create"
+  "/v1/conversions/list":
+    post:
+      operationId: "conversions-listOwned"
+      summary: "Query conversions"
+      description: "Query conversions for the authenticated merchant."
+      tags:
+        - "conversion"
+      security:
+        - API Key: []
+      requestBody:
+        required: false
+        content:
+          "application/json":
+            schema:
+              type: "object"
+              properties:
+                "filter":
+                  type: "object"
+                  properties:
+                    "created_start":
+                      anyOf:
+                        - type: "string"
+                        - type: "string"
+                      nullable: true
+                    "created_end":
+                      anyOf:
+                        - type: "string"
+                        - type: "string"
+                      nullable: true
+                    "merchants":
+                      type: "array"
+                      items:
+                        type: "string"
+                      nullable: true
+                    "q":
+                      type: "string"
+                      nullable: true
+                "sort":
+                  type: "array"
+                  items:
+                    type: "string"
+                  nullable: true
+                "cursor":
+                  type: "string"
+                "pageSize":
+                  type: "number"
+      responses:
+        "200":
+          description: "Successful response"
+          content:
+            "application/json":
+              schema:
+                type: "object"
+                properties:
+                  "meta":
+                    type: "object"
+                    properties:
+                      "cursor":
+                        anyOf:
+                          - type: "string"
+                          - {}
+                      "hasPreviousPage":
+                        type: "boolean"
+                      "hasNextPage":
+                        type: "boolean"
+                    required:
+                      - "hasPreviousPage"
+                      - "hasNextPage"
+                    additionalProperties: false
+                  "data":
+                    type: "array"
+                    items:
+                      type: "object"
+                      properties:
+                        "id":
+                          type: "string"
+                          maxLength: 255
+                        "merchantId":
+                          type: "string"
+                          maxLength: 255
+                        "walletFromId":
+                          type: "string"
+                          maxLength: 255
+                        "walletToId":
+                          type: "string"
+                          maxLength: 255
+                        "status":
+                          type: "string"
+                          enum:
+                            - "waiting"
+                            - "processing"
+                            - "finished"
+                            - "rejected"
+                        "amountFrom":
+                          type: "string"
+                        "amountTo":
+                          type: "string"
+                          nullable: true
+                        "callbackUrl":
+                          type: "string"
+                          maxLength: 255
+                          nullable: true
+                        "createdAt":
+                          type: "string"
+                        "updatedAt":
+                          type: "string"
+                        "currencyFrom":
+                          type: "object"
+                          properties:
+                            "id":
+                              type: "string"
+                              maxLength: 255
+                            "code":
+                              type: "string"
+                              maxLength: 255
+                            "name":
+                              type: "string"
+                              maxLength: 255
+                            "enabled":
+                              type: "boolean"
+                            "walletRegex":
+                              type: "string"
+                              maxLength: 255
+                            "priority":
+                              type: "integer"
+                              minimum: -2147483648
+                              maximum: 2147483647
+                            "extraIdExists":
+                              type: "boolean"
+                            "extraIdRegex":
+                              type: "string"
+                              maxLength: 255
+                              nullable: true
+                            "usdPrice":
+                              type: "string"
+                            "minPaymentAmount":
+                              type: "string"
+                            "minPayoutAmount":
+                              type: "string"
+                            "minWithdrawalFeeEstimate":
+                              type: "string"
+                            "logoUrl":
+                              type: "string"
+                              maxLength: 255
+                              nullable: true
+                            "track":
+                              type: "boolean"
+                            "cgId":
+                              type: "string"
+                              maxLength: 255
+                              nullable: true
+                            "isMaxlimit":
+                              type: "boolean"
+                            "network":
+                              type: "string"
+                              maxLength: 255
+                              nullable: true
+                            "smartContract":
+                              type: "string"
+                              maxLength: 255
+                              nullable: true
+                            "networkPrecision":
+                              type: "string"
+                              maxLength: 255
+                              nullable: true
+                            "explorerLinkHash":
+                              type: "string"
+                              maxLength: 255
+                              nullable: true
+                            "precision":
+                              type: "integer"
+                              minimum: -2147483648
+                              maximum: 2147483647
+                            "ticker":
+                              type: "string"
+                              maxLength: 255
+                              nullable: true
+                            "isDefi":
+                              type: "boolean"
+                            "isPopular":
+                              type: "boolean"
+                            "isStable":
+                              type: "boolean"
+                            "availableForToConversion":
+                              type: "boolean"
+                            "createdAt":
+                              type: "string"
+                            "updatedAt":
+                              type: "string"
+                          required:
+                            - "id"
+                            - "code"
+                            - "name"
+                            - "enabled"
+                            - "walletRegex"
+                            - "priority"
+                            - "extraIdExists"
+                            - "extraIdRegex"
+                            - "usdPrice"
+                            - "minPaymentAmount"
+                            - "minPayoutAmount"
+                            - "minWithdrawalFeeEstimate"
+                            - "logoUrl"
+                            - "track"
+                            - "cgId"
+                            - "isMaxlimit"
+                            - "network"
+                            - "smartContract"
+                            - "networkPrecision"
+                            - "explorerLinkHash"
+                            - "precision"
+                            - "ticker"
+                            - "isDefi"
+                            - "isPopular"
+                            - "isStable"
+                            - "availableForToConversion"
+                            - "createdAt"
+                            - "updatedAt"
+                          additionalProperties: false
+                        "currencyTo":
+                          type: "object"
+                          properties:
+                            "id":
+                              type: "string"
+                              maxLength: 255
+                            "code":
+                              type: "string"
+                              maxLength: 255
+                            "name":
+                              type: "string"
+                              maxLength: 255
+                            "enabled":
+                              type: "boolean"
+                            "walletRegex":
+                              type: "string"
+                              maxLength: 255
+                            "priority":
+                              type: "integer"
+                              minimum: -2147483648
+                              maximum: 2147483647
+                            "extraIdExists":
+                              type: "boolean"
+                            "extraIdRegex":
+                              type: "string"
+                              maxLength: 255
+                              nullable: true
+                            "usdPrice":
+                              type: "string"
+                            "minPaymentAmount":
+                              type: "string"
+                            "minPayoutAmount":
+                              type: "string"
+                            "minWithdrawalFeeEstimate":
+                              type: "string"
+                            "logoUrl":
+                              type: "string"
+                              maxLength: 255
+                              nullable: true
+                            "track":
+                              type: "boolean"
+                            "cgId":
+                              type: "string"
+                              maxLength: 255
+                              nullable: true
+                            "isMaxlimit":
+                              type: "boolean"
+                            "network":
+                              type: "string"
+                              maxLength: 255
+                              nullable: true
+                            "smartContract":
+                              type: "string"
+                              maxLength: 255
+                              nullable: true
+                            "networkPrecision":
+                              type: "string"
+                              maxLength: 255
+                              nullable: true
+                            "explorerLinkHash":
+                              type: "string"
+                              maxLength: 255
+                              nullable: true
+                            "precision":
+                              type: "integer"
+                              minimum: -2147483648
+                              maximum: 2147483647
+                            "ticker":
+                              type: "string"
+                              maxLength: 255
+                              nullable: true
+                            "isDefi":
+                              type: "boolean"
+                            "isPopular":
+                              type: "boolean"
+                            "isStable":
+                              type: "boolean"
+                            "availableForToConversion":
+                              type: "boolean"
+                            "createdAt":
+                              type: "string"
+                            "updatedAt":
+                              type: "string"
+                          required:
+                            - "id"
+                            - "code"
+                            - "name"
+                            - "enabled"
+                            - "walletRegex"
+                            - "priority"
+                            - "extraIdExists"
+                            - "extraIdRegex"
+                            - "usdPrice"
+                            - "minPaymentAmount"
+                            - "minPayoutAmount"
+                            - "minWithdrawalFeeEstimate"
+                            - "logoUrl"
+                            - "track"
+                            - "cgId"
+                            - "isMaxlimit"
+                            - "network"
+                            - "smartContract"
+                            - "networkPrecision"
+                            - "explorerLinkHash"
+                            - "precision"
+                            - "ticker"
+                            - "isDefi"
+                            - "isPopular"
+                            - "isStable"
+                            - "availableForToConversion"
+                            - "createdAt"
+                            - "updatedAt"
+                          additionalProperties: false
+                      required:
+                        - "id"
+                        - "merchantId"
+                        - "walletFromId"
+                        - "walletToId"
+                        - "status"
+                        - "amountFrom"
+                        - "amountTo"
+                        - "callbackUrl"
+                        - "createdAt"
+                        - "updatedAt"
+                        - "currencyFrom"
+                        - "currencyTo"
+                      additionalProperties: false
+                required:
+                  - "meta"
+                  - "data"
+                additionalProperties: false
+        "400":
+          description: "Invalid input data"
+          content:
+            "application/json":
+              schema: {"$ref": "#/components/schemas/error.BAD_REQUEST"}
+        "401":
+          description: "Authorization not provided"
+          content:
+            "application/json":
+              schema: {"$ref": "#/components/schemas/error.UNAUTHORIZED"}
+        "403":
+          description: "Insufficient access"
+          content:
+            "application/json":
+              schema: {"$ref": "#/components/schemas/error.FORBIDDEN"}
+        "500":
+          description: "Internal server error"
+          content:
+            "application/json":
+              schema: {"$ref": "#/components/schemas/error.INTERNAL_SERVER_ERROR"}
+      x-speakeasy-group: "conversions"
+      x-speakeasy-name-override: "list"
+  "/v1/conversions/{id}":
+    get:
+      operationId: "conversions-getById"
+      summary: "Retrieve a conversion"
+      description: "Retrieve a conversion by its ID for the authenticated merchant."
+      tags:
+        - "conversion"
+      security:
+        - API Key: []
+      parameters:
+        - in: "path"
+          name: "id"
+          schema:
+            type: "string"
+          required: true
+      responses:
+        "200":
+          description: "Successful response"
+          content:
+            "application/json":
+              schema:
+                type: "object"
+                properties:
+                  "id":
+                    type: "string"
+                    maxLength: 255
+                  "merchantId":
+                    type: "string"
+                    maxLength: 255
+                  "walletFromId":
+                    type: "string"
+                    maxLength: 255
+                  "walletToId":
+                    type: "string"
+                    maxLength: 255
+                  "status":
+                    type: "string"
+                    enum:
+                      - "waiting"
+                      - "processing"
+                      - "finished"
+                      - "rejected"
+                  "amountFrom":
+                    type: "string"
+                  "amountTo":
+                    type: "string"
+                    nullable: true
+                  "callbackUrl":
+                    type: "string"
+                    maxLength: 255
+                    nullable: true
+                  "createdAt":
+                    type: "string"
+                  "updatedAt":
+                    type: "string"
+                  "currencyFrom":
+                    type: "object"
+                    properties:
+                      "id":
+                        type: "string"
+                        maxLength: 255
+                      "code":
+                        type: "string"
+                        maxLength: 255
+                      "name":
+                        type: "string"
+                        maxLength: 255
+                      "enabled":
+                        type: "boolean"
+                      "walletRegex":
+                        type: "string"
+                        maxLength: 255
+                      "priority":
+                        type: "integer"
+                        minimum: -2147483648
+                        maximum: 2147483647
+                      "extraIdExists":
+                        type: "boolean"
+                      "extraIdRegex":
+                        type: "string"
+                        maxLength: 255
+                        nullable: true
+                      "usdPrice":
+                        type: "string"
+                      "minPaymentAmount":
+                        type: "string"
+                      "minPayoutAmount":
+                        type: "string"
+                      "minWithdrawalFeeEstimate":
+                        type: "string"
+                      "logoUrl":
+                        type: "string"
+                        maxLength: 255
+                        nullable: true
+                      "track":
+                        type: "boolean"
+                      "cgId":
+                        type: "string"
+                        maxLength: 255
+                        nullable: true
+                      "isMaxlimit":
+                        type: "boolean"
+                      "network":
+                        type: "string"
+                        maxLength: 255
+                        nullable: true
+                      "smartContract":
+                        type: "string"
+                        maxLength: 255
+                        nullable: true
+                      "networkPrecision":
+                        type: "string"
+                        maxLength: 255
+                        nullable: true
+                      "explorerLinkHash":
+                        type: "string"
+                        maxLength: 255
+                        nullable: true
+                      "precision":
+                        type: "integer"
+                        minimum: -2147483648
+                        maximum: 2147483647
+                      "ticker":
+                        type: "string"
+                        maxLength: 255
+                        nullable: true
+                      "isDefi":
+                        type: "boolean"
+                      "isPopular":
+                        type: "boolean"
+                      "isStable":
+                        type: "boolean"
+                      "availableForToConversion":
+                        type: "boolean"
+                      "createdAt":
+                        type: "string"
+                      "updatedAt":
+                        type: "string"
+                    required:
+                      - "id"
+                      - "code"
+                      - "name"
+                      - "enabled"
+                      - "walletRegex"
+                      - "priority"
+                      - "extraIdExists"
+                      - "extraIdRegex"
+                      - "usdPrice"
+                      - "minPaymentAmount"
+                      - "minPayoutAmount"
+                      - "minWithdrawalFeeEstimate"
+                      - "logoUrl"
+                      - "track"
+                      - "cgId"
+                      - "isMaxlimit"
+                      - "network"
+                      - "smartContract"
+                      - "networkPrecision"
+                      - "explorerLinkHash"
+                      - "precision"
+                      - "ticker"
+                      - "isDefi"
+                      - "isPopular"
+                      - "isStable"
+                      - "availableForToConversion"
+                      - "createdAt"
+                      - "updatedAt"
+                    additionalProperties: false
+                  "currencyTo":
+                    type: "object"
+                    properties:
+                      "id":
+                        type: "string"
+                        maxLength: 255
+                      "code":
+                        type: "string"
+                        maxLength: 255
+                      "name":
+                        type: "string"
+                        maxLength: 255
+                      "enabled":
+                        type: "boolean"
+                      "walletRegex":
+                        type: "string"
+                        maxLength: 255
+                      "priority":
+                        type: "integer"
+                        minimum: -2147483648
+                        maximum: 2147483647
+                      "extraIdExists":
+                        type: "boolean"
+                      "extraIdRegex":
+                        type: "string"
+                        maxLength: 255
+                        nullable: true
+                      "usdPrice":
+                        type: "string"
+                      "minPaymentAmount":
+                        type: "string"
+                      "minPayoutAmount":
+                        type: "string"
+                      "minWithdrawalFeeEstimate":
+                        type: "string"
+                      "logoUrl":
+                        type: "string"
+                        maxLength: 255
+                        nullable: true
+                      "track":
+                        type: "boolean"
+                      "cgId":
+                        type: "string"
+                        maxLength: 255
+                        nullable: true
+                      "isMaxlimit":
+                        type: "boolean"
+                      "network":
+                        type: "string"
+                        maxLength: 255
+                        nullable: true
+                      "smartContract":
+                        type: "string"
+                        maxLength: 255
+                        nullable: true
+                      "networkPrecision":
+                        type: "string"
+                        maxLength: 255
+                        nullable: true
+                      "explorerLinkHash":
+                        type: "string"
+                        maxLength: 255
+                        nullable: true
+                      "precision":
+                        type: "integer"
+                        minimum: -2147483648
+                        maximum: 2147483647
+                      "ticker":
+                        type: "string"
+                        maxLength: 255
+                        nullable: true
+                      "isDefi":
+                        type: "boolean"
+                      "isPopular":
+                        type: "boolean"
+                      "isStable":
+                        type: "boolean"
+                      "availableForToConversion":
+                        type: "boolean"
+                      "createdAt":
+                        type: "string"
+                      "updatedAt":
+                        type: "string"
+                    required:
+                      - "id"
+                      - "code"
+                      - "name"
+                      - "enabled"
+                      - "walletRegex"
+                      - "priority"
+                      - "extraIdExists"
+                      - "extraIdRegex"
+                      - "usdPrice"
+                      - "minPaymentAmount"
+                      - "minPayoutAmount"
+                      - "minWithdrawalFeeEstimate"
+                      - "logoUrl"
+                      - "track"
+                      - "cgId"
+                      - "isMaxlimit"
+                      - "network"
+                      - "smartContract"
+                      - "networkPrecision"
+                      - "explorerLinkHash"
+                      - "precision"
+                      - "ticker"
+                      - "isDefi"
+                      - "isPopular"
+                      - "isStable"
+                      - "availableForToConversion"
+                      - "createdAt"
+                      - "updatedAt"
+                    additionalProperties: false
+                required:
+                  - "id"
+                  - "merchantId"
+                  - "walletFromId"
+                  - "walletToId"
+                  - "status"
+                  - "amountFrom"
+                  - "amountTo"
+                  - "callbackUrl"
+                  - "createdAt"
+                  - "updatedAt"
+                  - "currencyFrom"
+                  - "currencyTo"
+                additionalProperties: false
+        "400":
+          description: "Invalid input data"
+          content:
+            "application/json":
+              schema: {"$ref": "#/components/schemas/error.BAD_REQUEST"}
+        "401":
+          description: "Authorization not provided"
+          content:
+            "application/json":
+              schema: {"$ref": "#/components/schemas/error.UNAUTHORIZED"}
+        "403":
+          description: "Insufficient access"
+          content:
+            "application/json":
+              schema: {"$ref": "#/components/schemas/error.FORBIDDEN"}
+        "404":
+          description: "Not found"
+          content:
+            "application/json":
+              schema: {"$ref": "#/components/schemas/error.NOT_FOUND"}
+        "500":
+          description: "Internal server error"
+          content:
+            "application/json":
+              schema: {"$ref": "#/components/schemas/error.INTERNAL_SERVER_ERROR"}
+      x-speakeasy-group: "conversions"
+      x-speakeasy-name-override: "get"
+  "/v1/conversions/estimate/{currencyFrom}/{currencyTo}/{amountFrom}":
+    get:
+      operationId: "conversions-getEstimate"
+      summary: "Get conversion estimate"
+      description: "Get the fee estimate for a currency."
+      tags:
+        - "conversion"
+      security:
+        - API Key: []
+      parameters:
+        - in: "path"
+          name: "amountFrom"
+          schema:
+            type: "string"
+            pattern: "^(?:\\d+)(?:\\.\\d{1,8})?$"
+          required: true
+        - in: "path"
+          name: "currencyFrom"
+          schema:
+            type: "string"
+          required: true
+        - in: "path"
+          name: "currencyTo"
+          schema:
+            type: "string"
+          required: true
+      responses:
+        "200":
+          description: "Successful response"
+          content:
+            "application/json":
+              schema:
+                type: "object"
+                properties:
+                  "amountTo":
+                    type: "string"
+                required:
+                  - "amountTo"
+                additionalProperties: false
+        "400":
+          description: "Invalid input data"
+          content:
+            "application/json":
+              schema: {"$ref": "#/components/schemas/error.BAD_REQUEST"}
+        "401":
+          description: "Authorization not provided"
+          content:
+            "application/json":
+              schema: {"$ref": "#/components/schemas/error.UNAUTHORIZED"}
+        "403":
+          description: "Insufficient access"
+          content:
+            "application/json":
+              schema: {"$ref": "#/components/schemas/error.FORBIDDEN"}
+        "404":
+          description: "Not found"
+          content:
+            "application/json":
+              schema: {"$ref": "#/components/schemas/error.NOT_FOUND"}
+        "500":
+          description: "Internal server error"
+          content:
+            "application/json":
+              schema: {"$ref": "#/components/schemas/error.INTERNAL_SERVER_ERROR"}
+      x-speakeasy-group: "conversions"
+      x-speakeasy-name-override: "estimate"
+  "/v1/conversions":
+    post:
+      operationId: "conversions-create"
+      summary: "Create a conversion"
+      description: "Create a conversion for the authenticated merchant."
+      tags:
+        - "conversion"
+      security:
+        - API Key: []
+      requestBody:
+        required: true
+        content:
+          "application/json":
+            schema:
+              type: "object"
+              properties:
+                "amountFrom":
+                  type: "string"
+                  pattern: "^(?:\\d+)(?:\\.\\d{1,8})?$"
+                "callbackUrl":
+                  type: "string"
+                  maxLength: 255
+                  format: "uri"
+                  nullable: true
+                "currencyFrom":
+                  type: "string"
+                "currencyTo":
+                  type: "string"
+              required:
+                - "amountFrom"
+                - "currencyFrom"
+                - "currencyTo"
+      responses:
+        "200":
+          description: "Successful response"
+          content:
+            "application/json":
+              schema:
+                type: "object"
+                properties:
+                  "id":
+                    type: "string"
+                    maxLength: 255
+                  "merchantId":
+                    type: "string"
+                    maxLength: 255
+                  "walletFromId":
+                    type: "string"
+                    maxLength: 255
+                  "walletToId":
+                    type: "string"
+                    maxLength: 255
+                  "status":
+                    type: "string"
+                    enum:
+                      - "waiting"
+                      - "processing"
+                      - "finished"
+                      - "rejected"
+                  "amountFrom":
+                    type: "string"
+                  "amountTo":
+                    type: "string"
+                    nullable: true
+                  "callbackUrl":
+                    type: "string"
+                    maxLength: 255
+                    nullable: true
+                  "createdAt":
+                    type: "string"
+                  "updatedAt":
+                    type: "string"
+                  "currencyFrom":
+                    type: "object"
+                    properties:
+                      "id":
+                        type: "string"
+                        maxLength: 255
+                      "code":
+                        type: "string"
+                        maxLength: 255
+                      "name":
+                        type: "string"
+                        maxLength: 255
+                      "enabled":
+                        type: "boolean"
+                      "walletRegex":
+                        type: "string"
+                        maxLength: 255
+                      "priority":
+                        type: "integer"
+                        minimum: -2147483648
+                        maximum: 2147483647
+                      "extraIdExists":
+                        type: "boolean"
+                      "extraIdRegex":
+                        type: "string"
+                        maxLength: 255
+                        nullable: true
+                      "usdPrice":
+                        type: "string"
+                      "minPaymentAmount":
+                        type: "string"
+                      "minPayoutAmount":
+                        type: "string"
+                      "minWithdrawalFeeEstimate":
+                        type: "string"
+                      "logoUrl":
+                        type: "string"
+                        maxLength: 255
+                        nullable: true
+                      "track":
+                        type: "boolean"
+                      "cgId":
+                        type: "string"
+                        maxLength: 255
+                        nullable: true
+                      "isMaxlimit":
+                        type: "boolean"
+                      "network":
+                        type: "string"
+                        maxLength: 255
+                        nullable: true
+                      "smartContract":
+                        type: "string"
+                        maxLength: 255
+                        nullable: true
+                      "networkPrecision":
+                        type: "string"
+                        maxLength: 255
+                        nullable: true
+                      "explorerLinkHash":
+                        type: "string"
+                        maxLength: 255
+                        nullable: true
+                      "precision":
+                        type: "integer"
+                        minimum: -2147483648
+                        maximum: 2147483647
+                      "ticker":
+                        type: "string"
+                        maxLength: 255
+                        nullable: true
+                      "isDefi":
+                        type: "boolean"
+                      "isPopular":
+                        type: "boolean"
+                      "isStable":
+                        type: "boolean"
+                      "availableForToConversion":
+                        type: "boolean"
+                      "createdAt":
+                        type: "string"
+                      "updatedAt":
+                        type: "string"
+                    required:
+                      - "id"
+                      - "code"
+                      - "name"
+                      - "enabled"
+                      - "walletRegex"
+                      - "priority"
+                      - "extraIdExists"
+                      - "extraIdRegex"
+                      - "usdPrice"
+                      - "minPaymentAmount"
+                      - "minPayoutAmount"
+                      - "minWithdrawalFeeEstimate"
+                      - "logoUrl"
+                      - "track"
+                      - "cgId"
+                      - "isMaxlimit"
+                      - "network"
+                      - "smartContract"
+                      - "networkPrecision"
+                      - "explorerLinkHash"
+                      - "precision"
+                      - "ticker"
+                      - "isDefi"
+                      - "isPopular"
+                      - "isStable"
+                      - "availableForToConversion"
+                      - "createdAt"
+                      - "updatedAt"
+                    additionalProperties: false
+                  "currencyTo":
+                    type: "object"
+                    properties:
+                      "id":
+                        type: "string"
+                        maxLength: 255
+                      "code":
+                        type: "string"
+                        maxLength: 255
+                      "name":
+                        type: "string"
+                        maxLength: 255
+                      "enabled":
+                        type: "boolean"
+                      "walletRegex":
+                        type: "string"
+                        maxLength: 255
+                      "priority":
+                        type: "integer"
+                        minimum: -2147483648
+                        maximum: 2147483647
+                      "extraIdExists":
+                        type: "boolean"
+                      "extraIdRegex":
+                        type: "string"
+                        maxLength: 255
+                        nullable: true
+                      "usdPrice":
+                        type: "string"
+                      "minPaymentAmount":
+                        type: "string"
+                      "minPayoutAmount":
+                        type: "string"
+                      "minWithdrawalFeeEstimate":
+                        type: "string"
+                      "logoUrl":
+                        type: "string"
+                        maxLength: 255
+                        nullable: true
+                      "track":
+                        type: "boolean"
+                      "cgId":
+                        type: "string"
+                        maxLength: 255
+                        nullable: true
+                      "isMaxlimit":
+                        type: "boolean"
+                      "network":
+                        type: "string"
+                        maxLength: 255
+                        nullable: true
+                      "smartContract":
+                        type: "string"
+                        maxLength: 255
+                        nullable: true
+                      "networkPrecision":
+                        type: "string"
+                        maxLength: 255
+                        nullable: true
+                      "explorerLinkHash":
+                        type: "string"
+                        maxLength: 255
+                        nullable: true
+                      "precision":
+                        type: "integer"
+                        minimum: -2147483648
+                        maximum: 2147483647
+                      "ticker":
+                        type: "string"
+                        maxLength: 255
+                        nullable: true
+                      "isDefi":
+                        type: "boolean"
+                      "isPopular":
+                        type: "boolean"
+                      "isStable":
+                        type: "boolean"
+                      "availableForToConversion":
+                        type: "boolean"
+                      "createdAt":
+                        type: "string"
+                      "updatedAt":
+                        type: "string"
+                    required:
+                      - "id"
+                      - "code"
+                      - "name"
+                      - "enabled"
+                      - "walletRegex"
+                      - "priority"
+                      - "extraIdExists"
+                      - "extraIdRegex"
+                      - "usdPrice"
+                      - "minPaymentAmount"
+                      - "minPayoutAmount"
+                      - "minWithdrawalFeeEstimate"
+                      - "logoUrl"
+                      - "track"
+                      - "cgId"
+                      - "isMaxlimit"
+                      - "network"
+                      - "smartContract"
+                      - "networkPrecision"
+                      - "explorerLinkHash"
+                      - "precision"
+                      - "ticker"
+                      - "isDefi"
+                      - "isPopular"
+                      - "isStable"
+                      - "availableForToConversion"
+                      - "createdAt"
+                      - "updatedAt"
+                    additionalProperties: false
+                required:
+                  - "id"
+                  - "merchantId"
+                  - "walletFromId"
+                  - "walletToId"
+                  - "status"
+                  - "amountFrom"
+                  - "amountTo"
+                  - "callbackUrl"
+                  - "createdAt"
+                  - "updatedAt"
+                  - "currencyFrom"
+                  - "currencyTo"
+                additionalProperties: false
+        "400":
+          description: "Invalid input data"
+          content:
+            "application/json":
+              schema: {"$ref": "#/components/schemas/error.BAD_REQUEST"}
+        "401":
+          description: "Authorization not provided"
+          content:
+            "application/json":
+              schema: {"$ref": "#/components/schemas/error.UNAUTHORIZED"}
+        "403":
+          description: "Insufficient access"
+          content:
+            "application/json":
+              schema: {"$ref": "#/components/schemas/error.FORBIDDEN"}
+        "500":
+          description: "Internal server error"
+          content:
+            "application/json":
+              schema: {"$ref": "#/components/schemas/error.INTERNAL_SERVER_ERROR"}
+      x-speakeasy-group: "conversions"
+      x-speakeasy-name-override: "create"
+  "/v1/conversions/stats":
+    get:
+      operationId: "conversions-getStats"
+      summary: "Get conversion stats"
+      description: "Get conversion stats for the authenticated merchant."
+      tags:
+        - "conversion"
+      security:
+        - API Key: []
+      responses:
+        "200":
+          description: "Successful response"
+          content:
+            "application/json":
+              schema:
+                type: "object"
+                properties:
+                  "total":
+                    type: "number"
+                  "totalFromUSDAmount":
+                    type: "number"
+                  "totalToUSDAmount":
+                    type: "number"
+                  "totalWaiting":
+                    type: "number"
+                  "totalProcessing":
+                    type: "number"
+                  "totalFinished":
+                    type: "number"
+                  "totalRejected":
+                    type: "number"
+                required:
+                  - "total"
+                  - "totalFromUSDAmount"
+                  - "totalToUSDAmount"
+                  - "totalWaiting"
+                  - "totalProcessing"
+                  - "totalFinished"
+                  - "totalRejected"
+                additionalProperties: false
+        "401":
+          description: "Authorization not provided"
+          content:
+            "application/json":
+              schema: {"$ref": "#/components/schemas/error.UNAUTHORIZED"}
+        "403":
+          description: "Insufficient access"
+          content:
+            "application/json":
+              schema: {"$ref": "#/components/schemas/error.FORBIDDEN"}
+        "500":
+          description: "Internal server error"
+          content:
+            "application/json":
+              schema: {"$ref": "#/components/schemas/error.INTERNAL_SERVER_ERROR"}
+      x-speakeasy-group: "conversions"
+      x-speakeasy-name-override: "stats"
+components:
+  schemas:
+    "error.BAD_REQUEST":
+      title: "Invalid input data error (400)"
+      description: "The error information"
+      example: {"code": "BAD_REQUEST", "message": "Invalid input data", "issues": []}
+      type: "object"
+      properties:
+        "message":
+          description: "The error message"
+          example: "Invalid input data"
+          type: "string"
+        "code":
+          description: "The error code"
+          example: "BAD_REQUEST"
+          type: "string"
+        "issues":
+          description: "An array of issues that were responsible for the error"
+          example: []
+          type: "array"
+          items:
+            type: "object"
+            properties:
+              "message":
+                type: "string"
+            required:
+              - "message"
+            additionalProperties: false
+      required:
+        - "message"
+        - "code"
+      additionalProperties: false
+    "error.NOT_FOUND":
+      title: "Not found error (404)"
+      description: "The error information"
+      example: {"code": "NOT_FOUND", "message": "Not found", "issues": []}
+      type: "object"
+      properties:
+        "message":
+          description: "The error message"
+          example: "Not found"
+          type: "string"
+        "code":
+          description: "The error code"
+          example: "NOT_FOUND"
+          type: "string"
+        "issues":
+          description: "An array of issues that were responsible for the error"
+          example: []
+          type: "array"
+          items:
+            type: "object"
+            properties:
+              "message":
+                type: "string"
+            required:
+              - "message"
+            additionalProperties: false
+      required:
+        - "message"
+        - "code"
+      additionalProperties: false
+    "error.INTERNAL_SERVER_ERROR":
+      title: "Internal server error error (500)"
+      description: "The error information"
+      example: {"code": "INTERNAL_SERVER_ERROR", "message": "Internal server error", "issues": []}
+      type: "object"
+      properties:
+        "message":
+          description: "The error message"
+          example: "Internal server error"
+          type: "string"
+        "code":
+          description: "The error code"
+          example: "INTERNAL_SERVER_ERROR"
+          type: "string"
+        "issues":
+          description: "An array of issues that were responsible for the error"
+          example: []
+          type: "array"
+          items:
+            type: "object"
+            properties:
+              "message":
+                type: "string"
+            required:
+              - "message"
+            additionalProperties: false
+      required:
+        - "message"
+        - "code"
+      additionalProperties: false
+    "error.UNAUTHORIZED":
+      title: "Authorization not provided error (401)"
+      description: "The error information"
+      example: {"code": "UNAUTHORIZED", "message": "Authorization not provided", "issues": []}
+      type: "object"
+      properties:
+        "message":
+          description: "The error message"
+          example: "Authorization not provided"
+          type: "string"
+        "code":
+          description: "The error code"
+          example: "UNAUTHORIZED"
+          type: "string"
+        "issues":
+          description: "An array of issues that were responsible for the error"
+          example: []
+          type: "array"
+          items:
+            type: "object"
+            properties:
+              "message":
+                type: "string"
+            required:
+              - "message"
+            additionalProperties: false
+      required:
+        - "message"
+        - "code"
+      additionalProperties: false
+    "error.FORBIDDEN":
+      title: "Insufficient access error (403)"
+      description: "The error information"
+      example: {"code": "FORBIDDEN", "message": "Insufficient access", "issues": []}
+      type: "object"
+      properties:
+        "message":
+          description: "The error message"
+          example: "Insufficient access"
+          type: "string"
+        "code":
+          description: "The error code"
+          example: "FORBIDDEN"
+          type: "string"
+        "issues":
+          description: "An array of issues that were responsible for the error"
+          example: []
+          type: "array"
+          items:
+            type: "object"
+            properties:
+              "message":
+                type: "string"
+            required:
+              - "message"
+            additionalProperties: false
+      required:
+        - "message"
+        - "code"
+      additionalProperties: false
+  securitySchemes:
+    "API Key":
+      type: "apiKey"
+      in: "header"
+      name: "Authorization"
+      description: "API key authentication with format 'Bearer {apiKey}'"

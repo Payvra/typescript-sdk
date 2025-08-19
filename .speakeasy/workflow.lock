@@ -1,0 +1,41 @@
+speakeasyVersion: 1.605.0
+sources:
+    Payvra API:
+        sourceNamespace: payvra-api
+        sourceRevisionDigest: sha256:7d1d7529d79db3adfc06a22d2bd6213f45213cfca5d16cea9c42a70f661c81dd
+        sourceBlobDigest: sha256:f305ec57d98e89a963f82bba55ddc6c2698b2c24454724f9c50e10fa9a7736e6
+        tags:
+            - latest
+            - 1.0.0
+targets:
+    payvra:
+        source: Payvra API
+        sourceNamespace: payvra-api
+        sourceRevisionDigest: sha256:7d1d7529d79db3adfc06a22d2bd6213f45213cfca5d16cea9c42a70f661c81dd
+        sourceBlobDigest: sha256:f305ec57d98e89a963f82bba55ddc6c2698b2c24454724f9c50e10fa9a7736e6
+        codeSamplesNamespace: payvra-api-typescript-code-samples
+        codeSamplesRevisionDigest: sha256:f3ce31268ff57d43b0ad57479a979db7618d91b52de2067361dc10caf822e953
+workflow:
+    workflowVersion: 1.0.0
+    speakeasyVersion: latest
+    sources:
+        Payvra API:
+            inputs:
+                - location: https://v2.payvra.com/api/openapi
+            overlays:
+                - location: .speakeasy/speakeasy-modifications-overlay.yaml
+            transformations:
+                - removeUnused: true
+            output: .speakeasy/out.openapi.yaml
+            registry:
+                location: registry.speakeasyapi.dev/payvra/api/payvra-api
+    targets:
+        payvra:
+            target: typescript
+            source: Payvra API
+            codeSamples:
+                registry:
+                    location: registry.speakeasyapi.dev/payvra/api/payvra-api-typescript-code-samples
+                labelOverride:
+                    fixedValue: Typescript (SDK)
+                blocking: false

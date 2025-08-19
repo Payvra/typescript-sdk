@@ -1,0 +1,23 @@
+workflowVersion: 1.0.0
+speakeasyVersion: latest
+sources:
+    Payvra API:
+        inputs:
+            - location: https://v2.payvra.com/api/openapi
+        overlays:
+            - location: .speakeasy/speakeasy-modifications-overlay.yaml
+        transformations:
+            - removeUnused: true
+        output: .speakeasy/out.openapi.yaml
+        registry:
+            location: registry.speakeasyapi.dev/payvra/api/payvra-api
+targets:
+    payvra:
+        target: typescript
+        source: Payvra API
+        codeSamples:
+            registry:
+                location: registry.speakeasyapi.dev/payvra/api/payvra-api-typescript-code-samples
+            labelOverride:
+                fixedValue: Typescript (SDK)
+            blocking: false
