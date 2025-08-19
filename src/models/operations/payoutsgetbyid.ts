@@ -13,49 +13,17 @@ export type PayoutsGetByIdRequest = {
 };
 
 export const PayoutsGetByIdStatus = {
+  Creating: "creating",
   Waiting: "waiting",
-  Confirming: "confirming",
-  Confirmed: "confirmed",
+  Processing: "processing",
   Sending: "sending",
-  PartiallyPaid: "partially_paid",
   Finished: "finished",
   Failed: "failed",
-  Expired: "expired",
+  Rejected: "rejected",
 } as const;
 export type PayoutsGetByIdStatus = ClosedEnum<typeof PayoutsGetByIdStatus>;
 
-export type PayoutsGetByIdPayCurrency = {
-  id: string;
-  code: string;
-  name: string;
-  enabled: boolean;
-  walletRegex: string;
-  priority: number;
-  extraIdExists: boolean;
-  extraIdRegex: string | null;
-  usdPrice: string;
-  minPaymentAmount: string;
-  minPayoutAmount: string;
-  minWithdrawalFeeEstimate: string;
-  logoUrl: string | null;
-  track: boolean;
-  cgId: string | null;
-  isMaxlimit: boolean;
-  network: string | null;
-  smartContract: string | null;
-  networkPrecision: string | null;
-  explorerLinkHash: string | null;
-  precision: number;
-  ticker: string | null;
-  isDefi: boolean;
-  isPopular: boolean;
-  isStable: boolean;
-  availableForToConversion: boolean;
-  createdAt: string;
-  updatedAt: string;
-};
-
-export type PayoutsGetByIdAcceptedCoin = {
+export type PayoutsGetByIdCurrency = {
   id: string;
   code: string;
   name: string;
@@ -91,30 +59,19 @@ export type PayoutsGetByIdAcceptedCoin = {
  */
 export type PayoutsGetByIdResponse = {
   id: string;
-  walletId: string | null;
+  walletId: string;
   merchantId: string;
+  currencyId: string;
   status: PayoutsGetByIdStatus;
-  underPaidCover: string;
-  feePaidByPayer: boolean;
-  isWhiteLabel: boolean;
-  priceAmount: string;
-  priceCurrency: string;
-  payAmount: string | null;
-  paidAmount: string;
-  receivedAmount: string;
-  payAddress: string | null;
-  payinExtraId: string | null;
-  payinHash: string | null;
-  orderId: string | null;
-  orderDescription: string | null;
+  amount: string;
+  address: string;
+  extraId: string | null;
+  txHash: string | null;
+  fee: string | null;
   callbackUrl: string | null;
-  returnUrl: string | null;
-  finishedAt: string | null;
-  expiredAt: string;
   createdAt: string;
   updatedAt: string;
-  payCurrency: PayoutsGetByIdPayCurrency | null;
-  acceptedCoins: Array<PayoutsGetByIdAcceptedCoin>;
+  currency: PayoutsGetByIdCurrency | null;
 };
 
 /** @internal */
@@ -193,8 +150,8 @@ export namespace PayoutsGetByIdStatus$ {
 }
 
 /** @internal */
-export const PayoutsGetByIdPayCurrency$inboundSchema: z.ZodType<
-  PayoutsGetByIdPayCurrency,
+export const PayoutsGetByIdCurrency$inboundSchema: z.ZodType<
+  PayoutsGetByIdCurrency,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -229,7 +186,7 @@ export const PayoutsGetByIdPayCurrency$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type PayoutsGetByIdPayCurrency$Outbound = {
+export type PayoutsGetByIdCurrency$Outbound = {
   id: string;
   code: string;
   name: string;
@@ -261,10 +218,10 @@ export type PayoutsGetByIdPayCurrency$Outbound = {
 };
 
 /** @internal */
-export const PayoutsGetByIdPayCurrency$outboundSchema: z.ZodType<
-  PayoutsGetByIdPayCurrency$Outbound,
+export const PayoutsGetByIdCurrency$outboundSchema: z.ZodType<
+  PayoutsGetByIdCurrency$Outbound,
   z.ZodTypeDef,
-  PayoutsGetByIdPayCurrency
+  PayoutsGetByIdCurrency
 > = z.object({
   id: z.string(),
   code: z.string(),
@@ -300,165 +257,30 @@ export const PayoutsGetByIdPayCurrency$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace PayoutsGetByIdPayCurrency$ {
-  /** @deprecated use `PayoutsGetByIdPayCurrency$inboundSchema` instead. */
-  export const inboundSchema = PayoutsGetByIdPayCurrency$inboundSchema;
-  /** @deprecated use `PayoutsGetByIdPayCurrency$outboundSchema` instead. */
-  export const outboundSchema = PayoutsGetByIdPayCurrency$outboundSchema;
-  /** @deprecated use `PayoutsGetByIdPayCurrency$Outbound` instead. */
-  export type Outbound = PayoutsGetByIdPayCurrency$Outbound;
+export namespace PayoutsGetByIdCurrency$ {
+  /** @deprecated use `PayoutsGetByIdCurrency$inboundSchema` instead. */
+  export const inboundSchema = PayoutsGetByIdCurrency$inboundSchema;
+  /** @deprecated use `PayoutsGetByIdCurrency$outboundSchema` instead. */
+  export const outboundSchema = PayoutsGetByIdCurrency$outboundSchema;
+  /** @deprecated use `PayoutsGetByIdCurrency$Outbound` instead. */
+  export type Outbound = PayoutsGetByIdCurrency$Outbound;
 }
 
-export function payoutsGetByIdPayCurrencyToJSON(
-  payoutsGetByIdPayCurrency: PayoutsGetByIdPayCurrency,
+export function payoutsGetByIdCurrencyToJSON(
+  payoutsGetByIdCurrency: PayoutsGetByIdCurrency,
 ): string {
   return JSON.stringify(
-    PayoutsGetByIdPayCurrency$outboundSchema.parse(payoutsGetByIdPayCurrency),
+    PayoutsGetByIdCurrency$outboundSchema.parse(payoutsGetByIdCurrency),
   );
 }
 
-export function payoutsGetByIdPayCurrencyFromJSON(
+export function payoutsGetByIdCurrencyFromJSON(
   jsonString: string,
-): SafeParseResult<PayoutsGetByIdPayCurrency, SDKValidationError> {
+): SafeParseResult<PayoutsGetByIdCurrency, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => PayoutsGetByIdPayCurrency$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'PayoutsGetByIdPayCurrency' from JSON`,
-  );
-}
-
-/** @internal */
-export const PayoutsGetByIdAcceptedCoin$inboundSchema: z.ZodType<
-  PayoutsGetByIdAcceptedCoin,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.string(),
-  code: z.string(),
-  name: z.string(),
-  enabled: z.boolean(),
-  walletRegex: z.string(),
-  priority: z.number().int(),
-  extraIdExists: z.boolean(),
-  extraIdRegex: z.nullable(z.string()),
-  usdPrice: z.string(),
-  minPaymentAmount: z.string(),
-  minPayoutAmount: z.string(),
-  minWithdrawalFeeEstimate: z.string(),
-  logoUrl: z.nullable(z.string()),
-  track: z.boolean(),
-  cgId: z.nullable(z.string()),
-  isMaxlimit: z.boolean(),
-  network: z.nullable(z.string()),
-  smartContract: z.nullable(z.string()),
-  networkPrecision: z.nullable(z.string()),
-  explorerLinkHash: z.nullable(z.string()),
-  precision: z.number().int(),
-  ticker: z.nullable(z.string()),
-  isDefi: z.boolean(),
-  isPopular: z.boolean(),
-  isStable: z.boolean(),
-  availableForToConversion: z.boolean(),
-  createdAt: z.string(),
-  updatedAt: z.string(),
-});
-
-/** @internal */
-export type PayoutsGetByIdAcceptedCoin$Outbound = {
-  id: string;
-  code: string;
-  name: string;
-  enabled: boolean;
-  walletRegex: string;
-  priority: number;
-  extraIdExists: boolean;
-  extraIdRegex: string | null;
-  usdPrice: string;
-  minPaymentAmount: string;
-  minPayoutAmount: string;
-  minWithdrawalFeeEstimate: string;
-  logoUrl: string | null;
-  track: boolean;
-  cgId: string | null;
-  isMaxlimit: boolean;
-  network: string | null;
-  smartContract: string | null;
-  networkPrecision: string | null;
-  explorerLinkHash: string | null;
-  precision: number;
-  ticker: string | null;
-  isDefi: boolean;
-  isPopular: boolean;
-  isStable: boolean;
-  availableForToConversion: boolean;
-  createdAt: string;
-  updatedAt: string;
-};
-
-/** @internal */
-export const PayoutsGetByIdAcceptedCoin$outboundSchema: z.ZodType<
-  PayoutsGetByIdAcceptedCoin$Outbound,
-  z.ZodTypeDef,
-  PayoutsGetByIdAcceptedCoin
-> = z.object({
-  id: z.string(),
-  code: z.string(),
-  name: z.string(),
-  enabled: z.boolean(),
-  walletRegex: z.string(),
-  priority: z.number().int(),
-  extraIdExists: z.boolean(),
-  extraIdRegex: z.nullable(z.string()),
-  usdPrice: z.string(),
-  minPaymentAmount: z.string(),
-  minPayoutAmount: z.string(),
-  minWithdrawalFeeEstimate: z.string(),
-  logoUrl: z.nullable(z.string()),
-  track: z.boolean(),
-  cgId: z.nullable(z.string()),
-  isMaxlimit: z.boolean(),
-  network: z.nullable(z.string()),
-  smartContract: z.nullable(z.string()),
-  networkPrecision: z.nullable(z.string()),
-  explorerLinkHash: z.nullable(z.string()),
-  precision: z.number().int(),
-  ticker: z.nullable(z.string()),
-  isDefi: z.boolean(),
-  isPopular: z.boolean(),
-  isStable: z.boolean(),
-  availableForToConversion: z.boolean(),
-  createdAt: z.string(),
-  updatedAt: z.string(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace PayoutsGetByIdAcceptedCoin$ {
-  /** @deprecated use `PayoutsGetByIdAcceptedCoin$inboundSchema` instead. */
-  export const inboundSchema = PayoutsGetByIdAcceptedCoin$inboundSchema;
-  /** @deprecated use `PayoutsGetByIdAcceptedCoin$outboundSchema` instead. */
-  export const outboundSchema = PayoutsGetByIdAcceptedCoin$outboundSchema;
-  /** @deprecated use `PayoutsGetByIdAcceptedCoin$Outbound` instead. */
-  export type Outbound = PayoutsGetByIdAcceptedCoin$Outbound;
-}
-
-export function payoutsGetByIdAcceptedCoinToJSON(
-  payoutsGetByIdAcceptedCoin: PayoutsGetByIdAcceptedCoin,
-): string {
-  return JSON.stringify(
-    PayoutsGetByIdAcceptedCoin$outboundSchema.parse(payoutsGetByIdAcceptedCoin),
-  );
-}
-
-export function payoutsGetByIdAcceptedCoinFromJSON(
-  jsonString: string,
-): SafeParseResult<PayoutsGetByIdAcceptedCoin, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => PayoutsGetByIdAcceptedCoin$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'PayoutsGetByIdAcceptedCoin' from JSON`,
+    (x) => PayoutsGetByIdCurrency$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'PayoutsGetByIdCurrency' from JSON`,
   );
 }
 
@@ -469,63 +291,37 @@ export const PayoutsGetByIdResponse$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   id: z.string(),
-  walletId: z.nullable(z.string()),
+  walletId: z.string(),
   merchantId: z.string(),
+  currencyId: z.string(),
   status: PayoutsGetByIdStatus$inboundSchema,
-  underPaidCover: z.string(),
-  feePaidByPayer: z.boolean(),
-  isWhiteLabel: z.boolean(),
-  priceAmount: z.string(),
-  priceCurrency: z.string(),
-  payAmount: z.nullable(z.string()),
-  paidAmount: z.string(),
-  receivedAmount: z.string(),
-  payAddress: z.nullable(z.string()),
-  payinExtraId: z.nullable(z.string()),
-  payinHash: z.nullable(z.string()),
-  orderId: z.nullable(z.string()),
-  orderDescription: z.nullable(z.string()),
+  amount: z.string(),
+  address: z.string(),
+  extraId: z.nullable(z.string()),
+  txHash: z.nullable(z.string()),
+  fee: z.nullable(z.string()),
   callbackUrl: z.nullable(z.string()),
-  returnUrl: z.nullable(z.string()),
-  finishedAt: z.nullable(z.string()),
-  expiredAt: z.string(),
   createdAt: z.string(),
   updatedAt: z.string(),
-  payCurrency: z.nullable(
-    z.lazy(() => PayoutsGetByIdPayCurrency$inboundSchema),
-  ),
-  acceptedCoins: z.array(
-    z.lazy(() => PayoutsGetByIdAcceptedCoin$inboundSchema),
-  ),
+  currency: z.nullable(z.lazy(() => PayoutsGetByIdCurrency$inboundSchema)),
 });
 
 /** @internal */
 export type PayoutsGetByIdResponse$Outbound = {
   id: string;
-  walletId: string | null;
+  walletId: string;
   merchantId: string;
+  currencyId: string;
   status: string;
-  underPaidCover: string;
-  feePaidByPayer: boolean;
-  isWhiteLabel: boolean;
-  priceAmount: string;
-  priceCurrency: string;
-  payAmount: string | null;
-  paidAmount: string;
-  receivedAmount: string;
-  payAddress: string | null;
-  payinExtraId: string | null;
-  payinHash: string | null;
-  orderId: string | null;
-  orderDescription: string | null;
+  amount: string;
+  address: string;
+  extraId: string | null;
+  txHash: string | null;
+  fee: string | null;
   callbackUrl: string | null;
-  returnUrl: string | null;
-  finishedAt: string | null;
-  expiredAt: string;
   createdAt: string;
   updatedAt: string;
-  payCurrency: PayoutsGetByIdPayCurrency$Outbound | null;
-  acceptedCoins: Array<PayoutsGetByIdAcceptedCoin$Outbound>;
+  currency: PayoutsGetByIdCurrency$Outbound | null;
 };
 
 /** @internal */
@@ -535,34 +331,19 @@ export const PayoutsGetByIdResponse$outboundSchema: z.ZodType<
   PayoutsGetByIdResponse
 > = z.object({
   id: z.string(),
-  walletId: z.nullable(z.string()),
+  walletId: z.string(),
   merchantId: z.string(),
+  currencyId: z.string(),
   status: PayoutsGetByIdStatus$outboundSchema,
-  underPaidCover: z.string(),
-  feePaidByPayer: z.boolean(),
-  isWhiteLabel: z.boolean(),
-  priceAmount: z.string(),
-  priceCurrency: z.string(),
-  payAmount: z.nullable(z.string()),
-  paidAmount: z.string(),
-  receivedAmount: z.string(),
-  payAddress: z.nullable(z.string()),
-  payinExtraId: z.nullable(z.string()),
-  payinHash: z.nullable(z.string()),
-  orderId: z.nullable(z.string()),
-  orderDescription: z.nullable(z.string()),
+  amount: z.string(),
+  address: z.string(),
+  extraId: z.nullable(z.string()),
+  txHash: z.nullable(z.string()),
+  fee: z.nullable(z.string()),
   callbackUrl: z.nullable(z.string()),
-  returnUrl: z.nullable(z.string()),
-  finishedAt: z.nullable(z.string()),
-  expiredAt: z.string(),
   createdAt: z.string(),
   updatedAt: z.string(),
-  payCurrency: z.nullable(
-    z.lazy(() => PayoutsGetByIdPayCurrency$outboundSchema),
-  ),
-  acceptedCoins: z.array(
-    z.lazy(() => PayoutsGetByIdAcceptedCoin$outboundSchema),
-  ),
+  currency: z.nullable(z.lazy(() => PayoutsGetByIdCurrency$outboundSchema)),
 });
 
 /**

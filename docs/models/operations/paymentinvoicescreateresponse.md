@@ -93,6 +93,7 @@ let value: PaymentInvoicesCreateResponse = {
       updatedAt: "1735675047730",
     },
   ],
+  paymentUrl: "https://amused-kick.org",
 };
 ```
 
@@ -125,3 +126,4 @@ let value: PaymentInvoicesCreateResponse = {
 | `updatedAt`                                                                                                    | *string*                                                                                                       | :heavy_check_mark:                                                                                             | N/A                                                                                                            |
 | `payCurrency`                                                                                                  | [operations.PaymentInvoicesCreatePayCurrency](../../models/operations/paymentinvoicescreatepaycurrency.md)     | :heavy_check_mark:                                                                                             | N/A                                                                                                            |
 | `acceptedCoins`                                                                                                | [operations.PaymentInvoicesCreateAcceptedCoin](../../models/operations/paymentinvoicescreateacceptedcoin.md)[] | :heavy_check_mark:                                                                                             | N/A                                                                                                            |
+| `paymentUrl`                                                                                                   | *string*                                                                                                       | :heavy_check_mark:                                                                                             | N/A                                                                                                            |

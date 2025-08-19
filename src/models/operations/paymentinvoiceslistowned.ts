@@ -133,6 +133,7 @@ export type PaymentInvoicesListOwnedData = {
   updatedAt: string;
   payCurrency: PaymentInvoicesListOwnedPayCurrency | null;
   acceptedCoins: Array<PaymentInvoicesListOwnedAcceptedCoin>;
+  paymentUrl: string;
 };
 
 /**
@@ -732,6 +733,7 @@ export const PaymentInvoicesListOwnedData$inboundSchema: z.ZodType<
   acceptedCoins: z.array(
     z.lazy(() => PaymentInvoicesListOwnedAcceptedCoin$inboundSchema),
   ),
+  paymentUrl: z.string(),
 });
 
 /** @internal */
@@ -761,6 +763,7 @@ export type PaymentInvoicesListOwnedData$Outbound = {
   updatedAt: string;
   payCurrency: PaymentInvoicesListOwnedPayCurrency$Outbound | null;
   acceptedCoins: Array<PaymentInvoicesListOwnedAcceptedCoin$Outbound>;
+  paymentUrl: string;
 };
 
 /** @internal */
@@ -798,6 +801,7 @@ export const PaymentInvoicesListOwnedData$outboundSchema: z.ZodType<
   acceptedCoins: z.array(
     z.lazy(() => PaymentInvoicesListOwnedAcceptedCoin$outboundSchema),
   ),
+  paymentUrl: z.string(),
 });
 
 /**

@@ -11,5 +11,5 @@ let value: PayoutsGetByIdStatus = "finished";
 ## Values
 
 ```typescript
-"waiting" | "confirming" | "confirmed" | "sending" | "partially_paid" | "finished" | "failed" | "expired"
+"creating" | "waiting" | "processing" | "sending" | "finished" | "failed" | "rejected"
 ```

@@ -93,6 +93,7 @@ let value: PaymentInvoicesGetByIdResponse = {
       updatedAt: "1735644801945",
     },
   ],
+  paymentUrl: "https://pessimistic-instruction.com",
 };
 ```
 
@@ -125,3 +126,4 @@ let value: PaymentInvoicesGetByIdResponse = {
 | `updatedAt`                                                                                                      | *string*                                                                                                         | :heavy_check_mark:                                                                                               | N/A                                                                                                              |
 | `payCurrency`                                                                                                    | [operations.PaymentInvoicesGetByIdPayCurrency](../../models/operations/paymentinvoicesgetbyidpaycurrency.md)     | :heavy_check_mark:                                                                                               | N/A                                                                                                              |
 | `acceptedCoins`                                                                                                  | [operations.PaymentInvoicesGetByIdAcceptedCoin](../../models/operations/paymentinvoicesgetbyidacceptedcoin.md)[] | :heavy_check_mark:                                                                                               | N/A                                                                                                              |
+| `paymentUrl`                                                                                                     | *string*                                                                                                         | :heavy_check_mark:                                                                                               | N/A                                                                                                              |

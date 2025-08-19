@@ -60,6 +60,7 @@ let value: PaymentInvoicesListOwnedData = {
     updatedAt: "1735614107120",
   },
   acceptedCoins: [],
+  paymentUrl: "https://all-collaboration.name",
 };
 ```
 
@@ -92,3 +93,4 @@ let value: PaymentInvoicesListOwnedData = {
 | `updatedAt`                                                                                                          | *string*                                                                                                             | :heavy_check_mark:                                                                                                   | N/A                                                                                                                  |
 | `payCurrency`                                                                                                        | [operations.PaymentInvoicesListOwnedPayCurrency](../../models/operations/paymentinvoiceslistownedpaycurrency.md)     | :heavy_check_mark:                                                                                                   | N/A                                                                                                                  |
 | `acceptedCoins`                                                                                                      | [operations.PaymentInvoicesListOwnedAcceptedCoin](../../models/operations/paymentinvoiceslistownedacceptedcoin.md)[] | :heavy_check_mark:                                                                                                   | N/A                                                                                                                  |
+| `paymentUrl`                                                                                                         | *string*                                                                                                             | :heavy_check_mark:                                                                                                   | N/A                                                                                                                  |

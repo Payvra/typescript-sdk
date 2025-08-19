@@ -1,20 +1,21 @@
-speakeasyVersion: 1.605.0
+speakeasyVersion: 1.606.0
 sources:
     Payvra API:
         sourceNamespace: payvra-api
-        sourceRevisionDigest: sha256:7d1d7529d79db3adfc06a22d2bd6213f45213cfca5d16cea9c42a70f661c81dd
-        sourceBlobDigest: sha256:f305ec57d98e89a963f82bba55ddc6c2698b2c24454724f9c50e10fa9a7736e6
+        sourceRevisionDigest: sha256:404813913fd3ef81c2282183cf6363c280e22297d0383e401f912f8b571c8d61
+        sourceBlobDigest: sha256:9ab6f4357f0ea6ff1f23f2e230f521c70b8fa65c44443fb38738f7df287ad787
         tags:
             - latest
+            - speakeasy-sdk-regen-1755603821
             - 1.0.0
 targets:
     payvra:
         source: Payvra API
         sourceNamespace: payvra-api
-        sourceRevisionDigest: sha256:7d1d7529d79db3adfc06a22d2bd6213f45213cfca5d16cea9c42a70f661c81dd
-        sourceBlobDigest: sha256:f305ec57d98e89a963f82bba55ddc6c2698b2c24454724f9c50e10fa9a7736e6
+        sourceRevisionDigest: sha256:404813913fd3ef81c2282183cf6363c280e22297d0383e401f912f8b571c8d61
+        sourceBlobDigest: sha256:9ab6f4357f0ea6ff1f23f2e230f521c70b8fa65c44443fb38738f7df287ad787
         codeSamplesNamespace: payvra-api-typescript-code-samples
-        codeSamplesRevisionDigest: sha256:f3ce31268ff57d43b0ad57479a979db7618d91b52de2067361dc10caf822e953
+        codeSamplesRevisionDigest: sha256:9b64394ada6987345a7faafb8b3e82921c26df95f95d35dfa46eb43445190580
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest
@@ -33,6 +34,9 @@ workflow:
         payvra:
             target: typescript
             source: Payvra API
+            publish:
+                npm:
+                    token: $npm_token
             codeSamples:
                 registry:
                     location: registry.speakeasyapi.dev/payvra/api/payvra-api-typescript-code-samples

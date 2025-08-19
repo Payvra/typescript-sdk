@@ -124,6 +124,7 @@ export type PaymentInvoicesCreateResponse = {
   updatedAt: string;
   payCurrency: PaymentInvoicesCreatePayCurrency | null;
   acceptedCoins: Array<PaymentInvoicesCreateAcceptedCoin>;
+  paymentUrl: string;
 };
 
 /** @internal */
@@ -534,6 +535,7 @@ export const PaymentInvoicesCreateResponse$inboundSchema: z.ZodType<
   acceptedCoins: z.array(
     z.lazy(() => PaymentInvoicesCreateAcceptedCoin$inboundSchema),
   ),
+  paymentUrl: z.string(),
 });
 
 /** @internal */
@@ -563,6 +565,7 @@ export type PaymentInvoicesCreateResponse$Outbound = {
   updatedAt: string;
   payCurrency: PaymentInvoicesCreatePayCurrency$Outbound | null;
   acceptedCoins: Array<PaymentInvoicesCreateAcceptedCoin$Outbound>;
+  paymentUrl: string;
 };
 
 /** @internal */
@@ -600,6 +603,7 @@ export const PaymentInvoicesCreateResponse$outboundSchema: z.ZodType<
   acceptedCoins: z.array(
     z.lazy(() => PaymentInvoicesCreateAcceptedCoin$outboundSchema),
   ),
+  paymentUrl: z.string(),
 });
 
 /**

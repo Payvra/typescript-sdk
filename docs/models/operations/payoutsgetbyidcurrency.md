@@ -1,39 +1,39 @@
-# PayoutsGetByIdPayCurrency
+# PayoutsGetByIdCurrency
 
 ## Example Usage
 
 ```typescript
-import { PayoutsGetByIdPayCurrency } from "payvra/models/operations";
+import { PayoutsGetByIdCurrency } from "payvra/models/operations";
 
-let value: PayoutsGetByIdPayCurrency = {
+let value: PayoutsGetByIdCurrency = {
   id: "<id>",
   code: "<value>",
   name: "<value>",
   enabled: false,
   walletRegex: "<value>",
-  priority: 865467,
-  extraIdExists: false,
+  priority: 313581,
+  extraIdExists: true,
   extraIdRegex: "<value>",
   usdPrice: "<value>",
   minPaymentAmount: "<value>",
   minPayoutAmount: "<value>",
   minWithdrawalFeeEstimate: "<value>",
-  logoUrl: "https://mammoth-obesity.biz",
-  track: false,
+  logoUrl: "https://low-petal.org",
+  track: true,
   cgId: "<id>",
   isMaxlimit: false,
-  network: "<value>",
+  network: null,
   smartContract: "<value>",
   networkPrecision: "<value>",
   explorerLinkHash: "<value>",
-  precision: 365024,
+  precision: 265721,
   ticker: "<value>",
   isDefi: true,
-  isPopular: false,
+  isPopular: true,
   isStable: false,
   availableForToConversion: true,
-  createdAt: "1719271254672",
-  updatedAt: "1735672052372",
+  createdAt: "1721777919601",
+  updatedAt: "1735644615164",
 };
 ```
 

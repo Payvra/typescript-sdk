@@ -1,12 +1,15 @@
 lockVersion: 2.0.0
 id: e7949987-c2c4-43df-b3b1-9106df0d3421
 management:
-  docChecksum: 2fbb0d3987f36b3dc3ccad2b6cd4218f
+  docChecksum: d7822e2764f37f857c67dde5392ea233
   docVersion: 1.0.0
-  speakeasyVersion: 1.605.0
-  generationVersion: 2.684.0
-  releaseVersion: 0.1.1
-  configChecksum: 743e51737cfbbb00960c13f938de1228
+  speakeasyVersion: 1.606.0
+  generationVersion: 2.686.7
+  releaseVersion: 0.1.2
+  configChecksum: cf30541047f0584490ee9b84d39bf8b6
+  repoURL: https://github.com/Payvra/typescript-sdk.git
+  installationURL: https://github.com/Payvra/typescript-sdk
+  published: true
 features:
   typescript:
     additionalDependencies: 0.1.0
@@ -100,8 +103,7 @@ generatedFiles:
   - docs/models/operations/payoutscreaterequest.md
   - docs/models/operations/payoutscreateresponse.md
   - docs/models/operations/payoutscreatestatus.md
-  - docs/models/operations/payoutsgetbyidacceptedcoin.md
-  - docs/models/operations/payoutsgetbyidpaycurrency.md
+  - docs/models/operations/payoutsgetbyidcurrency.md
   - docs/models/operations/payoutsgetbyidrequest.md
   - docs/models/operations/payoutsgetbyidresponse.md
   - docs/models/operations/payoutsgetbyidstatus.md
@@ -333,7 +335,7 @@ examples:
           id: "<id>"
       responses:
         "200":
-          application/json: {"id": "<id>", "walletId": null, "merchantId": "<id>", "status": "confirming", "underPaidCover": "<value>", "feePaidByPayer": true, "isWhiteLabel": true, "priceAmount": "<value>", "priceCurrency": "<value>", "payAmount": "<value>", "paidAmount": "<value>", "receivedAmount": "<value>", "payAddress": "<value>", "payinExtraId": "<id>", "payinHash": "<value>", "orderId": "<id>", "orderDescription": "<value>", "callbackUrl": "https://comfortable-nun.org", "returnUrl": "https://feline-remark.org/", "finishedAt": "<value>", "expiredAt": "1705337715366", "createdAt": "1730774137757", "updatedAt": "1735651303232", "payCurrency": {"id": "<id>", "code": "<value>", "name": "<value>", "enabled": true, "walletRegex": "<value>", "priority": 900763, "extraIdExists": true, "extraIdRegex": "<value>", "usdPrice": "<value>", "minPaymentAmount": "<value>", "minPayoutAmount": "<value>", "minWithdrawalFeeEstimate": "<value>", "logoUrl": "https://bossy-developmental.net/", "track": false, "cgId": "<id>", "isMaxlimit": false, "network": "<value>", "smartContract": "<value>", "networkPrecision": "<value>", "explorerLinkHash": "<value>", "precision": 879647, "ticker": "<value>", "isDefi": false, "isPopular": false, "isStable": true, "availableForToConversion": true, "createdAt": "1734522796841", "updatedAt": "1735685494925"}, "acceptedCoins": [{"id": "<id>", "code": "<value>", "name": "<value>", "enabled": false, "walletRegex": "<value>", "priority": 51656, "extraIdExists": true, "extraIdRegex": "<value>", "usdPrice": "<value>", "minPaymentAmount": "<value>", "minPayoutAmount": "<value>", "minWithdrawalFeeEstimate": "<value>", "logoUrl": "https://good-natured-wedding.net", "track": false, "cgId": "<id>", "isMaxlimit": false, "network": "<value>", "smartContract": "<value>", "networkPrecision": "<value>", "explorerLinkHash": "<value>", "precision": 120357, "ticker": "<value>", "isDefi": true, "isPopular": true, "isStable": true, "availableForToConversion": true, "createdAt": "1717266694562", "updatedAt": "1735613716598"}]}
+          application/json: {"id": "<id>", "walletId": null, "merchantId": "<id>", "status": "confirming", "underPaidCover": "<value>", "feePaidByPayer": true, "isWhiteLabel": true, "priceAmount": "<value>", "priceCurrency": "<value>", "payAmount": "<value>", "paidAmount": "<value>", "receivedAmount": "<value>", "payAddress": "<value>", "payinExtraId": "<id>", "payinHash": "<value>", "orderId": "<id>", "orderDescription": "<value>", "callbackUrl": "https://comfortable-nun.org", "returnUrl": "https://feline-remark.org/", "finishedAt": "<value>", "expiredAt": "1705337715366", "createdAt": "1730774137757", "updatedAt": "1735651303232", "payCurrency": {"id": "<id>", "code": "<value>", "name": "<value>", "enabled": true, "walletRegex": "<value>", "priority": 900763, "extraIdExists": true, "extraIdRegex": "<value>", "usdPrice": "<value>", "minPaymentAmount": "<value>", "minPayoutAmount": "<value>", "minWithdrawalFeeEstimate": "<value>", "logoUrl": "https://bossy-developmental.net/", "track": false, "cgId": "<id>", "isMaxlimit": false, "network": "<value>", "smartContract": "<value>", "networkPrecision": "<value>", "explorerLinkHash": "<value>", "precision": 879647, "ticker": "<value>", "isDefi": false, "isPopular": false, "isStable": true, "availableForToConversion": true, "createdAt": "1734522796841", "updatedAt": "1735685494925"}, "acceptedCoins": [{"id": "<id>", "code": "<value>", "name": "<value>", "enabled": false, "walletRegex": "<value>", "priority": 51656, "extraIdExists": true, "extraIdRegex": "<value>", "usdPrice": "<value>", "minPaymentAmount": "<value>", "minPayoutAmount": "<value>", "minWithdrawalFeeEstimate": "<value>", "logoUrl": "https://good-natured-wedding.net", "track": false, "cgId": "<id>", "isMaxlimit": false, "network": "<value>", "smartContract": "<value>", "networkPrecision": "<value>", "explorerLinkHash": "<value>", "precision": 120357, "ticker": "<value>", "isDefi": true, "isPopular": true, "isStable": true, "availableForToConversion": true, "createdAt": "1717266694562", "updatedAt": "1735613716598"}], "paymentUrl": "https://corny-boulevard.biz/"}
         "400":
           application/json: {"message": "Invalid input data", "code": "BAD_REQUEST", "issues": []}
         "401":
@@ -361,7 +363,7 @@ examples:
         application/json: {"amount": 1787.33, "amountCurrency": "USD", "lifeTime": 10080}
       responses:
         "200":
-          application/json: {"id": "<id>", "walletId": "<id>", "merchantId": "<id>", "status": "partially_paid", "underPaidCover": "<value>", "feePaidByPayer": true, "isWhiteLabel": true, "priceAmount": "<value>", "priceCurrency": "<value>", "payAmount": "<value>", "paidAmount": "<value>", "receivedAmount": "<value>", "payAddress": null, "payinExtraId": "<id>", "payinHash": "<value>", "orderId": "<id>", "orderDescription": "<value>", "callbackUrl": "https://palatable-solvency.biz/", "returnUrl": "https://awesome-plumber.com", "finishedAt": "<value>", "expiredAt": "1712838728693", "createdAt": "1724192076229", "updatedAt": "1735675003887", "payCurrency": {"id": "<id>", "code": "<value>", "name": "<value>", "enabled": true, "walletRegex": "<value>", "priority": 436387, "extraIdExists": false, "extraIdRegex": "<value>", "usdPrice": "<value>", "minPaymentAmount": "<value>", "minPayoutAmount": "<value>", "minWithdrawalFeeEstimate": "<value>", "logoUrl": "https://lucky-lay.com", "track": true, "cgId": "<id>", "isMaxlimit": false, "network": "<value>", "smartContract": "<value>", "networkPrecision": "<value>", "explorerLinkHash": "<value>", "precision": 271962, "ticker": "<value>", "isDefi": false, "isPopular": true, "isStable": false, "availableForToConversion": true, "createdAt": "1727129744553", "updatedAt": "1735666142440"}, "acceptedCoins": []}
+          application/json: {"id": "<id>", "walletId": "<id>", "merchantId": "<id>", "status": "partially_paid", "underPaidCover": "<value>", "feePaidByPayer": true, "isWhiteLabel": true, "priceAmount": "<value>", "priceCurrency": "<value>", "payAmount": "<value>", "paidAmount": "<value>", "receivedAmount": "<value>", "payAddress": null, "payinExtraId": "<id>", "payinHash": "<value>", "orderId": "<id>", "orderDescription": "<value>", "callbackUrl": "https://palatable-solvency.biz/", "returnUrl": "https://awesome-plumber.com", "finishedAt": "<value>", "expiredAt": "1712838728693", "createdAt": "1724192076229", "updatedAt": "1735675003887", "payCurrency": {"id": "<id>", "code": "<value>", "name": "<value>", "enabled": true, "walletRegex": "<value>", "priority": 436387, "extraIdExists": false, "extraIdRegex": "<value>", "usdPrice": "<value>", "minPaymentAmount": "<value>", "minPayoutAmount": "<value>", "minWithdrawalFeeEstimate": "<value>", "logoUrl": "https://lucky-lay.com", "track": true, "cgId": "<id>", "isMaxlimit": false, "network": "<value>", "smartContract": "<value>", "networkPrecision": "<value>", "explorerLinkHash": "<value>", "precision": 271962, "ticker": "<value>", "isDefi": false, "isPopular": true, "isStable": false, "availableForToConversion": true, "createdAt": "1727129744553", "updatedAt": "1735666142440"}, "acceptedCoins": [], "paymentUrl": "https://nervous-molasses.biz/"}
         "400":
           application/json: {"message": "Invalid input data", "code": "BAD_REQUEST", "issues": []}
         "401":
@@ -405,7 +407,7 @@ examples:
           id: "<id>"
       responses:
         "200":
-          application/json: {"id": "<id>", "walletId": "<id>", "merchantId": "<id>", "status": "confirmed", "underPaidCover": "<value>", "feePaidByPayer": true, "isWhiteLabel": true, "priceAmount": "<value>", "priceCurrency": "<value>", "payAmount": "<value>", "paidAmount": "<value>", "receivedAmount": "<value>", "payAddress": "<value>", "payinExtraId": "<id>", "payinHash": "<value>", "orderId": "<id>", "orderDescription": null, "callbackUrl": null, "returnUrl": "https://free-bid.biz", "finishedAt": "<value>", "expiredAt": "1718478027931", "createdAt": "1711786736825", "updatedAt": "1735672754539", "payCurrency": {"id": "<id>", "code": "<value>", "name": "<value>", "enabled": true, "walletRegex": "<value>", "priority": 340425, "extraIdExists": false, "extraIdRegex": "<value>", "usdPrice": "<value>", "minPaymentAmount": "<value>", "minPayoutAmount": "<value>", "minWithdrawalFeeEstimate": "<value>", "logoUrl": "https://unlucky-marathon.biz", "track": false, "cgId": "<id>", "isMaxlimit": true, "network": "<value>", "smartContract": "<value>", "networkPrecision": "<value>", "explorerLinkHash": "<value>", "precision": 520745, "ticker": "<value>", "isDefi": false, "isPopular": true, "isStable": false, "availableForToConversion": true, "createdAt": "1710807153538", "updatedAt": "1735627983225"}, "acceptedCoins": [{"id": "<id>", "code": "<value>", "name": "<value>", "enabled": true, "walletRegex": "<value>", "priority": 655535, "extraIdExists": false, "extraIdRegex": "<value>", "usdPrice": "<value>", "minPaymentAmount": "<value>", "minPayoutAmount": "<value>", "minWithdrawalFeeEstimate": "<value>", "logoUrl": "https://rowdy-plumber.info/", "track": true, "cgId": "<id>", "isMaxlimit": false, "network": "<value>", "smartContract": "<value>", "networkPrecision": "<value>", "explorerLinkHash": "<value>", "precision": 439354, "ticker": "<value>", "isDefi": true, "isPopular": true, "isStable": true, "availableForToConversion": true, "createdAt": "1709534888671", "updatedAt": "1735675928380"}]}
+          application/json: {"id": "<id>", "walletId": "<id>", "merchantId": "<id>", "currencyId": "<id>", "status": "rejected", "amount": "286.58", "address": "45987 Batz Brook", "extraId": "<id>", "txHash": "<value>", "fee": "<value>", "callbackUrl": null, "createdAt": "1711786736825", "updatedAt": "1735672754539", "currency": null}
         "400":
           application/json: {"message": "Invalid input data", "code": "BAD_REQUEST", "issues": []}
         "401":
@@ -557,3 +559,47 @@ examples:
         "500":
           application/json: {"message": "Internal server error", "code": "INTERNAL_SERVER_ERROR", "issues": []}
 examplesVersion: 1.0.2
+releaseNotes: |
+  ## SDK Changes Detected:
+  * `payvra.currencies.all()`: **Added**
+  * `payvra.wallets.list()`: **Added**
+  * `payvra.wallets.get()`: **Added**
+  * `payvra.wallets.listOwned()`: **Added**
+  * `payvra.wallets.stats()`: **Added**
+  * `payvra.paymentInvoices.list()`: **Added**
+  * `payvra.paymentInvoices.get()`: **Added**
+  * `payvra.paymentInvoices.stats()`: **Added**
+  * `payvra.paymentInvoices.create()`: **Added**
+  * `payvra.paymentInvoices.createWhiteLabel()`: **Added**
+  * `payvra.payouts.list()`: **Added**
+  * `payvra.payouts.get()`: **Added**
+  * `payvra.payouts.minAmount()`: **Added**
+  * `payvra.payouts.feeEstimate()`: **Added**
+  * `payvra.payouts.stats()`: **Added**
+  * `payvra.payouts.create()`: **Added**
+  * `payvra.conversions.list()`: **Added**
+  * `payvra.conversions.get()`: **Added**
+  * `payvra.conversions.estimate()`: **Added**
+  * `payvra.conversions.create()`: **Added**
+  * `payvra.conversions.stats()`: **Added**
+  * `payvra.currencies.currenciesGetAll()`: **Deleted** **Breaking** :warning:
+  * `payvra.wallet.walletsListOwned()`: **Deleted** **Breaking** :warning:
+  * `payvra.wallet.walletsGetById()`: **Deleted** **Breaking** :warning:
+  * `payvra.wallet.walletsGetAllOwned()`: **Deleted** **Breaking** :warning:
+  * `payvra.wallet.walletsGetStats()`: **Deleted** **Breaking** :warning:
+  * `payvra.paymentInvoice.paymentInvoicesListOwned()`: **Deleted** **Breaking** :warning:
+  * `payvra.paymentInvoice.paymentInvoicesGetById()`: **Deleted** **Breaking** :warning:
+  * `payvra.paymentInvoice.paymentInvoicesGetStats()`: **Deleted** **Breaking** :warning:
+  * `payvra.paymentInvoice.paymentInvoicesCreate()`: **Deleted** **Breaking** :warning:
+  * `payvra.paymentInvoice.paymentInvoicesCreateWhiteLabel()`: **Deleted** **Breaking** :warning:
+  * `payvra.payout.payoutsListOwned()`: **Deleted** **Breaking** :warning:
+  * `payvra.payout.payoutsGetById()`: **Deleted** **Breaking** :warning:
+  * `payvra.payout.payoutsGetMinAmount()`: **Deleted** **Breaking** :warning:
+  * `payvra.payout.payoutsGetFeeEstimate()`: **Deleted** **Breaking** :warning:
+  * `payvra.payout.payoutsGetStats()`: **Deleted** **Breaking** :warning:
+  * `payvra.payout.payoutsCreate()`: **Deleted** **Breaking** :warning:
+  * `payvra.conversion.conversionsListOwned()`: **Deleted** **Breaking** :warning:
+  * `payvra.conversion.conversionsGetById()`: **Deleted** **Breaking** :warning:
+  * `payvra.conversion.conversionsGetEstimate()`: **Deleted** **Breaking** :warning:
+  * `payvra.conversion.conversionsCreate()`: **Deleted** **Breaking** :warning:
+  * `payvra.conversion.conversionsGetStats()`: **Deleted** **Breaking** :warning:
